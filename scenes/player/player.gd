@@ -10,6 +10,8 @@ var extra_jumps = 1
 var extra_jumps_left = extra_jumps
 # 1 for right, -1 for left
 var facing = 1 
+@export var toggle_lock_mode: bool = false
+var is_position_locked: bool = false
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -24,9 +26,10 @@ func _physics_process(delta: float) -> void:
 	else:
 		air_time = AIR_TIME_MAX
 		extra_jumps_left = extra_jumps
+	handle_lock_input()
 
 	# Handle jump.
-	if Input.is_action_pressed("jump") and air_time > 0:
+	if Input.is_action_pressed("jump") and air_time > 0 and not is_position_locked:
 		velocity.y = JUMP_VELOCITY
 	
 
@@ -35,10 +38,12 @@ func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("move_left", "move_right")
 	var current_aim = get_aim_vector()
 	var is_aiming_diagonal_or_vertical = (current_aim.y != 0)
+	if is_position_locked and direction != 0:
+		facing = int(sign(direction))
 	# Locks movement when aiming diagonally
-	if is_aiming_diagonal_or_vertical and is_on_floor():
+	if is_position_locked:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-	elif direction:
+	elif direction != 0:
 		velocity.x = direction * SPEED
 		facing = int(sign(direction))
 	else:
@@ -54,20 +59,19 @@ func get_aim_vector() -> Vector2:
 		var down = Input.is_action_pressed("aim_down")
 		var left = Input.is_action_pressed("move_left")
 		var right = Input.is_action_pressed("move_right")
+		var aim_x = facing
+		if left:
+			aim_x = -1
+		if right:
+			aim_x = 1
 		if up:
-			if left:
-				return Vector2(-0.707, -0.707)
-			elif right:
-				return Vector2(0.707, -0.707)
-			else:
-				return Vector2(0, -1)
-		elif down and not is_on_floor():
-			if left:
-				return Vector2(-0.707, 0.707)
-			elif right:
-				return Vector2(0.707, 0.707)
-			else:
-				return Vector2(0, 1)
+			if left or right or (is_position_locked and (left or right)):
+				return Vector2(aim_x * 0.707, -0.707)
+			return Vector2(0, -1)
+		elif down:
+			if left or right:
+				return Vector2(aim_x * 0.707, 0.707)
+			return Vector2(0, 1)
 		return Vector2(facing, 0)
 
 # Handles shooting and spawning bullets
@@ -79,3 +83,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		if bullet.has_method("setup"):
 			bullet.setup(aim_direction)
 		get_tree().current_scene.add_child(bullet)
+		
+func handle_lock_input() -> void:
+	if toggle_lock_mode:
+		if Input.is_action_just_pressed("lock_position"):
+			is_position_locked = !is_position_locked
+	else:
+		is_position_locked = Input.is_action_pressed("lock_position")
