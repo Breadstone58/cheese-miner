@@ -25,10 +25,12 @@ rect = Rect2(-14, -16, 28, 32)
 position = Vector2(0, -16)
 target_position = Vector2(20, 0)
 collision_mask = 12
+hit_from_inside = true
 
 [node name="RayCast2D2" type="RayCast2D" parent="." unique_id=1588076763]
 position = Vector2(0, 17)
 target_position = Vector2(20, 0)
 collision_mask = 12
+hit_from_inside = true
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
