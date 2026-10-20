@@ -13,6 +13,13 @@ var facing = 1
 @export var toggle_lock_mode: bool = false
 var is_position_locked: bool = false
 
+func _ready() -> void:
+	position.x = GlobVar.PlayerX
+	velocity.y = 2000
+	
+func _process(_delta: float) -> void:
+	GlobVar.PlayerX = position.x
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
@@ -29,7 +36,7 @@ func _physics_process(delta: float) -> void:
 	handle_lock_input()
 
 	# Handle jump.
-	if Input.is_action_pressed("jump") and air_time > 0 and not is_position_locked:
+	if Input.is_action_pressed("jump") and air_time > 0 and not is_position_locked and not GlobVar.transitioning:
 		velocity.y = JUMP_VELOCITY
 	
 
