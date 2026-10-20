@@ -23,7 +23,7 @@ animations = [{
 size = Vector2(64, 127)
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=590245782]
-collision_mask = 6
+collision_mask = 12
 script = ExtResource("1_g2els")
 bullet_scene = ExtResource("2_gmlin")
 

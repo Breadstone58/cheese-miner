@@ -7,7 +7,8 @@
 size = Vector2(27, 28)
 
 [node name="Bullet" type="Area2D" unique_id=1385416365]
-collision_mask = 6
+collision_layer = 2
+collision_mask = 12
 script = ExtResource("1_83itf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1195209359]
@@ -20,5 +21,14 @@ texture = ExtResource("1_7c8un")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1595051940]
 rect = Rect2(-14, -16, 28, 32)
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=264409363]
+position = Vector2(0, -16)
+target_position = Vector2(20, 0)
+collision_mask = 12
+
+[node name="RayCast2D2" type="RayCast2D" parent="." unique_id=1588076763]
+position = Vector2(0, 17)
+target_position = Vector2(20, 0)
+collision_mask = 12
+
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
