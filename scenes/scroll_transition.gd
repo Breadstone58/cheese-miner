@@ -3,6 +3,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	GlobVar.transitioning = true
 	var used_cells = $TileMapLayer.get_used_cells()
 	for coords in used_cells:
 		var atlas_coords = $TileMapLayer.get_cell_atlas_coords(coords)
