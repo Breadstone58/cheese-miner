@@ -83,7 +83,7 @@ func get_aim_vector() -> Vector2:
 
 # Handles shooting and spawning bullets
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("shoot"):
+	if event.is_action_pressed("shoot") and not GlobVar.transitioning:
 		var bullet = bullet_scene.instantiate() as Area2D
 		var aim_direction = get_aim_vector()
 		bullet.global_position = $BulletSpawnPoint.global_position

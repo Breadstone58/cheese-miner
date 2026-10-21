@@ -2,20 +2,15 @@ extends Node2D
 const PARTICLE_SCENE = preload("res://scenes/break_particles.tscn")
 @onready var cam: Camera2D = $CharacterBody2D/Camera2D
 var scroll_down = 0
+var top_locked = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalBus.spawn_particle.connect(_on_particle_spawn)
-	GlobVar.transitioning = false
 	var used_cells = $TileMapLayer.get_used_cells()
-	
 	for coords in used_cells:
-		
-		# Only swap if it's one of our tile sources (skips empty or other sources if any)
 		var atlas_coords = $TileMapLayer.get_cell_atlas_coords(coords)
 		var alternative_tile = $TileMapLayer.get_cell_alternative_tile(coords)
-			
-			# Replace the cell with the new source ID while keeping its shape and position
 		$TileMapLayer.set_cell(coords, GlobVar.biome, atlas_coords, alternative_tile)
 
 
@@ -23,8 +18,17 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	#Determine Scroll Lock
 	cam.limit_left = 0
-	cam.limit_top = 0
 	cam.limit_right = 2048
+	if $CharacterBody2D.position.y >= 0:
+		GlobVar.transitioning = false
+	if top_locked == false:
+		cam.limit_top = max($CharacterBody2D.position.y - 576,cam.limit_top)
+	else:
+		cam.limit_top = 0
+	
+	if $CharacterBody2D.position.y - 576 > 0:
+		top_locked = true
+	
 	if $CharacterBody2D.position.y > 1152:
 		GlobVar.transitioning = true
 		cam.limit_bottom = $CharacterBody2D.position.y + scroll_down
