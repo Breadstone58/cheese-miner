@@ -355,7 +355,7 @@ custom_data_layer_1/type = 24
 sources/0 = SubResource("TileSetAtlasSource_0xryl")
 sources/1 = SubResource("TileSetAtlasSource_ge76k")
 
-[node name="RoomTemplate" type="Node2D" unique_id=1770448767]
+[node name="Room0" type="Node2D" unique_id=1770448767]
 script = ExtResource("1_epks6")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=790131061]
