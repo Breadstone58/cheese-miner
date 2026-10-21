@@ -37,4 +37,3 @@ position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_ogd8f")
 
 [node name="BulletSpawnPoint" type="Marker2D" parent="." unique_id=1813491949]
-position = Vector2(32, 1)
