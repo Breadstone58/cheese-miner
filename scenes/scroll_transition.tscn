@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b0uq8i6fd2ifc" path="res://assets/sprites/environment/broken_bluecheese.png" id="2_40crq"]
 [ext_resource type="PackedScene" uid="uid://vtiane04et3j" path="res://scenes/player/player.tscn" id="3_e8suc"]
 [ext_resource type="Texture2D" uid="uid://kk01k5niirv4" path="res://assets/sprites/environment/Bluecheesewalls.png" id="3_ospp6"]
+[ext_resource type="PackedScene" uid="uid://3f6o42nw0jiu" path="res://scenes/hud.tscn" id="6_ospp6"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_iahlw"]
 
@@ -371,3 +372,5 @@ position = Vector2(1025, 578)
 position = Vector2(0, 1)
 limit_left = 0
 limit_right = 2048
+
+[node name="HUD" parent="." unique_id=180511637 instance=ExtResource("6_ospp6")]

@@ -15,6 +15,7 @@ func _ready() -> void:
 		var alternative_tile = $TileMapLayer2.get_cell_alternative_tile(coords)
 		$TileMapLayer2.set_cell(coords, new_biome, atlas_coords, alternative_tile)
 	GlobVar.biome = new_biome
+	GlobVar.stage += 1
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
