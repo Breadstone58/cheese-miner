@@ -6,7 +6,7 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -500.0
 const AIR_TIME_MAX = 0.3
 var air_time = int(AIR_TIME_MAX)
-var extra_jumps = 1
+var extra_jumps = 0
 var extra_jumps_left = extra_jumps
 # 1 for right, -1 for left
 var facing = 1 

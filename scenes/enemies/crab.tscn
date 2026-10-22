@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ds4sdrvoe635g" path="res://assets/sprites/enemies/Cracker.png" id="2_jpe3k"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gmlin"]
-radius = 20.0
+radius = 30.0
 
 [node name="Crab" type="CharacterBody2D" unique_id=709615096]
 collision_layer = 8
@@ -18,7 +18,7 @@ texture = ExtResource("2_jpe3k")
 shape = SubResource("CircleShape2D_gmlin")
 
 [node name="FloorRayCast" type="RayCast2D" parent="." unique_id=953396698]
-target_position = Vector2(0, 28)
+target_position = Vector2(0, 38)
 
 [node name="WallRayCast" type="RayCast2D" parent="." unique_id=1340661233]
-target_position = Vector2(28, 0)
+target_position = Vector2(38, 0)

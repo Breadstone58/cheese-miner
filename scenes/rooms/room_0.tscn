@@ -685,4 +685,4 @@ collision_layer = 16
 [node name="HUD" parent="." unique_id=180511637 instance=ExtResource("6_b00dr")]
 
 [node name="Crab" parent="." unique_id=709615096 instance=ExtResource("10_kf5e4")]
-position = Vector2(488, 363)
+position = Vector2(480, 355)
