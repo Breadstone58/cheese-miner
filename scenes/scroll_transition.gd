@@ -1,15 +1,23 @@
 extends Node2D
 
-
+var rand_level = 0
+var valid_biome = false
+var new_biome = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	rand_level = randi_range(0,1)
 	GlobVar.transitioning = true
 	var used_cells = $TileMapLayer.get_used_cells()
 	for coords in used_cells:
 		var atlas_coords = $TileMapLayer.get_cell_atlas_coords(coords)
 		var alternative_tile = $TileMapLayer.get_cell_alternative_tile(coords)
 		$TileMapLayer.set_cell(coords, GlobVar.biome, atlas_coords, alternative_tile)
-	var new_biome = randi_range(0,1)
+	while not valid_biome:
+		new_biome = randi_range(0,1)
+		if rand_level in LevelBiomes.lvl:
+			if new_biome == LevelBiomes.lvl[rand_level]:
+				valid_biome = true
+	
 	used_cells = $TileMapLayer2.get_used_cells()
 	for coords in used_cells:
 		var atlas_coords = $TileMapLayer2.get_cell_atlas_coords(coords)
@@ -22,4 +30,4 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if $CharacterBody2D.position.y >= 6848:
-		get_tree().change_scene_to_file("res://scenes/rooms/room_"+str(randi_range(0,1))+".tscn")
+		get_tree().change_scene_to_file("res://scenes/rooms/room_"+str(rand_level)+".tscn")
