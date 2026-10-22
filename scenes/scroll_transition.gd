@@ -22,4 +22,4 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if $CharacterBody2D.position.y >= 6848:
-		get_tree().change_scene_to_file("res://scenes/rooms/room_"+str(randi_range(0,0))+".tscn")
+		get_tree().change_scene_to_file("res://scenes/rooms/room_"+str(randi_range(0,1))+".tscn")
