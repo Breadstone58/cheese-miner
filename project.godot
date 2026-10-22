@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 SignalBus="*uid://bbc0oss43fx47"
 GlobVar="*uid://dcgeo2y80gnxc"
+LevelBiomes="*uid://bjchtbr8rxesw"
 
 [display]
 
