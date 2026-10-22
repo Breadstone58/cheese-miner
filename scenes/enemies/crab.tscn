@@ -2,8 +2,15 @@
 
 [ext_resource type="Script" uid="uid://dn4qlhvy2bddg" path="res://scenes/enemies/crab.gd" id="1_jpe3k"]
 [ext_resource type="Texture2D" uid="uid://ds4sdrvoe635g" path="res://assets/sprites/enemies/Cracker.png" id="2_jpe3k"]
+[ext_resource type="Script" uid="uid://btsjy4volvw4i" path="res://scenes/enemies/hitbox_damage.gd" id="3_sqms0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jpe3k"]
+radius = 30.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ogd8f"]
+radius = 30.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q3bbs"]
 radius = 30.0
 
 [node name="Crab" type="CharacterBody2D" unique_id=709615096]
@@ -30,3 +37,19 @@ collision_mask = 20
 [node name="CornerRayCast" type="RayCast2D" parent="." unique_id=1180715822]
 target_position = Vector2(-40, 40)
 collision_mask = 20
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=762421719]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1529536899]
+shape = SubResource("CircleShape2D_ogd8f")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=2141218020]
+collision_layer = 8
+script = ExtResource("3_sqms0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1115495975]
+shape = SubResource("CircleShape2D_q3bbs")
+debug_color = Color(0, 1, 0, 0.41960785)

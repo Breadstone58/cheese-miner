@@ -1316,7 +1316,7 @@ position = Vector2(1056, 1120)
 scale = Vector2(-1, 1)
 
 [node name="Blocker" parent="." unique_id=704875254 instance=ExtResource("7_dimrd")]
-position = Vector2(1024, 32)
+position = Vector2(1024, -32)
 collision_layer = 16
 
 [node name="HUD" parent="." unique_id=180511637 instance=ExtResource("6_b00dr")]
@@ -1327,3 +1327,7 @@ motion_mode = 0
 
 [node name="Item" parent="." unique_id=7415273 instance=ExtResource("15_lpf3e")]
 position = Vector2(915, 350)
+
+[node name="Crab2" parent="." unique_id=1391940025 instance=ExtResource("10_kf5e4")]
+position = Vector2(407, 531)
+rotation = 3.1415927

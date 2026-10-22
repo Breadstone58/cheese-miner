@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ce0d76c776f0"]
 
 [ext_resource type="Texture2D" uid="uid://87ohwm0rcan3" path="res://assets/sprites/items/coffee_cup.png" id="1_4gq7n"]
+[ext_resource type="Script" uid="uid://b20v7l3yeh45" path="res://scenes/item.gd" id="1_s8enn"]
 
 [sub_resource type="Animation" id="Animation_6muww"]
 length = 0.001
@@ -70,6 +71,7 @@ radius = 32.0
 
 [node name="Item" type="Area2D" unique_id=7415273]
 collision_layer = 32
+script = ExtResource("1_s8enn")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=233511402]
 libraries/ = SubResource("AnimationLibrary_ro5b8")
@@ -83,3 +85,5 @@ animation = &"common"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1963493621]
 shape = SubResource("CircleShape2D_ogd8f")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

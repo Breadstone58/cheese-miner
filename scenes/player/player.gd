@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var bullet_scene: PackedScene
 
-const SPEED = 300.0
+var SPEED = 300.0
 const JUMP_VELOCITY = -500.0
 const AIR_TIME_MAX = 0.3
 var air_time = int(AIR_TIME_MAX)
@@ -12,16 +12,32 @@ var extra_jumps_left = extra_jumps
 var facing = 1 
 @export var toggle_lock_mode: bool = false
 var is_position_locked: bool = false
+var iFrames = 0
 
 func _ready() -> void:
 	position.x = GlobVar.PlayerX
 	velocity.y = 2000
 	
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	GlobVar.PlayerX = position.x
+	iFrames -= 1
+	iFrames = clamp(iFrames,0,INF)
+	if iFrames > 0:
+		if $AnimatedSprite2D.modulate == Color(1,1,1,1):
+			$AnimatedSprite2D.modulate  = Color(255,255,255,0)
+		else:
+			$AnimatedSprite2D.modulate = Color(1,1,1,1)
+	else:
+		$AnimatedSprite2D.modulate = Color(1,1,1,1)
+	if GlobVar.playerHealth <= 0:
+		visible = false
+		is_position_locked = true
+		GlobVar.transitioning = true
+	print(GlobVar.inventory)
+	update_items()
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
+	# Add the gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 		air_time -= delta
@@ -97,3 +113,17 @@ func handle_lock_input() -> void:
 			is_position_locked = !is_position_locked
 	else:
 		is_position_locked = Input.is_action_pressed("lock_position")
+
+func damage(amount: int):
+	if iFrames == 0:
+		GlobVar.playerHealth -= amount
+		iFrames = 60
+		velocity *= -1
+		move_and_slide()
+
+func _on_hurtbox_area_entered(area: Area2D) -> void:
+	if area is Hitbox:
+		damage(area.damage)
+		
+func update_items():
+	SPEED = 300.0 + GlobVar.exMoveSpeed

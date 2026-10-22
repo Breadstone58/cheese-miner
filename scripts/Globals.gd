@@ -18,3 +18,8 @@ func count_items(item: String):
 		if i.to_lower() == item.to_lower():
 			count += 1
 	return count
+
+#update items
+
+func _process(delta: float) -> void:
+	exMoveSpeed = count_items("Coffee") * 75

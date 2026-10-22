@@ -9,7 +9,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	$Control/Stage.text = str(GlobVar.stage)
-	$"Control/Hp Bar Back/Hp Bar Color".size.x = 300.0 * (float(GlobVar.playerHealth)/GlobVar.healthMax)
+	$"Control/Hp Bar Back/Hp Bar Color".size.x = max(0,300.0 * (float(GlobVar.playerHealth)/GlobVar.healthMax))
 	$"Control/Hp Bar Back/Hp Bar Border".size.x = $"Control/Hp Bar Back/Hp Bar Color".size.x + 2
 	$"Control/Hp Bar Back/Hp Bar Color/HpDisp".text = str(int(GlobVar.playerHealth)) + "/" + str(GlobVar.healthMax)
 	$"Control/Hp Bar Back".visible = true
