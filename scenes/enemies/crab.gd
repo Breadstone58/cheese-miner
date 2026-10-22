@@ -1,48 +1,41 @@
 extends CharacterBody2D
-var speed = 60.0
-@onready var FloorRayCast: RayCast2D = $FloorRayCast
-@onready var WallRayCast: RayCast2D = $WallRayCast
-@onready var CornerRayCast: RayCast2D = $CornerRayCast
-var just_rotated = 0
 
-func _ready() -> void:
-	pass
+@export var speed: float = 200.0
+@export var fall_speed: float = 2000.0
+@export var move_direction: Vector2 = Vector2.RIGHT
 
-func _process(delta: float) -> void:
-	$Sprite2D.rotation += delta * 2 * PI
+@onready var floor_ray_cast: RayCast2D = $FloorRayCast
+@onready var wall_ray_cast: RayCast2D = $WallRayCast
+@onready var corner_ray_cast: RayCast2D = $CornerRayCast
+
+var floor_collide_recent = false
+var airborne = false
+var prev_pos = position
 
 func _physics_process(delta: float) -> void:
-	if just_rotated > 0:
-		just_rotated -= 1
-	var forward_vector = global_transform.x
-	velocity = forward_vector * speed
-	var collision = move_and_collide(velocity * delta)
-	if just_rotated > 0:
-		return
 	
-	if WallRayCast.is_colliding() or collision:
-		rotate_around_corner(-1)
-		return
-		
-	if not FloorRayCast.is_colliding():
-		if CornerRayCast.is_colliding():
-			var new_normal = CornerRayCast.get_collision_normal()
-			global_rotation = new_normal.angle() + (PI / 2)
-			global_position = CornerRayCast.get_collision_point() + (new_normal * 9.0)
-			just_rotated = 3
-			if FloorRayCast: FloorRayCast.force_raycast_update()
-			if WallRayCast: WallRayCast.force_raycast_update()
-			if CornerRayCast: CornerRayCast.force_raycast_update()
-			return
-		else:
-			rotate_around_corner(1)
-			return
-
-func rotate_around_corner(dir: int) -> void:
-	rotation += dir * PI / 2
-	var push_normal = Vector2.UP.rotated(rotation)
-	global_position += push_normal * 3.0
-	just_rotated = 3
-	if FloorRayCast: FloorRayCast.force_raycast_update()
-	if WallRayCast: WallRayCast.force_raycast_update()
-	if CornerRayCast: CornerRayCast.force_raycast_update()
+	if floor_ray_cast.is_colliding():
+		floor_collide_recent = true
+		airborne = false
+		if wall_ray_cast.is_colliding():
+			rotate(-PI/2)
+			$Sprite2D.rotate(PI/2)
+	elif corner_ray_cast.is_colliding() and floor_collide_recent:
+		rotate(PI/2)
+		$Sprite2D.rotate(-PI/2)
+		floor_collide_recent = false
+	elif not corner_ray_cast.is_colliding() and floor_collide_recent:
+		rotation = 0
+		airborne = true
+	move_direction = Vector2(cos(rotation),sin(rotation))
+	var dir_velocity = move_direction.normalized() * speed
+	velocity = dir_velocity + Vector2(cos(rotation+(PI/2)),sin(rotation+(PI/2))) * speed
+	if airborne:
+		velocity.x = 0
+	print(velocity)
+	prev_pos = position
+	move_and_slide()
+	if position == prev_pos:
+		rotate(-PI/2)
+		$Sprite2D.rotate(PI/2)
+	$Sprite2D.rotate(delta * 10)
