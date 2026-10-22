@@ -1,34 +1,48 @@
 extends CharacterBody2D
-var total_rotate = 0.0
 var speed = 60.0
-var move_direction = Vector2.RIGHT
-var surface_normal = Vector2.UP
 @onready var FloorRayCast: RayCast2D = $FloorRayCast
 @onready var WallRayCast: RayCast2D = $WallRayCast
 @onready var CornerRayCast: RayCast2D = $CornerRayCast
+var just_rotated = 0
 
 func _ready() -> void:
 	pass
 
 func _process(delta: float) -> void:
-	$Sprite2D.rotation = total_rotate
-	total_rotate += delta * 2 * PI
-	if total_rotate >= 2*PI:
-		total_rotate -= 2*PI
+	$Sprite2D.rotation += delta * 2 * PI
+
 func _physics_process(delta: float) -> void:
-	var tangent = Vector2(-surface_normal.y, surface_normal.x) * move_direction
-	velocity = tangent * speed
-	move_and_slide()
-	if not FloorRayCast.is_colliding():
-		rotate_around_corner(1)
+	if just_rotated > 0:
+		just_rotated -= 1
+	var forward_vector = global_transform.x
+	velocity = forward_vector * speed
+	var collision = move_and_collide(velocity * delta)
+	if just_rotated > 0:
 		return
-	elif WallRayCast.is_colliding():
+	
+	if WallRayCast.is_colliding() or collision:
 		rotate_around_corner(-1)
 		return
+		
+	if not FloorRayCast.is_colliding():
+		if CornerRayCast.is_colliding():
+			var new_normal = CornerRayCast.get_collision_normal()
+			global_rotation = new_normal.angle() + (PI / 2)
+			global_position = CornerRayCast.get_collision_point() + (new_normal * 9.0)
+			just_rotated = 3
+			if FloorRayCast: FloorRayCast.force_raycast_update()
+			if WallRayCast: WallRayCast.force_raycast_update()
+			if CornerRayCast: CornerRayCast.force_raycast_update()
+			return
+		else:
+			rotate_around_corner(1)
+			return
 
 func rotate_around_corner(dir: int) -> void:
-	surface_normal = surface_normal.rotated(dir * PI / 2)
 	rotation += dir * PI / 2
+	var push_normal = Vector2.UP.rotated(rotation)
+	global_position += push_normal * 3.0
+	just_rotated = 3
 	if FloorRayCast: FloorRayCast.force_raycast_update()
 	if WallRayCast: WallRayCast.force_raycast_update()
 	if CornerRayCast: CornerRayCast.force_raycast_update()
