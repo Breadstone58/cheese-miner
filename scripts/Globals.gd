@@ -15,9 +15,15 @@ var exJumps = 0
 func count_items(item: String):
 	var count = 0
 	for i in inventory:
-		if i.to_lower() == item.to_lower():
+		if i == item:
 			count += 1
 	return count
+	
+func item_exists(item: String):
+	if item in inventory:
+		return 1
+	else:
+		return 0
 
 #update items
 
