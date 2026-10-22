@@ -7,18 +7,21 @@ var new_biome = 0
 func _ready() -> void:
 	rand_level = randi_range(0,1)
 	GlobVar.transitioning = true
-	var used_cells = $TileMapLayer.get_used_cells()
-	for coords in used_cells:
-		var atlas_coords = $TileMapLayer.get_cell_atlas_coords(coords)
-		var alternative_tile = $TileMapLayer.get_cell_alternative_tile(coords)
-		$TileMapLayer.set_cell(coords, GlobVar.biome, atlas_coords, alternative_tile)
 	while not valid_biome:
-		new_biome = randi_range(0,2)
+		new_biome = randi_range(0,3)
 		if rand_level in LevelBiomes.lvl:
 			if new_biome == LevelBiomes.lvl[rand_level]:
 				valid_biome = true
 		else:
 			valid_biome = true
+	if GlobVar.stage == 0:
+		GlobVar.biome = new_biome
+	var used_cells = $TileMapLayer.get_used_cells()
+	for coords in used_cells:
+		var atlas_coords = $TileMapLayer.get_cell_atlas_coords(coords)
+		var alternative_tile = $TileMapLayer.get_cell_alternative_tile(coords)
+		$TileMapLayer.set_cell(coords, GlobVar.biome, atlas_coords, alternative_tile)
+	
 	
 	used_cells = $TileMapLayer2.get_used_cells()
 	for coords in used_cells:
