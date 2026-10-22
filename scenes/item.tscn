@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://ce0d76c776f0"]
+
+[ext_resource type="Texture2D" uid="uid://87ohwm0rcan3" path="res://assets/sprites/items/coffee_cup.png" id="1_4gq7n"]
+
+[sub_resource type="Animation" id="Animation_6muww"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vljjh"]
+resource_name = "new_animation"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -8), Vector2(0, 8), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ro5b8"]
+_data = {
+&"RESET": SubResource("Animation_6muww"),
+&"new_animation": SubResource("Animation_vljjh")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gq7n"]
+atlas = ExtResource("1_4gq7n")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ogd8f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gq7n")
+}],
+"loop": 1,
+"name": &"common",
+"speed": 20.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"rare",
+"speed": 20.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"uncommon",
+"speed": 20.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ogd8f"]
+radius = 32.0
+
+[node name="Item" type="Area2D" unique_id=7415273]
+collision_layer = 32
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=233511402]
+libraries/ = SubResource("AnimationLibrary_ro5b8")
+autoplay = &"new_animation"
+
+[node name="Visuals" type="Node2D" parent="." unique_id=302467019]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals" unique_id=377219472]
+sprite_frames = SubResource("SpriteFrames_ogd8f")
+animation = &"common"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1963493621]
+shape = SubResource("CircleShape2D_ogd8f")

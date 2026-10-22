@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 SignalBus="*uid://bbc0oss43fx47"
 GlobVar="*uid://dcgeo2y80gnxc"
 LevelBiomes="*uid://bjchtbr8rxesw"
+ItemID="*uid://dpix5s0jns7v4"
 
 [display]
 
@@ -94,6 +95,7 @@ open_door_debug={
 2d_physics/layer_3="Terrain"
 2d_physics/layer_4="Enemies"
 2d_physics/layer_5="DropInBlocker"
+2d_physics/layer_6="Items"
 
 [physics]
 

@@ -8,7 +8,11 @@ func _ready() -> void:
 	rand_level = randi_range(0,1)
 	GlobVar.transitioning = true
 	while not valid_biome:
-		new_biome = randi_range(0,3)
+		randomize()
+		if randf() > (2.0/3.0):
+			new_biome = randi_range(0,3)
+		else:
+			new_biome = GlobVar.biome
 		if rand_level in LevelBiomes.lvl:
 			if new_biome == LevelBiomes.lvl[rand_level]:
 				valid_biome = true
