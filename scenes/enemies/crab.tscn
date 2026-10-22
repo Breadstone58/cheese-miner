@@ -22,3 +22,7 @@ target_position = Vector2(0, 38)
 
 [node name="WallRayCast" type="RayCast2D" parent="." unique_id=1340661233]
 target_position = Vector2(38, 0)
+
+[node name="CornerRayCast" type="RayCast2D" parent="." unique_id=1111416759]
+position = Vector2(30, 0)
+target_position = Vector2(20, 20)
