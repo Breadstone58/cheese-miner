@@ -13,10 +13,12 @@ func _ready() -> void:
 		var alternative_tile = $TileMapLayer.get_cell_alternative_tile(coords)
 		$TileMapLayer.set_cell(coords, GlobVar.biome, atlas_coords, alternative_tile)
 	while not valid_biome:
-		new_biome = randi_range(0,1)
+		new_biome = randi_range(0,2)
 		if rand_level in LevelBiomes.lvl:
 			if new_biome == LevelBiomes.lvl[rand_level]:
 				valid_biome = true
+		else:
+			valid_biome = true
 	
 	used_cells = $TileMapLayer2.get_used_cells()
 	for coords in used_cells:
