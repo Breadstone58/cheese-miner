@@ -2,15 +2,16 @@ extends Area2D
 
 var speed: float = 800.0
 var direction: Vector2 = Vector2.RIGHT
+var bounces: int = 0
 
 @onready var ray_front: RayCast2D = $RayCast2D
 @onready var ray_back: RayCast2D = $RayCast2D2
 
 func setup(dir: Vector2) -> void:
 	direction = dir.normalized()
-	rotation = direction.angle()
-	
-	# Point both raycasts forward, but stagger their lengths/positions slightly 
+	bounces = GlobVar.bulletBounces
+	print(bounces)
+	# Point both raycasts forward, but stagger their lengths/positions slightly 
 	# to cover a wider front area
 	if ray_front:
 		ray_front.target_position = direction * 25
@@ -20,7 +21,7 @@ func setup(dir: Vector2) -> void:
 
 func _physics_process(delta: float) -> void:
 	position += direction * speed * delta
-	
+	rotation = direction.angle()
 	# Check if either raycast detects a collision
 	var active_ray: RayCast2D = null
 	if ray_front and ray_front.is_colliding():
@@ -39,9 +40,10 @@ func _physics_process(delta: float) -> void:
 			var tile_data = body.get_cell_tile_data(tile_coords)
 			if tile_data != null and tile_data.get_custom_data("breakable") == true:
 				SignalBus.spawn_particle.emit(tile_data.get_custom_data("break_particle"),to_global(tile_coords) + Vector2(32,32))
+				SignalBus.broken_tile.emit(tile_coords)
 				body.erase_cell(tile_coords)
 				
 		queue_free()
-
+	
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()

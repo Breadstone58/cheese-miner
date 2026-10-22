@@ -13,6 +13,7 @@ func _ready() -> void:
 		var atlas_coords = $TileMapLayer.get_cell_atlas_coords(coords)
 		var alternative_tile = $TileMapLayer.get_cell_alternative_tile(coords)
 		$TileMapLayer.set_cell(coords, GlobVar.biome, atlas_coords, alternative_tile)
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -55,7 +56,6 @@ func _process(delta: float) -> void:
 		level_complete = true
 
 func _on_particle_spawn(new_texture: Texture2D, spawn_position: Vector2i):
-	print(spawn_position)
 	var particle_instance = PARTICLE_SCENE.instantiate() as CPUParticles2D
 	particle_instance.texture = new_texture
 	

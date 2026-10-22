@@ -11,6 +11,7 @@ var healthMax = 100
 var inventory = []
 var exMoveSpeed = 0
 var exJumps = 0
+var bulletBounces = 0
 
 func count_items(item: String):
 	var count = 0
@@ -29,3 +30,5 @@ func item_exists(item: String):
 
 func _process(delta: float) -> void:
 	exMoveSpeed = count_items("Coffee") * 75
+	exJumps = count_items("Jump_Tank")
+	bulletBounces = count_items("Rubber_Bullet") + 1

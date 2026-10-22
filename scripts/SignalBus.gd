@@ -5,3 +5,4 @@ extends Node
 signal spawn_particle(sprite: Texture2D, position: Vector2i)
 signal level_complete
 signal level_goal(text: String)
+signal broken_tile(position: Vector2i)

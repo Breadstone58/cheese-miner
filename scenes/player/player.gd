@@ -33,7 +33,6 @@ func _process(delta: float) -> void:
 		visible = false
 		is_position_locked = true
 		GlobVar.transitioning = true
-	print(GlobVar.inventory)
 	update_items()
 
 func _physics_process(delta: float) -> void:
@@ -100,7 +99,7 @@ func get_aim_vector() -> Vector2:
 # Handles shooting and spawning bullets
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("shoot") and not GlobVar.transitioning:
-		var bullet = bullet_scene.instantiate() as Area2D
+		var bullet = bullet_scene.instantiate()
 		var aim_direction = get_aim_vector()
 		bullet.global_position = $BulletSpawnPoint.global_position
 		if bullet.has_method("setup"):
@@ -114,16 +113,17 @@ func handle_lock_input() -> void:
 	else:
 		is_position_locked = Input.is_action_pressed("lock_position")
 
-func damage(amount: int):
-	if iFrames == 0:
+func damage(amount: int,location: Vector2):
+	if iFrames == 0 and GlobVar.playerHealth > 0:
 		GlobVar.playerHealth -= amount
 		iFrames = 60
-		velocity *= -1
+		velocity = Vector2(global_position-location).normalized() * 1000
 		move_and_slide()
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area is Hitbox:
-		damage(area.damage)
+		damage(area.damage,area.global_position)
 		
 func update_items():
 	SPEED = 300.0 + GlobVar.exMoveSpeed
+	extra_jumps = GlobVar.exJumps

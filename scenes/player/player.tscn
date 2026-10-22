@@ -20,12 +20,12 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ogd8f"]
-size = Vector2(64, 127)
+size = Vector2(60, 120)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q3bbs"]
 size = Vector2(64, 127)
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=590245782]
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1411931208]
 collision_mask = 20
 script = ExtResource("1_g2els")
 bullet_scene = ExtResource("2_gmlin")
@@ -36,7 +36,7 @@ sprite_frames = SubResource("SpriteFrames_ogd8f")
 animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1659014958]
-position = Vector2(0, 0.5)
+position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_ogd8f")
 
 [node name="BulletSpawnPoint" type="Marker2D" parent="." unique_id=1813491949]

@@ -189,8 +189,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ogd8f"]
 size = Vector2(64, 64)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q3bbs"]
+size = Vector2(64, 64)
+
 [node name="Door" type="StaticBody2D" unique_id=722483159]
-collision_layer = 4
+collision_layer = 36
 collision_mask = 11
 script = ExtResource("1_yphqt")
 
@@ -199,3 +202,11 @@ sprite_frames = SubResource("SpriteFrames_xqstt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1731324462]
 shape = SubResource("RectangleShape2D_ogd8f")
+
+[node name="EnemyBlocker" type="StaticBody2D" parent="." unique_id=1825408238]
+collision_layer = 32
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBlocker" unique_id=883496525]
+shape = SubResource("RectangleShape2D_q3bbs")
+debug_color = Color(0.7037919, 0.27239153, 1, 0.41960785)

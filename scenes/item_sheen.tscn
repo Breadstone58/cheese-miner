@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://dhmrmdfo0efak"]
+
+[ext_resource type="Texture2D" uid="uid://bagg5xu14w1mk" path="res://assets/sprites/environment/item_sweep.png" id="1_uh5ps"]
+[ext_resource type="Script" uid="uid://b6xx1utrcvs81" path="res://scenes/item_sheen.gd" id="2_f8247"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_soil1"]
+texture = ExtResource("1_uh5ps")
+texture_region_size = Vector2i(64, 64)
+0:0/animation_columns = 32
+0:0/animation_mode = 1
+0:0/animation_frame_0/duration = 5.0
+0:0/animation_frame_1/duration = 1.0
+0:0/animation_frame_2/duration = 1.0
+0:0/animation_frame_3/duration = 1.0
+0:0/animation_frame_4/duration = 1.0
+0:0/animation_frame_5/duration = 1.0
+0:0/animation_frame_6/duration = 1.0
+0:0/animation_frame_7/duration = 1.0
+0:0/animation_frame_8/duration = 1.0
+0:0/animation_frame_9/duration = 1.0
+0:0/animation_frame_10/duration = 1.0
+0:0/animation_frame_11/duration = 1.0
+0:0/animation_frame_12/duration = 1.0
+0:0/animation_frame_13/duration = 1.0
+0:0/animation_frame_14/duration = 1.0
+0:0/animation_frame_15/duration = 1.0
+0:0/animation_frame_16/duration = 1.0
+0:0/animation_frame_17/duration = 1.0
+0:0/animation_frame_18/duration = 1.0
+0:0/animation_frame_19/duration = 1.0
+0:0/animation_frame_20/duration = 1.0
+0:0/animation_frame_21/duration = 1.0
+0:0/animation_frame_22/duration = 1.0
+0:0/animation_frame_23/duration = 1.0
+0:0/animation_frame_24/duration = 1.0
+0:0/animation_frame_25/duration = 1.0
+0:0/animation_frame_26/duration = 1.0
+0:0/animation_frame_27/duration = 1.0
+0:0/animation_frame_28/duration = 1.0
+0:0/animation_frame_29/duration = 1.0
+0:0/animation_frame_30/duration = 1.0
+0:0/animation_frame_31/duration = 1.0
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_2xx7c"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_soil1")
+
+[node name="ItemSheen" type="TileMapLayer" unique_id=1702986785]
+modulate = Color(1, 1, 1, 0.2627451)
+tile_set = SubResource("TileSet_2xx7c")
+script = ExtResource("2_f8247")
