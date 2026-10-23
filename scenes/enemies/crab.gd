@@ -1,3 +1,4 @@
+class_name Enemy
 extends CharacterBody2D
 
 @export var speed: float = 200.0
@@ -11,6 +12,10 @@ extends CharacterBody2D
 var floor_collide_recent = false
 var airborne = false
 var prev_pos = position
+var health = 5 + 10 * floor(GlobVar.stage / 10)
+var stunned = false
+var stun_counter = 0
+var unstun = 0
 
 func _ready() -> void:
 	$Hitbox.damage = 9 + GlobVar.stage
@@ -36,8 +41,46 @@ func _physics_process(delta: float) -> void:
 		velocity.x = 0
 		velocity.y = fall_speed
 	prev_pos = position
+	if stunned:
+		velocity = Vector2(0,fall_speed)
 	move_and_slide()
-	if position == prev_pos:
+	if position == prev_pos and not stunned:
 		rotate(-PI/2)
 		$Sprite2D.rotate(PI/2)
-	$Sprite2D.rotate(delta * 10)
+	if not stunned:
+		$Sprite2D.rotate(delta * 10)
+
+func _process(delta: float) -> void:
+	if health <= 0:
+		stunned = true
+	else:
+		stunned = false
+	if stunned:
+		stun_counter += 1
+		unstun += delta
+		if stun_counter % 10 < 5:
+			modulate = Color(1,1,1,1)
+		else:
+			modulate = Color(255,255,255,255)
+	else:
+		stun_counter = 0
+		unstun = 0
+	if unstun >= 10:
+		health = 1
+		modulate = Color(1,1,1,1)
+
+func damage(amount: int,source: String):
+	health -= amount
+	if health <= 0 and source == "Bite":
+		SignalBus.bite_death.emit(10)
+		queue_free()
+	if health <= -20:
+		queue_free()
+	modulate = Color(255,0,0,255)
+	await get_tree().create_timer(0.1).timeout
+	modulate = Color(1,1,1,1)
+	
+
+func _on_hurtbox_area_entered(area: Area2D) -> void:
+	if area is Bite:
+		damage(area.damage,"Bite")

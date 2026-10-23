@@ -1,8 +1,10 @@
+class_name Bullet
 extends Area2D
 
 var speed: float = 800.0
 var direction: Vector2 = Vector2.RIGHT
 var bounces: int = 0
+var damage: int = 2
 
 @onready var ray_front: RayCast2D = $RayCast2D
 @onready var ray_back: RayCast2D = $RayCast2D2
@@ -20,6 +22,7 @@ func setup(dir: Vector2) -> void:
 		ray_back.target_position = direction * 15
 
 func _physics_process(delta: float) -> void:
+	damage = 2 + GlobVar.exBulletDamage
 	position += direction * speed * delta
 	rotation = direction.angle()
 	# Check if either raycast detects a collision
@@ -42,7 +45,10 @@ func _physics_process(delta: float) -> void:
 				SignalBus.spawn_particle.emit(tile_data.get_custom_data("break_particle"),to_global(tile_coords) + Vector2(32,32))
 				SignalBus.broken_tile.emit(tile_coords)
 				body.erase_cell(tile_coords)
-				
+		
+		if body is Enemy:
+			if body.has_method("damage"):
+				body.damage(damage,"bullet")
 		queue_free()
 	
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:

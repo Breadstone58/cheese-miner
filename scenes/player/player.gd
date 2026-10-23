@@ -17,6 +17,7 @@ var iFrames = 0
 func _ready() -> void:
 	position.x = GlobVar.PlayerX
 	velocity.y = 2000
+	SignalBus.bite_death.connect(_on_bite_kill)
 	
 func _process(delta: float) -> void:
 	GlobVar.PlayerX = position.x
@@ -113,12 +114,16 @@ func handle_lock_input() -> void:
 	else:
 		is_position_locked = Input.is_action_pressed("lock_position")
 
-func damage(amount: int,location: Vector2):
+func damage(amount: int,location: Vector2 = Vector2(-1,-1)):
 	if iFrames == 0 and GlobVar.playerHealth > 0:
 		GlobVar.playerHealth -= amount
 		iFrames = 60
-		velocity = Vector2(global_position-location).normalized() * 1000
+		if location == Vector2(-1,-1):
+			velocity = Vector2(global_position-location).normalized() * 1000
 		move_and_slide()
+
+func heal(amount: int):
+	GlobVar.playerHealth = clamp(GlobVar.playerHealth + amount,0,GlobVar.healthMax)
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area is Hitbox:
@@ -127,3 +132,6 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 func update_items():
 	SPEED = 300.0 + GlobVar.exMoveSpeed
 	extra_jumps = GlobVar.exJumps
+
+func _on_bite_kill(healing: int):
+	heal(healing + GlobVar.exBiteHeal)
