@@ -35,6 +35,19 @@ func _process(delta: float) -> void:
 		is_position_locked = true
 		GlobVar.transitioning = true
 	update_items()
+	if Input.is_action_pressed("crouch") or $"Uncrouch Checker".is_colliding() or $"Uncrouch Checker2".is_colliding():
+		SPEED /= 2.0
+		$AnimatedSprite2D.scale.y = 0.5
+		$AnimatedSprite2D.position.y = 32.0
+		$CollisionShape2D.shape.size.y = 60
+		$CollisionShape2D.position.y = 34.0
+		$BulletSpawnPoint.position.y = 32.0
+	else:
+		$AnimatedSprite2D.scale.y = 1.0
+		$AnimatedSprite2D.position.y = 0.0
+		$CollisionShape2D.shape.size.y = 120.0
+		$CollisionShape2D.position.y = 4.0
+		$BulletSpawnPoint.position.y = 0
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity
@@ -130,7 +143,7 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 		damage(area.damage,area.global_position)
 		
 func update_items():
-	SPEED = 300.0 + GlobVar.exMoveSpeed
+	SPEED = (300.0 + GlobVar.exMoveSpeed)
 	extra_jumps = GlobVar.exJumps
 
 func _on_bite_kill(healing: int):

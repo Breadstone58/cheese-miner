@@ -3,7 +3,7 @@ extends Node
 var biome = 0
 var PlayerX = 1024
 var transitioning = false
-var stage = 0
+var stage: int = 0
 var playerHealth = 100
 var healthMax = 100
 
@@ -15,6 +15,7 @@ var bulletBounces = 0
 var exBulletDamage = 0
 var exBiteDamage = 0
 var exBiteHeal = 0
+var levelStartHeal = 0
 
 func count_items(item: String):
 	var count = 0
@@ -35,3 +36,4 @@ func _process(delta: float) -> void:
 	exMoveSpeed = count_items("Coffee") * 75
 	exJumps = count_items("Jump_Tank")
 	bulletBounces = count_items("Rubber_Bullet")
+	levelStartHeal = count_items("Medkit") * 10

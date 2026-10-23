@@ -16,10 +16,12 @@ func setup(dir: Vector2) -> void:
 	# Point both raycasts forward, but stagger their lengths/positions slightly 
 	# to cover a wider front area
 	if ray_front:
-		ray_front.target_position = direction * 25
+		ray_front.target_position = direction * 20
 	if ray_back:
 		# Stagger the second one slightly shorter or offset for multi-point coverage
-		ray_back.target_position = direction * 15
+		ray_back.target_position = direction * 19
+	if direction.x < 0:
+		scale.y = -1
 
 func _physics_process(delta: float) -> void:
 	damage = 2 + GlobVar.exBulletDamage

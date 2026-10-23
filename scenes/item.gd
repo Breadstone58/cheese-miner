@@ -4,6 +4,7 @@ extends Area2D
 @export var state: int = 0 #0: Random Common, 1: Random Uncommon, 2: Random Rare, 3: Random Gadget, 4: Cycling Common, 5: Cycling Uncommon, 6: Cycling Rare, 7: Cycling Gadget, 8: Custom
 @export var custom_rarity: String = ""
 @export var custom_item: int = 0
+var random = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -11,6 +12,15 @@ func _ready() -> void:
 		0:
 			sprite.animation = "common"
 			sprite.frame = randi_range(0,sprite.sprite_frames.get_frame_count("common"))
+		1:
+			sprite.animation = "uncommon"
+			sprite.frame = randi_range(0,sprite.sprite_frames.get_frame_count("uncommon"))
+		2:
+			sprite.animation = "rare"
+			sprite.frame = randi_range(0,sprite.sprite_frames.get_frame_count("rare"))
+		3:
+			sprite.animation = "gadget"
+			sprite.frame = randi_range(0,sprite.sprite_frames.get_frame_count("gadget"))
 		8,9:
 			sprite.animation = custom_rarity
 			sprite.frame = custom_item

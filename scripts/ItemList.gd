@@ -2,12 +2,12 @@ extends Node
 
 var common = {
 	0 : "Coffee",
-	1 : "Jump_Tank",
 }
 
 var uncommon = {
-	0 : "Rubber_Bullet",
+	0 : "Jump_Tank",
 }
 
 var rare = {
+	0 : "Medkit"
 }

@@ -135,4 +135,16 @@ position = Vector2(16, 0)
 sprite_frames = SubResource("SpriteFrames_q3bbs")
 frame = 3
 
+[node name="Uncrouch Checker" type="RayCast2D" parent="." unique_id=771173330]
+position = Vector2(30, 32)
+target_position = Vector2(0, -64)
+collision_mask = 4
+hit_from_inside = true
+
+[node name="Uncrouch Checker2" type="RayCast2D" parent="." unique_id=1141268516]
+position = Vector2(-30, 32)
+target_position = Vector2(0, -64)
+collision_mask = 4
+hit_from_inside = true
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

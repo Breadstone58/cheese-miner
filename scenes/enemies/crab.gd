@@ -12,13 +12,13 @@ extends CharacterBody2D
 var floor_collide_recent = false
 var airborne = false
 var prev_pos = position
-var health = 5 + 10 * floor(GlobVar.stage / 10)
+var health = 5 + 5 * floor(GlobVar.stage / 5.0)
 var stunned = false
 var stun_counter = 0
 var unstun = 0
 
 func _ready() -> void:
-	$Hitbox.damage = 9 + GlobVar.stage
+	$Hitbox.damage = 8 + GlobVar.stage * 2
 
 func _physics_process(delta: float) -> void:
 	if floor_ray_cast.is_colliding():
