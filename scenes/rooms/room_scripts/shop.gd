@@ -1,5 +1,5 @@
 extends Node2D
-const PARTICLE_SCENE = preload("res://scenes/break_particles.tscn")
+const PARTICLE_SCENE = preload("res://scenes/room_components/break_particles.tscn")
 @onready var cam: Camera2D = $CharacterBody2D/Camera2D
 var scroll_down = 0
 var top_locked = false

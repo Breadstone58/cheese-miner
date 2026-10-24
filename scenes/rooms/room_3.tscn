@@ -9,10 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://c2oy33i0md43n" path="res://assets/sprites/environment/Redcheesewalls.png" id="7_qfn1l"]
 [ext_resource type="Texture2D" uid="uid://blhqomfyqkuef" path="res://assets/sprites/environment/broken_greencheese.png" id="8_xg3cy"]
 [ext_resource type="Texture2D" uid="uid://b6i5t0srfe61c" path="res://assets/sprites/environment/Greencheesewalls.png" id="9_cosok"]
-[ext_resource type="PackedScene" uid="uid://dhmrmdfo0efak" path="res://scenes/item_sheen.tscn" id="10_n4v8g"]
+[ext_resource type="PackedScene" uid="uid://dhmrmdfo0efak" path="res://scenes/room_components/item_sheen.tscn" id="10_n4v8g"]
 [ext_resource type="PackedScene" uid="uid://vtiane04et3j" path="res://scenes/player/player.tscn" id="11_rxykq"]
-[ext_resource type="PackedScene" uid="uid://cr0f4k63l30tj" path="res://scenes/next_level_door.tscn" id="12_88n61"]
-[ext_resource type="PackedScene" uid="uid://x6d8m1smdvbk" path="res://scenes/drop_in_blocker.tscn" id="13_bdbjp"]
+[ext_resource type="PackedScene" uid="uid://cr0f4k63l30tj" path="res://scenes/room_components/next_level_door.tscn" id="12_88n61"]
+[ext_resource type="PackedScene" uid="uid://x6d8m1smdvbk" path="res://scenes/room_components/drop_in_blocker.tscn" id="13_bdbjp"]
 [ext_resource type="PackedScene" uid="uid://3f6o42nw0jiu" path="res://scenes/hud.tscn" id="14_duqvw"]
 [ext_resource type="PackedScene" uid="uid://cqwagrl52auqn" path="res://scenes/enemies/crab.tscn" id="15_vg8o3"]
 
@@ -1294,7 +1294,7 @@ sources/1 = SubResource("TileSetAtlasSource_ge76k")
 sources/2 = SubResource("TileSetAtlasSource_lpf3e")
 sources/3 = SubResource("TileSetAtlasSource_181co")
 
-[node name="Room2" type="Node2D" unique_id=1770448767]
+[node name="Room3" type="Node2D" unique_id=1770448767]
 script = ExtResource("1_a22vp")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=790131061]
