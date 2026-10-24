@@ -5,7 +5,7 @@ var valid_biome = false
 var new_biome = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	rand_level = randi_range(0,2)
+	rand_level = randi_range(0,3)
 	$CharacterBody2D.heal(GlobVar.levelStartHeal)
 	GlobVar.transitioning = true
 	while not valid_biome:
