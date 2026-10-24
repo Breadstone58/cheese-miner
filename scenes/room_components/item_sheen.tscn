@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dhmrmdfo0efak"]
 
 [ext_resource type="Texture2D" uid="uid://bagg5xu14w1mk" path="res://assets/sprites/environment/item_sweep.png" id="1_uh5ps"]
-[ext_resource type="Script" uid="uid://b6xx1utrcvs81" path="res://scenes/item_sheen.gd" id="2_f8247"]
+[ext_resource type="Script" uid="uid://b6xx1utrcvs81" path="res://scenes/room_components/item_sheen.gd" id="2_f8247"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_soil1"]
 texture = ExtResource("1_uh5ps")

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://s1mpdttieuft"]
 
-[ext_resource type="Script" uid="uid://dog656f2thbm2" path="res://scenes/break_particles.gd" id="1_g2cl2"]
+[ext_resource type="Script" uid="uid://dog656f2thbm2" path="res://scenes/room_components/break_particles.gd" id="1_g2cl2"]
 
 [node name="CPUParticles2D" type="CPUParticles2D" unique_id=1805701548]
 emitting = false

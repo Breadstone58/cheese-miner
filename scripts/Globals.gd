@@ -6,6 +6,7 @@ var transitioning = false
 var stage: int = 0
 var playerHealth = 100
 var healthMax = 100
+var shopChance = 0
 
 #items
 var inventory = []

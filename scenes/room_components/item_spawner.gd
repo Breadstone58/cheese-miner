@@ -1,5 +1,5 @@
 extends Node2D
-const ITEM_SCENE = preload("res://scenes/item.tscn")
+const ITEM_SCENE = preload("res://scenes/room_components/item.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

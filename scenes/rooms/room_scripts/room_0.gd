@@ -41,8 +41,6 @@ func _process(delta: float) -> void:
 			get_tree().change_scene_to_file("res://scenes/scroll_transition.tscn")
 	else:
 		cam.limit_bottom = 1152
-	#if Input.is_action_just_pressed("open_door_debug"):
-		#SignalBus.level_complete.emit()
 		
 	var used_cells = $TileMapLayer.get_used_cells()
 	var broken_count = 0

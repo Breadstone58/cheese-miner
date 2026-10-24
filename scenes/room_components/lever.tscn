@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://ccvn2j2fo7m1c"]
+
+[ext_resource type="Texture2D" uid="uid://dcldxx06nw8vo" path="res://assets/sprites/environment/door_lever.png" id="1_4kwec"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxful"]
+atlas = ExtResource("1_4kwec")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fp621"]
+atlas = ExtResource("1_4kwec")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ogd8f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nxful")
+}],
+"loop": 1,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fp621")
+}],
+"loop": 1,
+"name": &"on",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ogd8f"]
+size = Vector2(64, 64)
+
+[node name="Lever" type="Area2D" unique_id=1780346431]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1107556947]
+sprite_frames = SubResource("SpriteFrames_ogd8f")
+animation = &"off"
+autoplay = "off"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1232129064]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_ogd8f")

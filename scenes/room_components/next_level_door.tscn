@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cr0f4k63l30tj"]
 
 [ext_resource type="Texture2D" uid="uid://c7v8ol2ybkpd4" path="res://assets/sprites/environment/next_level_door.png" id="1_iplx1"]
-[ext_resource type="Script" uid="uid://dcq4jhj83q83b" path="res://scenes/next_level_door.gd" id="1_yphqt"]
+[ext_resource type="Script" uid="uid://dcq4jhj83q83b" path="res://scenes/room_components/next_level_door.gd" id="1_yphqt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1qxk8"]
 atlas = ExtResource("1_iplx1")

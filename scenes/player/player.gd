@@ -48,6 +48,8 @@ func _process(delta: float) -> void:
 		$CollisionShape2D.shape.size.y = 120.0
 		$CollisionShape2D.position.y = 4.0
 		$BulletSpawnPoint.position.y = 0
+	if Input.is_action_just_pressed("open_door_debug"):
+		SignalBus.level_complete.emit()
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity

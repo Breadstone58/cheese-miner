@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ce0d76c776f0"]
 
 [ext_resource type="Texture2D" uid="uid://87ohwm0rcan3" path="res://assets/sprites/items/coffee_cup.png" id="1_4gq7n"]
-[ext_resource type="Script" uid="uid://b20v7l3yeh45" path="res://scenes/item.gd" id="1_s8enn"]
+[ext_resource type="Script" uid="uid://b20v7l3yeh45" path="res://scenes/room_components/item.gd" id="1_s8enn"]
 [ext_resource type="Texture2D" uid="uid://bp0i07p26vef0" path="res://assets/sprites/items/jump_tank.png" id="3_6muww"]
 [ext_resource type="Texture2D" uid="uid://cl1ej1k8ftmx" path="res://assets/sprites/items/medkit.png" id="3_vljjh"]
 

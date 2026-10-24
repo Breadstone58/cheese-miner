@@ -9,10 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://c2oy33i0md43n" path="res://assets/sprites/environment/Redcheesewalls.png" id="7_p00yg"]
 [ext_resource type="Texture2D" uid="uid://blhqomfyqkuef" path="res://assets/sprites/environment/broken_greencheese.png" id="8_kcb34"]
 [ext_resource type="Texture2D" uid="uid://b6i5t0srfe61c" path="res://assets/sprites/environment/Greencheesewalls.png" id="9_upsa1"]
-[ext_resource type="PackedScene" uid="uid://dhmrmdfo0efak" path="res://scenes/item_sheen.tscn" id="10_8crqi"]
+[ext_resource type="PackedScene" uid="uid://dhmrmdfo0efak" path="res://scenes/room_components/item_sheen.tscn" id="10_8crqi"]
 [ext_resource type="PackedScene" uid="uid://vtiane04et3j" path="res://scenes/player/player.tscn" id="11_onrjb"]
-[ext_resource type="PackedScene" uid="uid://cr0f4k63l30tj" path="res://scenes/next_level_door.tscn" id="12_rwg7c"]
-[ext_resource type="PackedScene" uid="uid://x6d8m1smdvbk" path="res://scenes/drop_in_blocker.tscn" id="13_bycri"]
+[ext_resource type="PackedScene" uid="uid://cr0f4k63l30tj" path="res://scenes/room_components/next_level_door.tscn" id="12_rwg7c"]
+[ext_resource type="PackedScene" uid="uid://x6d8m1smdvbk" path="res://scenes/room_components/drop_in_blocker.tscn" id="13_bycri"]
 [ext_resource type="PackedScene" uid="uid://3f6o42nw0jiu" path="res://scenes/hud.tscn" id="14_s0y4u"]
 [ext_resource type="PackedScene" uid="uid://cqwagrl52auqn" path="res://scenes/enemies/crab.tscn" id="15_l7ovm"]
 
