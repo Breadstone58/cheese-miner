@@ -1,15 +1,21 @@
 extends Node
 
 var biome = 0
+var positional_biome = 0
 var PlayerX = 1024
 var transitioning = false
 var stage: int = 0
 var playerHealth = 100
 var healthMax = 100
 var shopChance = 0
+var gadget_change_key = -1
+var leaving_shop = false
+var money = 0
+var money_disp_frame = 0
 
 #items
 var inventory = []
+var gadget = ""
 var exMoveSpeed = 0
 var exJumps = 0
 var bulletBounces = 0

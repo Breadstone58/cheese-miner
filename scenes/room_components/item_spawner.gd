@@ -15,3 +15,10 @@ func spawn_item(location: Vector2i, state: int):
 	item.state = state
 	add_child(item)
 	item.global_position = location
+
+func spawn_money(location: Vector2i, money: int):
+	var item = ITEM_SCENE.instantiate()
+	item.state = 12
+	item.money_amount = money
+	add_child(item)
+	item.global_position = location

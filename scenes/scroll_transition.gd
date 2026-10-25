@@ -6,7 +6,8 @@ var new_biome = 0
 var going_shop = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if randf() < GlobVar.shopChance or GlobVar.stage == 5:
+	GlobVar.leaving_shop = false
+	if randf() < GlobVar.shopChance:
 		going_shop = true
 		GlobVar.shopChance = 0
 		var used_cells = $TileMapLayer.get_used_cells()
@@ -21,9 +22,11 @@ func _ready() -> void:
 			$TileMapLayer2.set_cell(coords, GlobVar.biome, atlas_coords, alternative_tile)
 		
 	else:
+		if GlobVar.stage == 4:
+			GlobVar.shopChance = 1
 		if GlobVar.stage >= 5:
 			GlobVar.shopChance += 0.1
-		rand_level = randi_range(0,3)
+		rand_level = randi_range(0,1)
 		$CharacterBody2D.heal(GlobVar.levelStartHeal)
 		GlobVar.transitioning = true
 		while not valid_biome:
@@ -39,6 +42,7 @@ func _ready() -> void:
 				valid_biome = true
 		if GlobVar.stage == 0:
 			GlobVar.biome = new_biome
+			GlobVar.positional_biome = new_biome
 		var used_cells = $TileMapLayer.get_used_cells()
 		for coords in used_cells:
 			var atlas_coords = $TileMapLayer.get_cell_atlas_coords(coords)

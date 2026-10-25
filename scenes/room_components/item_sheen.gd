@@ -2,6 +2,7 @@ extends TileMapLayer
 
 @onready var block_tiles: TileMapLayer = $".."
 var item_tiles = []
+var money_tiles = []
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalBus.broken_tile.connect(_on_tile_broken)
@@ -14,6 +15,8 @@ func _ready() -> void:
 		if tile_data.get_custom_data("breakable") and randf() < 0.015:
 			set_cell(coords,0,Vector2i(0,0))
 			item_tiles.append(coords)
+		elif tile_data.get_custom_data("breakable") and randf() < 1:
+			money_tiles.append(coords)
 			
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -32,5 +35,8 @@ func _on_tile_broken(coords: Vector2i):
 		elif rarity < 46.0/55.0:
 			rarity = 2
 		else:
-			rarity = 2
+			rarity = 3
 		ItemSpawner.spawn_item(to_global(map_to_local(coords)),int(rarity))
+	elif coords in money_tiles:
+		money_tiles.erase(coords)
+		ItemSpawner.spawn_money(to_global(map_to_local(coords)),clamp(randi_range(GlobVar.stage-2,GlobVar.stage+2),1,INF))

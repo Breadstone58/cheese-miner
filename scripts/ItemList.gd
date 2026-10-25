@@ -11,3 +11,10 @@ var uncommon = {
 var rare = {
 	0 : "Medkit"
 }
+
+var gadget = {
+	0 : "dash",
+	1 : "testA",
+	2 : "testB",
+	3 : "testC",
+}
