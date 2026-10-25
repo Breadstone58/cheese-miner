@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://w5qjak6ufh2x"]
+
+[ext_resource type="Texture2D" uid="uid://pc8t6i7508pf" path="res://assets/sprites/environment/yellow_stone.png" id="1_r6kpy"]
+[ext_resource type="Script" uid="uid://dgwoqd7s420sr" path="res://scenes/room_components/crystal.gd" id="1_v4jjt"]
+[ext_resource type="Texture2D" uid="uid://cobobws4rxgah" path="res://assets/sprites/environment/blue_stone.png" id="2_v4jjt"]
+[ext_resource type="Texture2D" uid="uid://heyqeftaggi" path="res://assets/sprites/environment/red_stone.png" id="3_kecsc"]
+[ext_resource type="Texture2D" uid="uid://bnld5bho0p6ow" path="res://assets/sprites/environment/green_stone.png" id="4_sx38q"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ogd8f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_r6kpy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_v4jjt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_kecsc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_sx38q")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 0.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ogd8f"]
+radius = 32.0
+height = 128.0
+
+[node name="Crystal" type="Area2D" unique_id=1269376109]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_v4jjt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1794641570]
+sprite_frames = SubResource("SpriteFrames_ogd8f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1874957432]
+shape = SubResource("CapsuleShape2D_ogd8f")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

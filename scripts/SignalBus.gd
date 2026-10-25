@@ -7,3 +7,4 @@ signal level_complete
 signal level_goal(text: String)
 signal broken_tile(position: Vector2i)
 signal bite_death(healing: int)
+signal refresh_shop()

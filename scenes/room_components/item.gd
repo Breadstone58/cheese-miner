@@ -12,6 +12,7 @@ var cost = 0
 var money_amount = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	SignalBus.refresh_shop.connect(_on_shop_refresh)
 	match state:
 		0:
 			sprite.animation = "common"
@@ -113,4 +114,9 @@ func _on_area_entered(area: Area2D) -> void:
 	elif get_rarity() == "energy" and GlobVar.energy < ItemID.energy[GlobVar.gadget]:
 		GlobVar.energy += 1
 	if not pickup_cooldown:
+		queue_free()
+		
+func _on_shop_refresh():
+	if state == 11:
+		ItemSpawner.spawn_item(global_position,11)
 		queue_free()

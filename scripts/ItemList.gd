@@ -13,7 +13,7 @@ var rare = {
 }
 
 var gadget = {
-	0 : "dash",
+	0 : "Dash",
 	1 : "testA",
 	2 : "testB",
 	3 : "testC",
@@ -21,5 +21,5 @@ var gadget = {
 
 var energy = {
 	"" : -1,
-	"dash" : 10,
+	"Dash" : 10,
 }

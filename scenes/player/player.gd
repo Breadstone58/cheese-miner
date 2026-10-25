@@ -184,6 +184,6 @@ func _on_bite_kill(healing: int):
 
 func activate_gadget():
 	match GlobVar.gadget:
-		"dash":
+		"Dash":
 			dash_timer = DASH_DURATION
 			velocity.x = facing * (SPEED * DASH_SPEED_MULTIPLIER)
