@@ -4,7 +4,7 @@ extends CharacterBody2D
 
 var SPEED = 300.0
 @export var ACCELERATION: float = 5000.0
-@export var FRICTION: float = 1000.0
+@export var FRICTION: float = 1500.0
 
 const JUMP_VELOCITY = -500.0
 const AIR_TIME_MAX = 0.3
@@ -79,6 +79,11 @@ func _process(delta: float) -> void:
 				activate_gadget()
 
 func _physics_process(delta: float) -> void:
+	if GlobVar.biome == 1:
+		FRICTION = 400.0
+	else:
+		FRICTION = 1500.0
+	
 	# Add the gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta

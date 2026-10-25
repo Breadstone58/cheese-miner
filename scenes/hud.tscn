@@ -706,9 +706,9 @@ sprite_frames = SubResource("SpriteFrames_mvlge")
 autoplay = "default"
 
 [node name="EnergyAmount" type="RichTextLabel" parent="Control/GadgetImage" unique_id=1993593475]
-offset_left = 101.0
+offset_left = 113.0
 offset_top = -24.0
-offset_right = 456.0
+offset_right = 468.0
 offset_bottom = 16.0
 theme_override_fonts/normal_font = ExtResource("1_ahhtf")
 theme_override_font_sizes/normal_font_size = 32

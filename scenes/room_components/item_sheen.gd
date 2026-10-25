@@ -12,7 +12,7 @@ func _ready() -> void:
 	var used_cells = block_tiles.get_used_cells()
 	for coords in used_cells:
 		var tile_data = block_tiles.get_cell_tile_data(coords)
-		if tile_data.get_custom_data("breakable") and randf() < 1:
+		if tile_data.get_custom_data("breakable") and randf() < 0.017:
 			set_cell(coords,0,Vector2i(0,0))
 			item_tiles.append(coords)
 		elif tile_data.get_custom_data("breakable") and randf() < 0.05:

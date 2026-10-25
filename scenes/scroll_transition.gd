@@ -4,6 +4,7 @@ var rand_level = 0
 var valid_biome = false
 var new_biome = 0
 var going_shop = false
+var force_new_biome = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GlobVar.leaving_shop = false
@@ -24,6 +25,8 @@ func _ready() -> void:
 	else:
 		if GlobVar.stage == 4:
 			GlobVar.shopChance = 1
+		if GlobVar.stage >= 5 and GlobVar.shopChance == 0:
+			force_new_biome = true 
 		if GlobVar.stage >= 5:
 			GlobVar.shopChance += 0.1
 		rand_level = randi_range(0,1)
@@ -31,15 +34,20 @@ func _ready() -> void:
 		GlobVar.transitioning = true
 		while not valid_biome:
 			randomize()
-			if randf() > (2.0/3.0):
-				new_biome = randi_range(0,3)
-			else:
-				new_biome = GlobVar.biome
-			if rand_level in LevelBiomes.lvl:
-				if new_biome == LevelBiomes.lvl[rand_level]:
+			if not force_new_biome:
+				if randf() > (2.0/3.0):
+					new_biome = randi_range(0,3)
+				else:
+					new_biome = GlobVar.biome
+				if rand_level in LevelBiomes.lvl:
+					if new_biome == LevelBiomes.lvl[rand_level]:
+						valid_biome = true
+				else:
 					valid_biome = true
 			else:
-				valid_biome = true
+				new_biome = randi_range(0,3)
+				if new_biome != GlobVar.biome:
+					valid_biome = true
 		if GlobVar.stage == 0:
 			GlobVar.biome = new_biome
 			GlobVar.positional_biome = new_biome
