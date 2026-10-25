@@ -74,8 +74,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if GlobVar.transitioning == true and (state < 8 or state == 12):
 		queue_free()
-	elif GlobVar.transitioning == true:
-		state = 9
 	if state == 11 and GlobVar.leaving_shop:
 		queue_free()
 
