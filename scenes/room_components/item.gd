@@ -2,7 +2,7 @@ extends Area2D
 
 @onready var sprite: AnimatedSprite2D = $Visuals/AnimatedSprite2D
 @export var state: int = 0 #0: Random Common, 1: Random Uncommon, 2: Random Rare, 3: Random Gadget, 4: Cycling Common, 5: Cycling Uncommon, 6: Cycling Rare, 7: Cycling Gadget, 8: Custom
-#10: Previous Gadget, #11: Shop Item, #12: Money
+#10: Previous Gadget, #11: Shop Item, #12: Money, #13: Energy
 @export var custom_rarity: String = ""
 @export var custom_item: int = 0
 var random = false
@@ -49,30 +49,34 @@ func _ready() -> void:
 				0:
 					sprite.animation = "common"
 					sprite.frame = randi_range(0,sprite.sprite_frames.get_frame_count("common"))
-					cost = randi_range(GlobVar.stage * 5 - 5,GlobVar.stage * 5 + 5)
+					cost = clamp(randi_range(GlobVar.stage * 5 - 5,GlobVar.stage * 5 + 5),1,INF)
 				1:
 					sprite.animation = "uncommon"
 					sprite.frame = randi_range(0,sprite.sprite_frames.get_frame_count("uncommon"))
-					cost = randi_range(GlobVar.stage * 7 - 5,GlobVar.stage * 7 + 5)
+					cost = clamp(randi_range(GlobVar.stage * 7 - 5,GlobVar.stage * 7 + 5),1,INF)
 				2:
 					sprite.animation = "rare"
 					sprite.frame = randi_range(0,sprite.sprite_frames.get_frame_count("rare"))
-					cost = randi_range(GlobVar.stage * 12 - 5,GlobVar.stage * 12 + 7)
+					cost = clamp(randi_range(GlobVar.stage * 12 - 5,GlobVar.stage * 12 + 7),1,INF)
 				3:
 					sprite.animation = "gadget"
 					sprite.frame = randi_range(0,sprite.sprite_frames.get_frame_count("gadget"))
-					cost = randi_range(GlobVar.stage * 7 - 5,GlobVar.stage * 7 + 5)
+					cost = clamp(randi_range(GlobVar.stage * 7 - 5,GlobVar.stage * 7 + 5),1,INF)
 			$Price.text = "$" + str(cost)
 			$Price.visible = true
 		12:
 			sprite.animation = "money" + str(GlobVar.biome)
 			sprite.frame = 0
 			sprite.play()
+		13:
+			sprite.animation = "energy"
+			sprite.frame = 0
+			sprite.play()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if GlobVar.transitioning == true and (state < 8 or state == 12):
+	if GlobVar.transitioning == true and state != 11:
 		queue_free()
 	if state == 11 and GlobVar.leaving_shop:
 		queue_free()
@@ -97,6 +101,7 @@ func _on_area_entered(area: Area2D) -> void:
 	elif get_rarity() == "gadget" and not pickup_cooldown:
 		prev_gadget = GlobVar.gadget
 		GlobVar.gadget = ItemID.gadget[get_id()]
+		GlobVar.energy = ItemID.energy[GlobVar.gadget]
 		for key in ItemID.gadget:
 			if ItemID.gadget[key] == prev_gadget:
 				GlobVar.gadget_change_key = key
@@ -105,5 +110,7 @@ func _on_area_entered(area: Area2D) -> void:
 			ItemSpawner.spawn_item(global_position,10)
 	elif "money" in get_rarity():
 		GlobVar.money += money_amount
+	elif get_rarity() == "energy" and GlobVar.energy < ItemID.energy[GlobVar.gadget]:
+		GlobVar.energy += 1
 	if not pickup_cooldown:
 		queue_free()

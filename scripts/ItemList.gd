@@ -18,3 +18,8 @@ var gadget = {
 	2 : "testB",
 	3 : "testC",
 }
+
+var energy = {
+	"" : -1,
+	"dash" : 10,
+}

@@ -50,6 +50,11 @@ func _process(delta: float) -> void:
 		$BulletSpawnPoint.position.y = 0
 	if Input.is_action_just_pressed("open_door_debug"):
 		SignalBus.level_complete.emit()
+	if Input.is_action_just_pressed("gadget"):
+		if GlobVar.gadget != "":
+			if GlobVar.energy > 0:
+				GlobVar.energy -= 1
+				activate_gadget()
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity
@@ -150,3 +155,6 @@ func update_items():
 
 func _on_bite_kill(healing: int):
 	heal(healing + GlobVar.exBiteHeal)
+
+func activate_gadget():
+	pass

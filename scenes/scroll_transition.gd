@@ -10,6 +10,7 @@ func _ready() -> void:
 	if randf() < GlobVar.shopChance:
 		going_shop = true
 		GlobVar.shopChance = 0
+		new_biome = GlobVar.biome
 		var used_cells = $TileMapLayer.get_used_cells()
 		for coords in used_cells:
 			var atlas_coords = $TileMapLayer.get_cell_atlas_coords(coords)
@@ -20,7 +21,6 @@ func _ready() -> void:
 			var atlas_coords = $TileMapLayer2.get_cell_atlas_coords(coords)
 			var alternative_tile = $TileMapLayer2.get_cell_alternative_tile(coords)
 			$TileMapLayer2.set_cell(coords, GlobVar.biome, atlas_coords, alternative_tile)
-		
 	else:
 		if GlobVar.stage == 4:
 			GlobVar.shopChance = 1
@@ -68,4 +68,4 @@ func _process(delta: float) -> void:
 			get_tree().change_scene_to_file("res://scenes/rooms/room_"+str(rand_level)+".tscn")
 
 func _on_next_biome_area_entered(area: Area2D) -> void:
-	GlobVar.positional_biome = new_biome
+		GlobVar.positional_biome = new_biome

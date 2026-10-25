@@ -5,7 +5,7 @@ extends CanvasLayer
 func _ready() -> void:
 	SignalBus.level_goal.connect(_on_goal_change)
 	$Control/MoneyImage.frame = GlobVar.money_disp_frame
-	
+	$Control/GadgetImage/EnergyImage.frame = GlobVar.energy_disp_frame
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -19,7 +19,14 @@ func _process(_delta: float) -> void:
 	$Control/MoneyImage.play()
 	$Control/MoneyImage.visible = true
 	GlobVar.money_disp_frame = $Control/MoneyImage.frame
-	
+	for key in ItemID.gadget:
+			if ItemID.gadget[key] == GlobVar.gadget:
+				$Control/GadgetImage.frame = key
+				$Control/GadgetImage.visible = true
+				$Control/GadgetImage/EnergyAmount.text = str(GlobVar.energy) + "/" + str(ItemID.energy[GlobVar.gadget])
+				$Control/GadgetImage/EnergyImage.play()
+				GlobVar.energy_disp_frame = $Control/GadgetImage/EnergyImage.frame
+				
 
 func _on_goal_change(goal: String):
 	$Control/LevelGoal.text = goal

@@ -8,10 +8,10 @@ var stage: int = 0
 var playerHealth = 100
 var healthMax = 100
 var shopChance = 0
-var gadget_change_key = -1
 var leaving_shop = false
 var money = 0
 var money_disp_frame = 0
+var energy_disp_frame = 0
 
 #items
 var inventory = []
@@ -23,6 +23,12 @@ var exBulletDamage = 0
 var exBiteDamage = 0
 var exBiteHeal = 0
 var levelStartHeal = 0
+
+#gadget stuff
+var gadget_change_key = -1
+var energy = -1
+
+
 
 func count_items(item: String):
 	var count = 0

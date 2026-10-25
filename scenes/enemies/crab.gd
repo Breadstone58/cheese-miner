@@ -73,9 +73,9 @@ func damage(amount: int,source: String):
 	health -= amount
 	if health <= 0 and source == "Bite":
 		SignalBus.bite_death.emit(10)
-		queue_free()
+		dead()
 	if health <= -20:
-		queue_free()
+		dead()
 	modulate = Color(255,0,0,255)
 	await get_tree().create_timer(0.1).timeout
 	modulate = Color(1,1,1,1)
@@ -84,3 +84,11 @@ func damage(amount: int,source: String):
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area is Bite:
 		damage(area.damage,"Bite")
+
+func dead():
+	if GlobVar.gadget != "":
+		randomize()
+		if randf() < ItemID.energy[GlobVar.gadget] / 50.0:
+			ItemSpawner.spawn_item(global_position,13)
+	ItemSpawner.spawn_money(global_position,clamp(randi_range(2 + 5 * floor(GlobVar.stage / 5.0),8 + 5 * floor(GlobVar.stage / 5.0)),1,INF))
+	queue_free()
