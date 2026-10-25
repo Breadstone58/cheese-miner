@@ -48,7 +48,7 @@ func _physics_process(delta: float) -> void:
 				SignalBus.broken_tile.emit(tile_coords)
 				body.erase_cell(tile_coords)
 		
-		if body is Enemy:
+		if body is CharacterBody2D:
 			if body.has_method("damage"):
 				body.damage(damage,"bullet")
 		queue_free()

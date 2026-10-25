@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://cd11x108jf1ee"]
+
+[ext_resource type="Script" uid="uid://d4lr6owfb7in0" path="res://scenes/enemies/cheese_maggot.gd" id="1_euxwg"]
+[ext_resource type="Texture2D" uid="uid://duc2y83hee5qt" path="res://assets/sprites/enemies/cheese_maggot_move.png" id="2_8vhtu"]
+[ext_resource type="Texture2D" uid="uid://qa4qotbe77ea" path="res://assets/sprites/enemies/cheese_maggot_spin.png" id="3_mgrgf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_scbv0"]
+atlas = ExtResource("2_8vhtu")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_88713"]
+atlas = ExtResource("2_8vhtu")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jr56q"]
+atlas = ExtResource("2_8vhtu")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s2fhv"]
+atlas = ExtResource("2_8vhtu")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ogd8f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_scbv0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_88713")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jr56q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s2fhv")
+}],
+"loop": 2,
+"name": &"movement",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_mgrgf")
+}],
+"loop": 1,
+"name": &"spin",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ogd8f"]
+radius = 6.0
+height = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q3bbs"]
+radius = 9.0
+
+[node name="CheeseMaggot" type="CharacterBody2D" unique_id=611139983]
+scale = Vector2(2, 2)
+collision_layer = 8
+collision_mask = 52
+script = ExtResource("1_euxwg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1484520239]
+sprite_frames = SubResource("SpriteFrames_ogd8f")
+animation = &"movement"
+
+[node name="CollisionMoving" type="CollisionShape2D" parent="." unique_id=1186748645]
+position = Vector2(0, -1)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_ogd8f")
+
+[node name="CollisionSpinning" type="CollisionShape2D" parent="." unique_id=1587768840]
+shape = SubResource("CircleShape2D_q3bbs")
+
+[node name="FacingCast" type="RayCast2D" parent="." unique_id=1563273179]
+target_position = Vector2(18, 0)
+collision_mask = 52

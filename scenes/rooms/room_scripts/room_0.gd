@@ -13,6 +13,13 @@ func _ready() -> void:
 		var atlas_coords = $TileMapLayer.get_cell_atlas_coords(coords)
 		var alternative_tile = $TileMapLayer.get_cell_alternative_tile(coords)
 		$TileMapLayer.set_cell(coords, GlobVar.biome, atlas_coords, alternative_tile)
+	if GlobVar.biome == 2:
+		for coords in used_cells:
+			var atlas_coords = $TileMapLayer.get_cell_atlas_coords(coords)
+			var alternative_tile = $TileMapLayer.get_cell_alternative_tile(coords)
+			randomize()
+			if randf() < 0.15 and $TileMapLayer.get_cell_tile_data(coords).get_custom_data("breakable"):
+				$TileMapLayer.set_cell(coords, 4, atlas_coords, alternative_tile)
 	
 
 

@@ -11,17 +11,17 @@ const AIR_TIME_MAX = 0.3
 var air_time = AIR_TIME_MAX
 var extra_jumps = 0
 var extra_jumps_left = extra_jumps
-# 1 for right, -1 for left
 var facing = 1 
 @export var toggle_lock_mode: bool = false
 var is_position_locked: bool = false
 var iFrames = 0
 
-# Dash variables
 var dash_timer: float = 0.0
 var dash_multiplier: float = 1.0
 const DASH_DURATION: float = 0.2
 const DASH_SPEED_MULTIPLIER: float = 2.5
+
+var knockback_velocity: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	position.x = GlobVar.PlayerX
@@ -31,7 +31,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	GlobVar.PlayerX = position.x
 	
-	# Handle dash timer countdown
 	if dash_timer > 0:
 		dash_timer -= delta
 		dash_multiplier = DASH_SPEED_MULTIPLIER
@@ -84,7 +83,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		FRICTION = 1500.0
 	
-	# Add the gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 		air_time -= delta
@@ -99,17 +97,14 @@ func _physics_process(delta: float) -> void:
 		
 	handle_lock_input()
 
-	# Handle jump.
 	if Input.is_action_pressed("jump") and air_time > 0 and not is_position_locked and not GlobVar.transitioning:
 		velocity.y = JUMP_VELOCITY
 
-	# Get the input direction and handle acceleration/friction.
 	var direction := Input.get_axis("move_left", "move_right")
 	
 	if is_position_locked and direction != 0:
 		facing = int(sign(direction))
 		
-	# Locks movement when aiming diagonally or position locked
 	if is_position_locked:
 		velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
 	elif direction != 0:
@@ -118,10 +113,17 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
 
-	move_and_slide()
+	if knockback_velocity != Vector2.ZERO:
+		velocity = knockback_velocity
+		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, FRICTION * delta * 2)
 
-# Determines which direction the player is aiming and returns a 
-# vector representing the direction the bullet will shoot
+	move_and_slide()
+	
+	if $StandingOnChecker.is_colliding() and $StandingOnChecker.get_collider() is TileMapLayer:
+		var c = $StandingOnChecker.get_collider()
+		if c.get_cell_source_id(c.local_to_map(c.to_local($StandingOnChecker.get_collision_point() - $StandingOnChecker.get_collision_normal()))) == 4:
+			damage(5, position + Vector2(1, 0))
+
 func get_aim_vector() -> Vector2:
 	var v = Vector2(facing, 0)
 	var up = Input.is_action_pressed("aim_up")
@@ -143,7 +145,6 @@ func get_aim_vector() -> Vector2:
 		return Vector2(0, 1)
 	return Vector2(facing, 0)
 
-# Handles shooting and spawning bullets
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("shoot") and not GlobVar.transitioning:
 		var bullet = bullet_scene.instantiate()
@@ -165,8 +166,9 @@ func damage(amount: int, location: Vector2 = Vector2(-1,-1)):
 		GlobVar.playerHealth -= amount
 		iFrames = 60
 		if location != Vector2(-1,-1):
-			velocity = (global_position - location).normalized() * 1000
-		move_and_slide()
+			var knockback_dir = (global_position - location).normalized()
+			knockback_dir.y = min(knockback_dir.y, -0.4)
+			knockback_velocity = knockback_dir.normalized() * 600.0
 
 func heal(amount: int):
 	GlobVar.playerHealth = clamp(GlobVar.playerHealth + amount, 0, GlobVar.healthMax)

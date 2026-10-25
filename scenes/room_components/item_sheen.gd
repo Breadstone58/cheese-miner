@@ -3,6 +3,8 @@ extends TileMapLayer
 @onready var block_tiles: TileMapLayer = $".."
 var item_tiles = []
 var money_tiles = []
+const GRUB_SCENE = preload("res://scenes/enemies/cheese_maggot.tscn")
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalBus.broken_tile.connect(_on_tile_broken)
@@ -12,7 +14,7 @@ func _ready() -> void:
 	var used_cells = block_tiles.get_used_cells()
 	for coords in used_cells:
 		var tile_data = block_tiles.get_cell_tile_data(coords)
-		if tile_data.get_custom_data("breakable") and randf() < 0.017:
+		if tile_data.get_custom_data("breakable") and randf() < (0.05 if GlobVar.biome == 3 else 0.017):
 			set_cell(coords,0,Vector2i(0,0))
 			item_tiles.append(coords)
 		elif tile_data.get_custom_data("breakable") and randf() < 0.05:
@@ -27,6 +29,9 @@ func _on_tile_broken(coords: Vector2i):
 		item_tiles.erase(coords)
 		erase_cell(coords)
 		randomize()
+		if GlobVar.biome == 3 and randf() < 0.5:
+			grub(to_global(map_to_local(coords)))
+			return
 		var rarity = randf()
 		if rarity < 36.0/55.0:
 			rarity = 0
@@ -40,3 +45,8 @@ func _on_tile_broken(coords: Vector2i):
 	elif coords in money_tiles:
 		money_tiles.erase(coords)
 		ItemSpawner.spawn_money(to_global(map_to_local(coords)),clamp(randi_range(GlobVar.stage-2,GlobVar.stage+2),1,INF))
+
+func grub(coords: Vector2):
+	var enemy = GRUB_SCENE.instantiate()
+	enemy.position = coords + Vector2(0,-32)
+	get_tree().current_scene.add_child(enemy)

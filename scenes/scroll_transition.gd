@@ -29,7 +29,7 @@ func _ready() -> void:
 			force_new_biome = true 
 		if GlobVar.stage >= 5:
 			GlobVar.shopChance += 0.1
-		rand_level = randi_range(0,1)
+		rand_level = randi_range(0,3)
 		$CharacterBody2D.heal(GlobVar.levelStartHeal)
 		GlobVar.transitioning = true
 		while not valid_biome:
@@ -49,6 +49,7 @@ func _ready() -> void:
 				if new_biome != GlobVar.biome:
 					valid_biome = true
 		if GlobVar.stage == 0:
+			new_biome = randi_range(3,3)
 			GlobVar.biome = new_biome
 			GlobVar.positional_biome = new_biome
 		var used_cells = $TileMapLayer.get_used_cells()

@@ -147,4 +147,9 @@ target_position = Vector2(0, -64)
 collision_mask = 4
 hit_from_inside = true
 
+[node name="StandingOnChecker" type="RayCast2D" parent="." unique_id=931193594]
+target_position = Vector2(0, 65)
+collision_mask = 4
+hit_from_inside = true
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
