@@ -1066,6 +1066,8 @@ sources/1 = SubResource("TileSetAtlasSource_q1mq6")
 sources/2 = SubResource("TileSetAtlasSource_a7gmb")
 sources/3 = SubResource("TileSetAtlasSource_f15ft")
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ogd8f"]
+
 [node name="ScrollTransition" type="Node2D" unique_id=1676015524]
 script = ExtResource("1_40crq")
 
@@ -1086,3 +1088,12 @@ limit_left = 0
 limit_right = 2048
 
 [node name="HUD" parent="." unique_id=180511637 instance=ExtResource("6_ospp6")]
+
+[node name="Next_Biome" type="Area2D" parent="." unique_id=471284140]
+position = Vector2(0, 4032)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Next_Biome" unique_id=450621410]
+shape = SubResource("WorldBoundaryShape2D_ogd8f")
+
+[connection signal="area_entered" from="Next_Biome" to="." method="_on_next_biome_area_entered"]

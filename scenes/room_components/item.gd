@@ -68,7 +68,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if GlobVar.transitioning == true and state < 8:
+	if GlobVar.transitioning == true and (state < 8 or state == 12):
 		queue_free()
 	elif GlobVar.transitioning == true:
 		state = 9

@@ -26,7 +26,7 @@ func _ready() -> void:
 			GlobVar.shopChance = 1
 		if GlobVar.stage >= 5:
 			GlobVar.shopChance += 0.1
-		rand_level = randi_range(0,1)
+		rand_level = randi_range(0,3)
 		$CharacterBody2D.heal(GlobVar.levelStartHeal)
 		GlobVar.transitioning = true
 		while not valid_biome:
@@ -66,3 +66,6 @@ func _process(delta: float) -> void:
 			get_tree().change_scene_to_file("res://scenes/rooms/shop.tscn")
 		else:
 			get_tree().change_scene_to_file("res://scenes/rooms/room_"+str(rand_level)+".tscn")
+
+func _on_next_biome_area_entered(area: Area2D) -> void:
+	GlobVar.positional_biome = new_biome
