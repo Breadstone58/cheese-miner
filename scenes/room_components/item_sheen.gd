@@ -15,7 +15,7 @@ func _ready() -> void:
 		if tile_data.get_custom_data("breakable") and randf() < 0.015:
 			set_cell(coords,0,Vector2i(0,0))
 			item_tiles.append(coords)
-		elif tile_data.get_custom_data("breakable") and randf() < 0.05:
+		elif tile_data.get_custom_data("breakable") and randf() < 0.15:
 			money_tiles.append(coords)
 			
 # Called every frame. 'delta' is the elapsed time since the previous frame.

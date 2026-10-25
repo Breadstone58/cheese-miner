@@ -49,15 +49,19 @@ func _ready() -> void:
 				0:
 					sprite.animation = "common"
 					sprite.frame = randi_range(0,sprite.sprite_frames.get_frame_count("common"))
+					cost = randi_range(GlobVar.stage * 5 - 5,GlobVar.stage * 5 + 5)
 				1:
 					sprite.animation = "uncommon"
 					sprite.frame = randi_range(0,sprite.sprite_frames.get_frame_count("uncommon"))
+					cost = randi_range(GlobVar.stage * 7 - 5,GlobVar.stage * 7 + 5)
 				2:
 					sprite.animation = "rare"
 					sprite.frame = randi_range(0,sprite.sprite_frames.get_frame_count("rare"))
+					cost = randi_range(GlobVar.stage * 12 - 5,GlobVar.stage * 12 + 7)
 				3:
 					sprite.animation = "gadget"
 					sprite.frame = randi_range(0,sprite.sprite_frames.get_frame_count("gadget"))
+					cost = randi_range(GlobVar.stage * 7 - 5,GlobVar.stage * 7 + 5)
 			$Price.text = "$" + str(cost)
 			$Price.visible = true
 		12:
