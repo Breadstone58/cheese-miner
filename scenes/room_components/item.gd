@@ -65,6 +65,7 @@ func _ready() -> void:
 					sprite.animation = "gadget"
 					sprite.frame = randi_range(0,sprite.sprite_frames.get_frame_count("gadget"))
 					cost = clamp(randi_range(GlobVar.stage * 7 - 5,GlobVar.stage * 7 + 5),1,INF)
+					energy_remaining = ItemID.energy[ItemID.gadget[get_id()]]
 			$Price.text = "$" + str(cost)
 			$Price.visible = true
 		12:

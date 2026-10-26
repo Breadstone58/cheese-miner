@@ -9,7 +9,7 @@ var playerHealth = 100
 var healthMax = 100
 var shopChance = 0
 var leaving_shop = false
-var money = 0
+var money = 100
 var money_disp_frame = 0
 var energy_disp_frame = 0
 
@@ -23,6 +23,7 @@ var exBulletDamage = 0
 var exBiteDamage = 0
 var exBiteHeal = 0
 var levelStartHeal = 0
+var crouch_boost = 0.0
 
 #gadget stuff
 var gadget_change_key = -1
@@ -51,3 +52,4 @@ func _process(delta: float) -> void:
 	levelStartHeal = count_items("Medkit") * 10
 	exBiteHeal = count_items("Bloodlust") * 3
 	exBulletDamage = count_items("Diamond") * 2
+	crouch_boost = count_items("Spring_Boots") * 300.0

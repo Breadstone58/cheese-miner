@@ -23,6 +23,8 @@ const DASH_SPEED_MULTIPLIER: float = 2.5
 
 var knockback_velocity: Vector2 = Vector2.ZERO
 
+var cjb_active = false
+
 func _ready() -> void:
 	position.x = GlobVar.PlayerX
 	velocity.y = 2000
@@ -92,14 +94,20 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("jump") and extra_jumps_left > 0:
 			extra_jumps_left -= 1
 			air_time = AIR_TIME_MAX
+			if Input.is_action_just_pressed("crouch"):
+				cjb_active = true
 	else:
 		air_time = AIR_TIME_MAX
 		extra_jumps_left = extra_jumps
+		cjb_active = false
 		
 	handle_lock_input()
 
 	if Input.is_action_pressed("jump") and air_time > 0 and not is_position_locked and not GlobVar.transitioning:
 		velocity.y = JUMP_VELOCITY
+		if Input.is_action_just_pressed("jump") and Input.is_action_just_pressed("crouch"):
+			cjb_active = true
+			
 
 	var direction := Input.get_axis("move_left", "move_right")
 	
@@ -179,7 +187,7 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 		damage(area.damage, area.global_position)
 		
 func update_items():
-	SPEED = (300.0 + GlobVar.exMoveSpeed) * dash_multiplier
+	SPEED = (300.0 + GlobVar.exMoveSpeed + (GlobVar.crouch_boost if cjb_active else 0.0)) * dash_multiplier
 	extra_jumps = GlobVar.exJumps
 
 func _on_bite_kill(healing: int):
