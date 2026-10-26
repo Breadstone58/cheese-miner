@@ -36,7 +36,7 @@ func _process(delta: float) -> void:
 	
 	if $CharacterBody2D.position.y > 1152:
 		GlobVar.transitioning = true
-		GlobVar.leaving_shop = false
+		GlobVar.leaving_shop = true
 		SignalBus.level_goal.emit("")
 		cam.limit_bottom = $CharacterBody2D.position.y + scroll_down
 		scroll_down += delta * 1152

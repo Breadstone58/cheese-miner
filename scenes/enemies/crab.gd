@@ -17,7 +17,7 @@ var stun_counter = 0
 var unstun = 0
 
 func _ready() -> void:
-	$Hitbox.damage = 8 + GlobVar.stage * 2
+	$Hitbox.damage = int(9 + GlobVar.stage * 1.5)
 
 func _physics_process(delta: float) -> void:
 	if floor_ray_cast.is_colliding():

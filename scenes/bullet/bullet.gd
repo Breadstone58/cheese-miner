@@ -5,6 +5,8 @@ var speed: float = 800.0
 var direction: Vector2 = Vector2.RIGHT
 var bounces: int = 0
 var damage: int = 2
+const DIAGNORM: float = sqrt(2)/2.0
+
 
 @onready var ray_front: RayCast2D = $RayCast2D
 @onready var ray_back: RayCast2D = $RayCast2D2
@@ -12,7 +14,6 @@ var damage: int = 2
 func setup(dir: Vector2) -> void:
 	direction = dir.normalized()
 	bounces = GlobVar.bulletBounces
-	print(bounces)
 	# Point both raycasts forward, but stagger their lengths/positions slightly 
 	# to cover a wider front area
 	if ray_front:
@@ -20,13 +21,12 @@ func setup(dir: Vector2) -> void:
 	if ray_back:
 		# Stagger the second one slightly shorter or offset for multi-point coverage
 		ray_back.target_position = direction * 19
-	if direction.x < 0:
-		scale.y = -1
+	
 
 func _physics_process(delta: float) -> void:
 	damage = 2 + GlobVar.exBulletDamage
-	position += direction * speed * delta
 	rotation = direction.angle()
+	position += direction * speed * delta
 	# Check if either raycast detects a collision
 	var active_ray: RayCast2D = null
 	if ray_front and ray_front.is_colliding():
@@ -51,7 +51,18 @@ func _physics_process(delta: float) -> void:
 		if body is CharacterBody2D:
 			if body.has_method("damage"):
 				body.damage(damage,"bullet")
-		queue_free()
+		if bounces == 0:
+			queue_free()
+		else:
+			match direction:
+				Vector2(1,0),Vector2(-1,0),Vector2(0,1),Vector2(0,-1):
+					direction = -direction
+				Vector2(DIAGNORM,-DIAGNORM),Vector2(-DIAGNORM,DIAGNORM):
+						direction *= Vector2(1,-1) if ray_front.is_colliding() else Vector2(-1,1)
+				Vector2(-DIAGNORM,-DIAGNORM),Vector2(DIAGNORM,DIAGNORM):
+						direction *= Vector2(-1,1) if ray_front.is_colliding() else Vector2(1,-1)
+			rotation = direction.angle()
+			bounces -= 1
 	
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()

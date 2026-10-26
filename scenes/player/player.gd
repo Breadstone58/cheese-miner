@@ -55,7 +55,8 @@ func _process(delta: float) -> void:
 	update_items()
 	
 	if Input.is_action_pressed("crouch") or $"Uncrouch Checker".is_colliding() or $"Uncrouch Checker2".is_colliding():
-		SPEED /= 2.0
+		if is_on_floor():
+			SPEED /= 2.0
 		$AnimatedSprite2D.scale.y = 0.5
 		$AnimatedSprite2D.position.y = 32.0
 		$CollisionShape2D.shape.size.y = 60
@@ -78,7 +79,7 @@ func _process(delta: float) -> void:
 				activate_gadget()
 
 func _physics_process(delta: float) -> void:
-	if GlobVar.biome == 1:
+	if GlobVar.biome == 1 and is_on_floor():
 		FRICTION = 400.0
 	else:
 		FRICTION = 1500.0
@@ -189,3 +190,5 @@ func activate_gadget():
 		"Dash":
 			dash_timer = DASH_DURATION
 			velocity.x = facing * (SPEED * DASH_SPEED_MULTIPLIER)
+		"Skeleton_Key":
+			SignalBus.level_complete.emit()

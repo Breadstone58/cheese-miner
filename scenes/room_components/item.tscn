@@ -2,15 +2,19 @@
 
 [ext_resource type="Script" uid="uid://b20v7l3yeh45" path="res://scenes/room_components/item.gd" id="1_33a60"]
 [ext_resource type="Texture2D" uid="uid://87ohwm0rcan3" path="res://assets/sprites/items/coffee_cup.png" id="2_45ops"]
+[ext_resource type="Texture2D" uid="uid://bdi2v6a6rbpva" path="res://assets/sprites/items/bloodlust.png" id="3_46f21"]
 [ext_resource type="Texture2D" uid="uid://d0rly11wyc3fc" path="res://assets/sprites/items/dash.png" id="3_kr68c"]
 [ext_resource type="Texture2D" uid="uid://cru41ias18kbt" path="res://assets/sprites/items/money/energy.png" id="3_w2imf"]
+[ext_resource type="Texture2D" uid="uid://cqj00bqoxt2uj" path="res://assets/sprites/items/diamond.png" id="4_adyst"]
 [ext_resource type="Texture2D" uid="uid://kc61r3yx608r" path="res://assets/sprites/items/money/money_yellow.png" id="4_kr68c"]
 [ext_resource type="Texture2D" uid="uid://cl1ej1k8ftmx" path="res://assets/sprites/items/medkit.png" id="4_lki2u"]
 [ext_resource type="Texture2D" uid="uid://bp0i07p26vef0" path="res://assets/sprites/items/jump_tank.png" id="5_60nep"]
+[ext_resource type="Texture2D" uid="uid://c8wrwntaiwfoy" path="res://assets/sprites/items/skeleton_key.png" id="5_a0l3q"]
 [ext_resource type="Texture2D" uid="uid://cn1c3e50nxfo0" path="res://assets/sprites/items/money/money_blue.png" id="5_m7sda"]
 [ext_resource type="FontFile" uid="uid://8douc1wvghmy" path="res://assets/fonts/VCR_OSD_MONO_1.001.ttf" id="6_45ops"]
 [ext_resource type="Texture2D" uid="uid://xhxt8662caqy" path="res://assets/sprites/items/money/money_red.png" id="6_w2imf"]
 [ext_resource type="Texture2D" uid="uid://du67mb34m8p06" path="res://assets/sprites/items/money/money_green.png" id="7_1clqh"]
+[ext_resource type="Texture2D" uid="uid://bkyt0eqgwt6ty" path="res://assets/sprites/items/rubber_bullet.png" id="11_1clqh"]
 
 [sub_resource type="Animation" id="Animation_6muww"]
 length = 0.001
@@ -291,6 +295,12 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_45ops")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_46f21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_adyst")
 }],
 "loop": 1,
 "name": &"common",
@@ -349,6 +359,9 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("3_kr68c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_a0l3q")
 }],
 "loop": 1,
 "name": &"gadget",
@@ -517,6 +530,9 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("5_60nep")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_1clqh")
 }],
 "loop": 1,
 "name": &"uncommon",
@@ -538,8 +554,7 @@ autoplay = &"new_animation"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals" unique_id=883992812]
 sprite_frames = SubResource("SpriteFrames_ogd8f")
-animation = &"energy"
-frame_progress = 0.57244235
+animation = &"common"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1963493621]
 shape = SubResource("CircleShape2D_ogd8f")

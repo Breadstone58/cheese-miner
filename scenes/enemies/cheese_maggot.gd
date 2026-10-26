@@ -57,7 +57,7 @@ func _process(delta: float) -> void:
 func damage(amount: int,source: String):
 	health -= amount
 	if health <= 0 and source == "Bite":
-		SignalBus.bite_death.emit(-5)
+		SignalBus.bite_death.emit(-5 - GlobVar.exBiteHeal)
 		queue_free()
 	if health <= 0:
 		queue_free()

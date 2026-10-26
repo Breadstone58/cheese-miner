@@ -29,7 +29,6 @@ var gadget_change_key = -1
 var energy = -1
 
 
-
 func count_items(item: String):
 	var count = 0
 	for i in inventory:
@@ -50,3 +49,5 @@ func _process(delta: float) -> void:
 	exJumps = count_items("Jump_Tank")
 	bulletBounces = count_items("Rubber_Bullet")
 	levelStartHeal = count_items("Medkit") * 10
+	exBiteHeal = count_items("Bloodlust") * 3
+	exBulletDamage = count_items("Diamond") * 2

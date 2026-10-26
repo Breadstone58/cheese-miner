@@ -14,7 +14,7 @@ func _ready() -> void:
 	var used_cells = block_tiles.get_used_cells()
 	for coords in used_cells:
 		var tile_data = block_tiles.get_cell_tile_data(coords)
-		if tile_data.get_custom_data("breakable") and randf() < (1 if GlobVar.biome == 3 else 0.017):
+		if tile_data.get_custom_data("breakable") and randf() < (0.04 if GlobVar.biome == 3 else 0.017):
 			set_cell(coords,0,Vector2i(0,0))
 			item_tiles.append(coords)
 		elif tile_data.get_custom_data("breakable") and randf() < 0.05:
@@ -29,7 +29,7 @@ func _on_tile_broken(coords: Vector2i):
 		item_tiles.erase(coords)
 		erase_cell(coords)
 		randomize()
-		if GlobVar.biome == 3 and randf() < 1:
+		if GlobVar.biome == 3 and randf() < 0.5:
 			grub(to_global(map_to_local(coords)))
 			return
 		var rarity = randf()

@@ -10,9 +10,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func spawn_item(location: Vector2i, state: int):
+func spawn_item(location: Vector2i, state: int, remaining_energy: int = 0):
 	var item = ITEM_SCENE.instantiate()
 	item.state = state
+	item.energy_remaining = remaining_energy
 	add_child(item)
 	item.global_position = location
 

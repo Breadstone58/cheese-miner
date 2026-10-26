@@ -7,6 +7,7 @@ extends Area2D
 @export var custom_item: int = 0
 var random = false
 var prev_gadget = ""
+var energy_remaining = 0
 var pickup_cooldown = false
 var cost = 0
 var money_amount = 0
@@ -26,6 +27,7 @@ func _ready() -> void:
 		3:
 			sprite.animation = "gadget"
 			sprite.frame = randi_range(0,sprite.sprite_frames.get_frame_count("gadget"))
+			energy_remaining = ItemID.energy[ItemID.gadget[get_id()]]
 		8,9:
 			sprite.animation = custom_rarity
 			sprite.frame = custom_item
@@ -102,13 +104,14 @@ func _on_area_entered(area: Area2D) -> void:
 	elif get_rarity() == "gadget" and not pickup_cooldown:
 		prev_gadget = GlobVar.gadget
 		GlobVar.gadget = ItemID.gadget[get_id()]
-		GlobVar.energy = ItemID.energy[GlobVar.gadget]
+		var prev_energy = GlobVar.energy
+		GlobVar.energy = energy_remaining
 		for key in ItemID.gadget:
 			if ItemID.gadget[key] == prev_gadget:
 				GlobVar.gadget_change_key = key
 				break
 		if GlobVar.gadget_change_key != -1:
-			ItemSpawner.spawn_item(global_position,10)
+			ItemSpawner.spawn_item(global_position,10,prev_energy)
 	elif "money" in get_rarity():
 		GlobVar.money += money_amount
 	elif get_rarity() == "energy" and GlobVar.energy < ItemID.energy[GlobVar.gadget]:

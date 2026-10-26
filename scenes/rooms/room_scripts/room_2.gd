@@ -22,6 +22,7 @@ func _ready() -> void:
 			if randf() < 0.15 and $TileMapLayer.get_cell_tile_data(coords).get_custom_data("breakable"):
 				$TileMapLayer.set_cell(coords, 4, atlas_coords, alternative_tile)
 	SignalBus.level_complete.emit()
+	$Crystal.crystal_hit.connect(_on_crystal_hit)
 	level_complete = true
 
 
@@ -68,3 +69,7 @@ func _on_particle_spawn(new_texture: Texture2D, spawn_position: Vector2i):
 	add_child(particle_instance)
 	
 	particle_instance.restart()
+
+func _on_crystal_hit():
+	for i in range(10,16,2):
+		$TileMapLayer.set_cell(Vector2i(i+45,i),GlobVar.biome,Vector2i(7,5))
