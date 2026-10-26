@@ -4,6 +4,7 @@ var common = {
 	0 : "Coffee",
 	1 : "Bloodlust",
 	2 : "Diamond",
+	3 : "Magic_Cheese",
 }
 
 var uncommon = {

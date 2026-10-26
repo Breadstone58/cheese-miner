@@ -24,6 +24,7 @@ var exBiteDamage = 0
 var exBiteHeal = 0
 var levelStartHeal = 0
 var crouch_boost = 0.0
+var exMaxHP = 0
 
 #gadget stuff
 var gadget_change_key = -1
@@ -53,3 +54,4 @@ func _process(delta: float) -> void:
 	exBiteHeal = count_items("Bloodlust") * 3
 	exBulletDamage = count_items("Diamond") * 2
 	crouch_boost = 200.0 + count_items("Spring_Boots") * 300.0
+	healthMax = 100.0 + count_items("Magic_Cheese") * 20
