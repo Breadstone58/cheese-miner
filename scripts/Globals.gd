@@ -52,4 +52,4 @@ func _process(delta: float) -> void:
 	levelStartHeal = count_items("Medkit") * 10
 	exBiteHeal = count_items("Bloodlust") * 3
 	exBulletDamage = count_items("Diamond") * 2
-	crouch_boost = count_items("Spring_Boots") * 300.0
+	crouch_boost = 200.0 + count_items("Spring_Boots") * 300.0
