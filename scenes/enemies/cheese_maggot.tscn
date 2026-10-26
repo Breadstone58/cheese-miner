@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://d4lr6owfb7in0" path="res://scenes/enemies/cheese_maggot.gd" id="1_euxwg"]
 [ext_resource type="Texture2D" uid="uid://duc2y83hee5qt" path="res://assets/sprites/enemies/cheese_maggot_move.png" id="2_8vhtu"]
 [ext_resource type="Texture2D" uid="uid://qa4qotbe77ea" path="res://assets/sprites/enemies/cheese_maggot_spin.png" id="3_mgrgf"]
+[ext_resource type="Script" uid="uid://btsjy4volvw4i" path="res://scenes/enemies/hitbox_damage.gd" id="4_8vhtu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_scbv0"]
 atlas = ExtResource("2_8vhtu")
@@ -20,6 +21,14 @@ region = Rect2(0, 64, 64, 64)
 atlas = ExtResource("2_8vhtu")
 region = Rect2(64, 64, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_euxwg"]
+atlas = ExtResource("2_8vhtu")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vhtu"]
+atlas = ExtResource("2_8vhtu")
+region = Rect2(64, 0, 64, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_ogd8f"]
 animations = [{
 "frames": [{
@@ -34,8 +43,14 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_s2fhv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_euxwg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8vhtu")
 }],
-"loop": 2,
+"loop": 1,
 "name": &"movement",
 "speed": 5.0
 }, {
@@ -50,7 +65,6 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ogd8f"]
 radius = 6.0
-height = 32.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q3bbs"]
 radius = 9.0
@@ -76,3 +90,35 @@ shape = SubResource("CircleShape2D_q3bbs")
 [node name="FacingCast" type="RayCast2D" parent="." unique_id=1563273179]
 target_position = Vector2(18, 0)
 collision_mask = 52
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1252788138]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionMoving" type="CollisionShape2D" parent="Hurtbox" unique_id=180615218]
+position = Vector2(0, -1)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_ogd8f")
+debug_color = Color(0.9882353, 0, 0, 0.41960785)
+
+[node name="CollisionSpinning" type="CollisionShape2D" parent="Hurtbox" unique_id=251046788]
+shape = SubResource("CircleShape2D_q3bbs")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=717959460]
+collision_layer = 8
+script = ExtResource("4_8vhtu")
+
+[node name="CollisionMoving" type="CollisionShape2D" parent="Hitbox" unique_id=935401200]
+position = Vector2(0, -1)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_ogd8f")
+debug_color = Color(0, 1, 0, 0.41960785)
+
+[node name="CollisionSpinning" type="CollisionShape2D" parent="Hitbox" unique_id=636192255]
+shape = SubResource("CircleShape2D_q3bbs")
+debug_color = Color(0, 1, 0, 0.41960785)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1024575907]
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

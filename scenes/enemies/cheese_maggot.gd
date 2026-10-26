@@ -1,18 +1,19 @@
 extends CharacterBody2D
 
-@export var speed: float = 100.0
-@export var fall_speed: float = 1000.0
-@export var launch_speed: float = 1000.0
+@export var speed: float = 700.0
+@export var fall_speed: float = 1700.0
+@export var launch_speed: float = 1300.0
 @export var move_direction: Vector2 = Vector2.UP
 var facing: int = 1
 
-var health = 2
+var health = 5
 var status = 0
 
 func _ready() -> void:
-	#$Hitbox.damage = 1 + GlobVar.stage
-	var rand_angle = randf_range(PI/6.0,5*PI/6.0)
-	move_direction = Vector2(cos(rand_angle),-sin(rand_angle) * 5.0).normalized()
+	$Hitbox.damage = 1 + GlobVar.stage
+	var rand_angle = randf_range(PI/4.0,3*PI/4.0)
+	move_direction = Vector2(cos(rand_angle),-sin(rand_angle)).normalized()
+	move_direction *= Vector2(1.0,2.0)
 
 func _physics_process(delta: float) -> void:
 	match status:
@@ -20,7 +21,7 @@ func _physics_process(delta: float) -> void:
 			$AnimatedSprite2D.animation = "spin"
 			velocity = move_direction * launch_speed * delta
 			velocity.y += fall_speed * delta
-			launch_speed = clamp(launch_speed - 20.0 * delta,0,INF)
+			launch_speed = clamp(launch_speed - 500.0 * delta,0,INF)
 			$AnimatedSprite2D.rotate(2*PI*delta)
 			var collision = move_and_collide(velocity)
 			if collision:
@@ -28,15 +29,24 @@ func _physics_process(delta: float) -> void:
 				status = 1
 			$CollisionMoving.disabled = true
 			$CollisionSpinning.disabled = false
+			$Hurtbox/CollisionMoving.disabled = true
+			$Hurtbox/CollisionSpinning.disabled = false
+			$Hitbox/CollisionMoving.disabled = true
+			$Hitbox/CollisionSpinning.disabled = false
 		1:
 			$AnimatedSprite2D.rotation = 0
 			$AnimatedSprite2D.animation = "movement"
 			$AnimatedSprite2D.play()
-			velocity.y += fall_speed * delta
-			velocity.x += speed * delta * facing
+			if not is_on_floor():
+				velocity.y += fall_speed * delta
+			velocity.x = speed * delta * facing
 			move_and_slide()
 			$CollisionMoving.disabled = false
 			$CollisionSpinning.disabled = true
+			$Hurtbox/CollisionMoving.disabled = false
+			$Hurtbox/CollisionSpinning.disabled = true
+			$Hitbox/CollisionMoving.disabled = false
+			$Hitbox/CollisionSpinning.disabled = true
 			if $FacingCast.is_colliding():
 				scale.x *= -1
 				facing *= -1
@@ -49,7 +59,7 @@ func damage(amount: int,source: String):
 	if health <= 0 and source == "Bite":
 		SignalBus.bite_death.emit(-5)
 		queue_free()
-	if health <= -20:
+	if health <= 0:
 		queue_free()
 	modulate = Color(255,0,0,255)
 	await get_tree().create_timer(0.1).timeout
