@@ -29,7 +29,7 @@ func _ready() -> void:
 			force_new_biome = true 
 		if GlobVar.stage >= 5:
 			GlobVar.shopChance += 0.1
-		rand_level = randi_range(0,3)
+		rand_level = randi_range(0,4)
 		$CharacterBody2D.heal(GlobVar.levelStartHeal)
 		GlobVar.transitioning = true
 		while not valid_biome:
