@@ -10,6 +10,7 @@ func _ready() -> void:
 	GlobVar.leaving_shop = false
 	if randf() < GlobVar.shopChance:
 		going_shop = true
+		$Shop_Sign.visible = true
 		GlobVar.shopChance = 0
 		new_biome = GlobVar.biome
 		var used_cells = $TileMapLayer.get_used_cells()
