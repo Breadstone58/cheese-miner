@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://3f6o42nw0jiu" path="res://scenes/hud.tscn" id="6_ospp6"]
 [ext_resource type="Texture2D" uid="uid://blhqomfyqkuef" path="res://assets/sprites/environment/broken_greencheese.png" id="7_a7gmb"]
 [ext_resource type="Texture2D" uid="uid://b6i5t0srfe61c" path="res://assets/sprites/environment/Greencheesewalls.png" id="8_mc8as"]
+[ext_resource type="Texture2D" uid="uid://tpi010rixyu0" path="res://assets/sprites/environment/Lead_to_shop.png" id="11_mc8as"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_iahlw"]
 
@@ -1095,5 +1096,11 @@ collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Next_Biome" unique_id=450621410]
 shape = SubResource("WorldBoundaryShape2D_ogd8f")
+
+[node name="Shop_Sign" type="Sprite2D" parent="." unique_id=254017728]
+visible = false
+position = Vector2(1405, 1395)
+scale = Vector2(3, 3)
+texture = ExtResource("11_mc8as")
 
 [connection signal="area_entered" from="Next_Biome" to="." method="_on_next_biome_area_entered"]
