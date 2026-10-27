@@ -15,6 +15,7 @@ var facing = 1
 @export var toggle_lock_mode: bool = false
 var is_position_locked: bool = false
 var iFrames = 0
+var dead = false
 
 var dash_timer: float = 0.0
 var dash_multiplier: float = 1.0
@@ -53,6 +54,7 @@ func _process(delta: float) -> void:
 		visible = false
 		is_position_locked = true
 		GlobVar.transitioning = true
+		dead = true
 		
 	update_items()
 	
@@ -110,6 +112,8 @@ func _physics_process(delta: float) -> void:
 			
 
 	var direction := Input.get_axis("move_left", "move_right")
+	if dead:
+		direction = 0
 	
 	if is_position_locked and direction != 0:
 		facing = int(sign(direction))

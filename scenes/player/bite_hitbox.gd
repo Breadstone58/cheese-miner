@@ -18,7 +18,7 @@ func _process(delta: float) -> void:
 	if not bite_sprite.is_playing():
 		bite_box.disabled = true
 		bite_sprite.scale.x = player.facing
-	if Input.is_action_just_pressed("bite") and not bite_sprite.is_playing():
+	if Input.is_action_just_pressed("bite") and not bite_sprite.is_playing() and GlobVar.playerHealth > 0:
 		bite_box.position.x = 32 * player.facing
 		bite_sprite.position.x = 16 * player.facing
 		bite_sprite.frame = 0

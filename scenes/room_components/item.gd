@@ -17,16 +17,16 @@ func _ready() -> void:
 	match state:
 		0:
 			sprite.animation = "common"
-			sprite.frame = randi_range(0,sprite.sprite_frames.get_frame_count("common"))
+			sprite.frame = randi_range(0,sprite.sprite_frames.get_frame_count("common")-1)
 		1:
 			sprite.animation = "uncommon"
-			sprite.frame = randi_range(0,sprite.sprite_frames.get_frame_count("uncommon"))
+			sprite.frame = randi_range(0,sprite.sprite_frames.get_frame_count("uncommon")-1)
 		2:
 			sprite.animation = "rare"
-			sprite.frame = randi_range(0,sprite.sprite_frames.get_frame_count("rare"))
+			sprite.frame = randi_range(0,sprite.sprite_frames.get_frame_count("rare")-1)
 		3:
 			sprite.animation = "gadget"
-			sprite.frame = randi_range(0,sprite.sprite_frames.get_frame_count("gadget"))
+			sprite.frame = randi_range(0,sprite.sprite_frames.get_frame_count("gadget")-1)
 			energy_remaining = ItemID.energy[ItemID.gadget[get_id()]]
 		8,9:
 			sprite.animation = custom_rarity
@@ -51,19 +51,19 @@ func _ready() -> void:
 			match rarity:
 				0:
 					sprite.animation = "common"
-					sprite.frame = randi_range(0,sprite.sprite_frames.get_frame_count("common"))
+					sprite.frame = randi_range(0,sprite.sprite_frames.get_frame_count("common")-1)
 					cost = clamp(randi_range(GlobVar.stage * 5 - 5,GlobVar.stage * 5 + 5),1,INF)
 				1:
 					sprite.animation = "uncommon"
-					sprite.frame = randi_range(0,sprite.sprite_frames.get_frame_count("uncommon"))
+					sprite.frame = randi_range(0,sprite.sprite_frames.get_frame_count("uncommon")-1)
 					cost = clamp(randi_range(GlobVar.stage * 7 - 5,GlobVar.stage * 7 + 5),1,INF)
 				2:
 					sprite.animation = "rare"
-					sprite.frame = randi_range(0,sprite.sprite_frames.get_frame_count("rare"))
+					sprite.frame = randi_range(0,sprite.sprite_frames.get_frame_count("rare")-1)
 					cost = clamp(randi_range(GlobVar.stage * 12 - 5,GlobVar.stage * 12 + 7),1,INF)
 				3:
 					sprite.animation = "gadget"
-					sprite.frame = randi_range(0,sprite.sprite_frames.get_frame_count("gadget"))
+					sprite.frame = randi_range(0,sprite.sprite_frames.get_frame_count("gadget")-1)
 					cost = clamp(randi_range(GlobVar.stage * 7 - 5,GlobVar.stage * 7 + 5),1,INF)
 					energy_remaining = ItemID.energy[ItemID.gadget[get_id()]]
 			$Price.text = "$" + str(cost)
