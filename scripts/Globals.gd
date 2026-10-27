@@ -9,7 +9,7 @@ var playerHealth = 100
 var healthMax = 100
 var shopChance = 0
 var leaving_shop = false
-var money = 100
+var money = 0
 var money_disp_frame = 0
 var energy_disp_frame = 0
 
@@ -54,4 +54,4 @@ func _process(delta: float) -> void:
 	exBiteHeal = count_items("Bloodlust") * 3
 	exBulletDamage = count_items("Diamond") * 2
 	crouch_boost = 200.0 + count_items("Spring_Boots") * 300.0
-	healthMax = 100.0 + count_items("Magic_Cheese") * 20
+	healthMax = 100 + count_items("Magic_Cheese") * 20

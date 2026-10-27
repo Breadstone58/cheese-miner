@@ -40,11 +40,11 @@ func _ready() -> void:
 		11:
 			randomize()
 			var rarity = randf()
-			if rarity < 36.0/55.0:
+			if rarity < 30.0/55.0:
 				rarity = 0
 			elif rarity < 45.0/55.0:
 				rarity = 1
-			elif rarity < 46.0/55.0:
+			elif rarity < 48.0/55.0:
 				rarity = 2
 			else:
 				rarity = 3
