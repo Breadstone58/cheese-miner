@@ -16,6 +16,11 @@ var facing = GlobVar.charFacing
 var is_position_locked: bool = false
 var iFrames = 0
 var dead = false
+var crouching = false
+
+var shoot_speed: float = 1.0/3.0
+var shoot_cooldown: float = 0
+var last_shot_dir = Vector2.ZERO
 
 var dash_timer: float = 0.0
 var dash_multiplier: float = 1.0
@@ -65,11 +70,13 @@ func _process(delta: float) -> void:
 		$CollisionShape2D.shape.size.y = 60
 		$CollisionShape2D.position.y = 34.0
 		$BulletSpawnPoint.position.y = 32.0
+		crouching = true
 	else:
 		$AnimatedSprite2D.position.y = 0.0
 		$CollisionShape2D.shape.size.y = 120.0
 		$CollisionShape2D.position.y = 4.0
 		$BulletSpawnPoint.position.y = 0
+		crouching = false
 		
 	if Input.is_action_just_pressed("open_door_debug"):
 		SignalBus.level_complete.emit()
@@ -83,6 +90,8 @@ func _process(delta: float) -> void:
 	$AnimatedSprite2D.scale.x = facing
 	GlobVar.charFacing = facing
 	update_animation()
+	if shoot_cooldown > 0:
+		shoot_cooldown -= delta
 
 func _physics_process(delta: float) -> void:
 	if GlobVar.biome == 1 and is_on_floor():
@@ -161,7 +170,8 @@ func get_aim_vector() -> Vector2:
 	return Vector2(facing, 0)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("shoot") and not GlobVar.transitioning:
+	if event.is_action_pressed("shoot") and not GlobVar.transitioning and shoot_cooldown <= 0:
+		shoot_cooldown = shoot_speed
 		var bullet = bullet_scene.instantiate()
 		var aim_direction = get_aim_vector()
 		bullet.global_position = $BulletSpawnPoint.global_position
@@ -214,4 +224,5 @@ func update_animation():
 	var right = Input.is_action_pressed("move_right")
 	var aim_x = facing
 	var v = Vector2(facing, 0)
-	
+	if crouching == false:
+		pass
