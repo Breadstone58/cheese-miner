@@ -28,8 +28,10 @@ const DASH_DURATION: float = 0.2
 const DASH_SPEED_MULTIPLIER: float = 2.5
 
 var knockback_velocity: Vector2 = Vector2.ZERO
-
 var cjb_active = false
+
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+
 
 func _ready() -> void:
 	position.x = GlobVar.PlayerX
@@ -48,12 +50,12 @@ func _process(delta: float) -> void:
 	iFrames -= 1
 	iFrames = clamp(iFrames, 0, INF)
 	if iFrames > 0:
-		if $AnimatedSprite2D.modulate == Color(1,1,1,1):
-			$AnimatedSprite2D.modulate = Color(255,255,255,0)
+		if sprite.modulate == Color(1,1,1,1):
+			sprite.modulate = Color(255,255,255,0)
 		else:
-			$AnimatedSprite2D.modulate = Color(1,1,1,1)
+			sprite.modulate = Color(1,1,1,1)
 	else:
-		$AnimatedSprite2D.modulate = Color(1,1,1,1)
+		sprite.modulate = Color(1,1,1,1)
 		
 	if GlobVar.playerHealth <= 0:
 		visible = false
@@ -66,13 +68,11 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("crouch") or $"Uncrouch Checker".is_colliding() or $"Uncrouch Checker2".is_colliding():
 		if is_on_floor():
 			SPEED /= 2.0
-		$AnimatedSprite2D.position.y = 32.0
 		$CollisionShape2D.shape.size.y = 60
 		$CollisionShape2D.position.y = 34.0
 		$BulletSpawnPoint.position.y = 32.0
 		crouching = true
 	else:
-		$AnimatedSprite2D.position.y = 0.0
 		$CollisionShape2D.shape.size.y = 120.0
 		$CollisionShape2D.position.y = 4.0
 		$BulletSpawnPoint.position.y = 0
@@ -87,8 +87,6 @@ func _process(delta: float) -> void:
 				GlobVar.energy -= 1
 				activate_gadget()
 	
-	$AnimatedSprite2D.scale.x = facing
-	GlobVar.charFacing = facing
 	update_animation()
 	if shoot_cooldown > 0:
 		shoot_cooldown -= delta
@@ -218,11 +216,102 @@ func activate_gadget():
 			SignalBus.level_complete.emit()
 
 func update_animation():
+	sprite.scale.x = facing
+	GlobVar.charFacing = facing
 	var up = Input.is_action_pressed("aim_up")
 	var down = Input.is_action_pressed("aim_down")
-	var left = Input.is_action_pressed("move_left")
-	var right = Input.is_action_pressed("move_right")
+	var side = Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right")
 	var aim_x = facing
 	var v = Vector2(facing, 0)
-	if crouching == false:
-		pass
+	if not is_on_floor():
+		sprite.animation = "jump_aim"
+		if up and side:
+			sprite.frame = 2
+		elif up:
+			sprite.frame = 1
+		elif down and side:
+			sprite.frame = 4
+		elif down:
+			sprite.frame = 5
+		elif side:
+			sprite.frame = 3
+		else:
+			sprite.frame = 0
+	else:
+		if crouching:
+			if not ("crawl" in sprite.animation or "crouch" in sprite.animation):
+				sprite.animation = "crouch_trans"
+				sprite.play()
+			if (sprite.animation == "crouch_trans" and sprite.frame == 3) or sprite.animation != "crouch_trans":
+				if not(up or side or down):
+					sprite.animation = "crouch_idle"
+					sprite.play()
+				else:
+					if is_position_locked:
+						sprite.animation = "crouch_idle_shoots"
+						if up and side:
+							sprite.frame = 1
+						elif down and side:
+							sprite.frame = 3
+						elif up:
+							sprite.frame = 0
+						elif down:
+							sprite.frame = 4
+						else:
+							sprite.frame = 2
+					else:
+						if up and side:
+							sprite.animation = "crawl_up_side"
+							sprite.play()
+						elif down and side:
+							sprite.animation = "crawl_down_side"
+							sprite.play()
+						elif side:
+							sprite.animation = "crawl_side"
+							sprite.play()
+						elif up:
+							sprite.animation = "crouch_idle_shoots"
+							sprite.frame = 0
+						else:
+							sprite.animation = "crouch_idle_shoots"
+							sprite.frame = 4
+		else:
+			if "crawl" in sprite.animation or "crouch" in sprite.animation:
+				sprite.animation = "stand_up"
+				sprite.play()
+			if (sprite.animation == "stand_up" and sprite.frame == 3) or sprite.animation != "stand_up":
+				if not(up or side or down):
+					sprite.animation = "idle"
+					sprite.play()
+				else:
+					if is_position_locked:
+						sprite.animation = "idle_aim"
+						if up and side:
+							sprite.frame = 1
+						elif down and side:
+							sprite.frame = 3
+						elif up:
+							sprite.frame = 0
+						elif down:
+							sprite.frame = 4
+						else:
+							sprite.frame = 2
+					else:
+						if up and side:
+							sprite.animation = "walk_up_side"
+							sprite.play()
+						elif down and side:
+							sprite.animation = "walk_down_side"
+							sprite.play()
+						elif side:
+							sprite.animation = "walk_side"
+							sprite.play()
+						elif up:
+							sprite.animation = "idle_aim"
+							sprite.frame = 0
+						else:
+							sprite.animation = "idle_aim"
+							sprite.frame = 4
+			
+			
+			
