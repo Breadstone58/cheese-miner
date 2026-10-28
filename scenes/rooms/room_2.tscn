@@ -1654,4 +1654,6 @@ position = Vector2(1503, 497)
 position = Vector2(2658, 358)
 
 [node name="Crystal" parent="." unique_id=1269376109 instance=ExtResource("18_e68s1")]
+z_index = 1
+z_as_relative = false
 position = Vector2(3232, 580)

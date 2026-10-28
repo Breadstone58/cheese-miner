@@ -76,6 +76,11 @@ func _process(delta: float) -> void:
 		$CollisionShape2D.shape.size.y = 120.0
 		$CollisionShape2D.position.y = 4.0
 		$BulletSpawnPoint.position.y = 0
+		if Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"):
+			if Input.is_action_pressed("aim_up"):
+				$BulletSpawnPoint.position.y = 18
+			elif Input.is_action_pressed("aim_down"):
+				$BulletSpawnPoint.position.y = -18 
 		crouching = false
 		
 	if Input.is_action_just_pressed("open_door_debug"):
