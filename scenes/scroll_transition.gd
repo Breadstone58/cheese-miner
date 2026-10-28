@@ -8,6 +8,8 @@ var force_new_biome = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GlobVar.leaving_shop = false
+	if GlobVar.stage == 0:
+		new_biome = randi_range(0,3)
 	if randf() < GlobVar.shopChance:
 		going_shop = true
 		$Shop_Sign.visible = true
@@ -50,7 +52,6 @@ func _ready() -> void:
 				if new_biome != GlobVar.biome:
 					valid_biome = true
 		if GlobVar.stage == 0:
-			new_biome = randi_range(0,3)
 			GlobVar.biome = new_biome
 			GlobVar.positional_biome = new_biome
 		var used_cells = $TileMapLayer.get_used_cells()

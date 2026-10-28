@@ -20,8 +20,8 @@ func _ready() -> void:
 			randomize()
 			if randf() < 0.15 and $TileMapLayer.get_cell_tile_data(coords).get_custom_data("breakable"):
 				$TileMapLayer.set_cell(coords, 4, atlas_coords, alternative_tile)
-	
-
+	$Lever.position.x = float(randi_range(150,938) + 960 * randi_range(0,1))
+	$Lever.position.y = float(192*randi_range(1,5)-28)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
