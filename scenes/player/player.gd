@@ -236,7 +236,10 @@ func update_animation():
 		elif side:
 			sprite.frame = 3
 		else:
-			sprite.frame = 0
+			if shoot_cooldown > 0:
+				sprite.frame = 3
+			else:
+				sprite.frame = 0
 	else:
 		if crouching:
 			if not ("crawl" in sprite.animation or "crouch" in sprite.animation):
@@ -244,8 +247,12 @@ func update_animation():
 				sprite.play()
 			if (sprite.animation == "crouch_trans" and sprite.frame == 3) or sprite.animation != "crouch_trans":
 				if not(up or side or down):
-					sprite.animation = "crouch_idle"
-					sprite.play()
+					if shoot_cooldown > 0:
+						sprite.animation = "crouch_idle_shoots"
+						sprite.frame = 2
+					else:
+						sprite.animation = "crouch_idle"
+						sprite.play()
 				else:
 					if is_position_locked:
 						sprite.animation = "crouch_idle_shoots"
@@ -281,8 +288,12 @@ func update_animation():
 				sprite.play()
 			if (sprite.animation == "stand_up" and sprite.frame == 3) or sprite.animation != "stand_up":
 				if not(up or side or down):
-					sprite.animation = "idle"
-					sprite.play()
+					if shoot_cooldown > 0:
+						sprite.animation = "idle_aim"
+						sprite.frame = 2
+					else:
+						sprite.animation = "idle"
+						sprite.play()
 				else:
 					if is_position_locked:
 						sprite.animation = "idle_aim"
