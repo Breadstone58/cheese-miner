@@ -12,6 +12,7 @@ var leaving_shop = false
 var money = 0
 var money_disp_frame = 0
 var energy_disp_frame = 0
+var charFacing = 1
 
 #items
 var inventory = []

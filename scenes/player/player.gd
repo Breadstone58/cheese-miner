@@ -11,7 +11,7 @@ const AIR_TIME_MAX = 0.3
 var air_time = AIR_TIME_MAX
 var extra_jumps = 0
 var extra_jumps_left = extra_jumps
-var facing = 1 
+var facing = GlobVar.charFacing
 @export var toggle_lock_mode: bool = false
 var is_position_locked: bool = false
 var iFrames = 0
@@ -61,13 +61,11 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("crouch") or $"Uncrouch Checker".is_colliding() or $"Uncrouch Checker2".is_colliding():
 		if is_on_floor():
 			SPEED /= 2.0
-		$AnimatedSprite2D.scale.y = 0.5
 		$AnimatedSprite2D.position.y = 32.0
 		$CollisionShape2D.shape.size.y = 60
 		$CollisionShape2D.position.y = 34.0
 		$BulletSpawnPoint.position.y = 32.0
 	else:
-		$AnimatedSprite2D.scale.y = 1.0
 		$AnimatedSprite2D.position.y = 0.0
 		$CollisionShape2D.shape.size.y = 120.0
 		$CollisionShape2D.position.y = 4.0
@@ -81,6 +79,10 @@ func _process(delta: float) -> void:
 			if GlobVar.energy > 0:
 				GlobVar.energy -= 1
 				activate_gadget()
+	
+	$AnimatedSprite2D.scale.x = facing
+	GlobVar.charFacing = facing
+	update_animation()
 
 func _physics_process(delta: float) -> void:
 	if GlobVar.biome == 1 and is_on_floor():
@@ -204,3 +206,12 @@ func activate_gadget():
 			velocity.x = facing * (SPEED * DASH_SPEED_MULTIPLIER)
 		"Skeleton_Key":
 			SignalBus.level_complete.emit()
+
+func update_animation():
+	var up = Input.is_action_pressed("aim_up")
+	var down = Input.is_action_pressed("aim_down")
+	var left = Input.is_action_pressed("move_left")
+	var right = Input.is_action_pressed("move_right")
+	var aim_x = facing
+	var v = Vector2(facing, 0)
+	
