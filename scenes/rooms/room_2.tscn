@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://3f6o42nw0jiu" path="res://scenes/hud.tscn" id="14_s0y4u"]
 [ext_resource type="PackedScene" uid="uid://cqwagrl52auqn" path="res://scenes/enemies/crab.tscn" id="15_l7ovm"]
 [ext_resource type="PackedScene" uid="uid://w5qjak6ufh2x" path="res://scenes/room_components/crystal.tscn" id="18_e68s1"]
+[ext_resource type="PackedScene" uid="uid://swfnmsq5wx2h" path="res://scenes/room_components/parallax_backing.tscn" id="19_k3tj1"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_c1qis"]
 
@@ -1657,3 +1658,5 @@ position = Vector2(2658, 358)
 z_index = 1
 z_as_relative = false
 position = Vector2(3232, 580)
+
+[node name="Parallax_Backing" parent="." unique_id=730832840 instance=ExtResource("19_k3tj1")]

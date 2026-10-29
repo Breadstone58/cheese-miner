@@ -3,18 +3,24 @@
 [ext_resource type="AudioStream" uid="uid://c3h7gprebocfs" path="res://assets/sounds/GreenBiome.mp3" id="1_ibx2e"]
 [ext_resource type="Script" uid="uid://datpqbp1hj3i1" path="res://scenes/music.gd" id="1_qnihg"]
 [ext_resource type="AudioStream" uid="uid://b8d44lbl3ttrb" path="res://assets/sounds/BlueBiome.mp3" id="2_qnihg"]
+[ext_resource type="AudioStream" uid="uid://cwkhptaqlcwax" path="res://assets/sounds/RedBiome.mp3" id="3_ejojg"]
 
 [node name="Music" type="Node" unique_id=34921368]
 script = ExtResource("1_qnihg")
 
-[node name="GreenBiome" type="AudioStreamPlayer" parent="." unique_id=1226395051]
-stream = ExtResource("1_ibx2e")
+[node name="BlueBiome" type="AudioStreamPlayer" parent="." unique_id=1800213781]
+stream = ExtResource("2_qnihg")
 volume_db = -80.0
 autoplay = true
 parameters/looping = true
 
-[node name="BlueBiome" type="AudioStreamPlayer" parent="." unique_id=1800213781]
-stream = ExtResource("2_qnihg")
+[node name="RedBiome" type="AudioStreamPlayer" parent="." unique_id=530236719]
+stream = ExtResource("3_ejojg")
+volume_db = -80.0
+autoplay = true
+
+[node name="GreenBiome" type="AudioStreamPlayer" parent="." unique_id=1226395051]
+stream = ExtResource("1_ibx2e")
 volume_db = -80.0
 autoplay = true
 parameters/looping = true

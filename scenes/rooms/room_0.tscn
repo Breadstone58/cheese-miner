@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://cqwagrl52auqn" path="res://scenes/enemies/crab.tscn" id="10_kf5e4"]
 [ext_resource type="Texture2D" uid="uid://bf47k4duwnkdx" path="res://assets/sprites/environment/broken_magma.png" id="10_p6je4"]
 [ext_resource type="Texture2D" uid="uid://c06021wvxcf1w" path="res://assets/sprites/environment/magma_blocks.png" id="11_f0rq6"]
+[ext_resource type="PackedScene" uid="uid://swfnmsq5wx2h" path="res://scenes/room_components/parallax_backing.tscn" id="18_f0rq6"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_c1qis"]
 
@@ -1654,3 +1655,5 @@ motion_mode = 0
 [node name="Crab2" parent="." unique_id=1391940025 instance=ExtResource("10_kf5e4")]
 position = Vector2(407, 531)
 rotation = 3.1415927
+
+[node name="Parallax_Backing" parent="." unique_id=730832840 instance=ExtResource("18_f0rq6")]

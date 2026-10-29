@@ -208,7 +208,7 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 func update_items():
 	SPEED = (300.0 + GlobVar.exMoveSpeed + (GlobVar.crouch_boost if cjb_active else 0.0)) * dash_multiplier
 	extra_jumps = GlobVar.exJumps
-	shoot_speed = 0.25 + GlobVar.exAttackSpeed
+	shoot_speed = clamp(0.25 + GlobVar.exAttackSpeed,1.0/60.0,INF)
 
 func _on_bite_kill(healing: int):
 	heal(healing + GlobVar.exBiteHeal)

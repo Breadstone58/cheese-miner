@@ -52,7 +52,13 @@ func _ready() -> void:
 			else:
 				new_biome = randi_range(0,3)
 				if new_biome != GlobVar.biome:
-					valid_biome = true
+					if rand_level in LevelBiomes.lvl:
+						if new_biome == LevelBiomes.lvl[rand_level]:
+							valid_biome = true
+						else:
+							rand_level = randi_range(0,5)
+					else:
+						valid_biome = true
 		if GlobVar.stage == 0:
 			GlobVar.biome = new_biome
 			GlobVar.positional_biome = new_biome

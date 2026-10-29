@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://x6d8m1smdvbk" path="res://scenes/room_components/drop_in_blocker.tscn" id="15_v7abt"]
 [ext_resource type="PackedScene" uid="uid://3f6o42nw0jiu" path="res://scenes/hud.tscn" id="16_e5qb6"]
 [ext_resource type="PackedScene" uid="uid://cqwagrl52auqn" path="res://scenes/enemies/crab.tscn" id="17_up25i"]
+[ext_resource type="PackedScene" uid="uid://swfnmsq5wx2h" path="res://scenes/room_components/parallax_backing.tscn" id="18_rgxan"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_c1qis"]
 
@@ -1658,3 +1659,5 @@ position = Vector2(1853, 1064)
 
 [node name="Crab4" parent="." unique_id=1924767745 instance=ExtResource("17_up25i")]
 position = Vector2(435, 278)
+
+[node name="Parallax_Backing" parent="." unique_id=730832840 instance=ExtResource("18_rgxan")]
