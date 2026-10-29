@@ -192,7 +192,7 @@ func handle_lock_input() -> void:
 func damage(amount: int, location: Vector2 = Vector2(-1,-1)):
 	if iFrames == 0 and GlobVar.playerHealth > 0:
 		GlobVar.playerHealth -= amount
-		iFrames = 60
+		iFrames = 180
 		if location != Vector2(-1,-1):
 			var knockback_dir = (global_position - location).normalized()
 			knockback_dir.y = min(knockback_dir.y, -0.4)
