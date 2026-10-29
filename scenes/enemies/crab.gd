@@ -64,7 +64,7 @@ func _process(delta: float) -> void:
 	else:
 		stun_counter = 0
 		unstun = 0
-	if unstun >= 10:
+	if unstun >= 5:
 		health = 1
 		modulate = Color(1,1,1,1)
 
