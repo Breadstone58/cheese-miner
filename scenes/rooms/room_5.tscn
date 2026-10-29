@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://3f6o42nw0jiu" path="res://scenes/hud.tscn" id="16_j1tby"]
 [ext_resource type="PackedScene" uid="uid://ccvn2j2fo7m1c" path="res://scenes/room_components/lever.tscn" id="17_74k83"]
 [ext_resource type="PackedScene" uid="uid://swfnmsq5wx2h" path="res://scenes/room_components/parallax_backing.tscn" id="18_684t6"]
+[ext_resource type="PackedScene" uid="uid://dc3srlie11g84" path="res://scenes/room_components/tunnel.tscn" id="19_u3xe7"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_c1qis"]
 
@@ -1654,3 +1655,15 @@ collision_layer = 16
 z_index = -1
 
 [node name="Parallax_Backing" parent="." unique_id=730832840 instance=ExtResource("18_684t6")]
+
+[node name="Tunnel" parent="." unique_id=984068459 instance=ExtResource("19_u3xe7")]
+offset_left = 930.0
+offset_top = -2067.0
+offset_right = 1128.0
+offset_bottom = 64.0
+
+[node name="Tunnel2" parent="." unique_id=2057693256 instance=ExtResource("19_u3xe7")]
+offset_left = 934.0
+offset_top = 1152.0
+offset_right = 1113.0
+offset_bottom = 5116.0

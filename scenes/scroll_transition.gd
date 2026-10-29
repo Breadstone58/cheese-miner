@@ -74,12 +74,14 @@ func _ready() -> void:
 			var atlas_coords = $TileMapLayer2.get_cell_atlas_coords(coords)
 			var alternative_tile = $TileMapLayer2.get_cell_alternative_tile(coords)
 			$TileMapLayer2.set_cell(coords, new_biome, atlas_coords, alternative_tile)
+		$Tunnel2.color = GlobVar.tunnel_color[new_biome]
 		GlobVar.biome = new_biome
 		GlobVar.stage += 1
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	$Tunnel.color = GlobVar.tunnel_color[GlobVar.biome]
 	GlobVar.music_biome = new_biome
 	if $CharacterBody2D.position.y >= 6848:
 		if going_shop:

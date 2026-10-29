@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://c06021wvxcf1w" path="res://assets/sprites/environment/magma_blocks.png" id="11_j7np2"]
 [ext_resource type="PackedScene" uid="uid://cqwagrl52auqn" path="res://scenes/enemies/crab.tscn" id="14_whcv4"]
 [ext_resource type="PackedScene" uid="uid://swfnmsq5wx2h" path="res://scenes/room_components/parallax_backing.tscn" id="18_j7np2"]
+[ext_resource type="PackedScene" uid="uid://dc3srlie11g84" path="res://scenes/room_components/tunnel.tscn" id="19_bqblk"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_c1qis"]
 
@@ -1657,3 +1658,15 @@ position = Vector2(287, 298)
 position = Vector2(1760, 297)
 
 [node name="Parallax_Backing" parent="." unique_id=730832840 instance=ExtResource("18_j7np2")]
+
+[node name="Tunnel" parent="." unique_id=984068459 instance=ExtResource("19_bqblk")]
+offset_left = -27.0
+offset_top = -2069.0
+offset_right = 2095.0
+offset_bottom = 60.0
+
+[node name="Tunnel2" parent="." unique_id=1241715953 instance=ExtResource("19_bqblk")]
+offset_left = 930.0
+offset_top = 1152.0
+offset_right = 1107.0
+offset_bottom = 5093.0

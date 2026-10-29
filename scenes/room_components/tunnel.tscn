@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dc3srlie11g84"]
+
+[ext_resource type="Script" uid="uid://ygagwflbwvkx" path="res://scenes/room_components/tunnel.gd" id="1_0i8dt"]
+
+[node name="Tunnel" type="ColorRect" unique_id=984068459]
+z_index = -99
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.13682574, 0.13682574, 0.13682568, 1)
+script = ExtResource("1_0i8dt")

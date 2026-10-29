@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://bf47k4duwnkdx" path="res://assets/sprites/environment/broken_magma.png" id="10_p6je4"]
 [ext_resource type="Texture2D" uid="uid://c06021wvxcf1w" path="res://assets/sprites/environment/magma_blocks.png" id="11_f0rq6"]
 [ext_resource type="PackedScene" uid="uid://swfnmsq5wx2h" path="res://scenes/room_components/parallax_backing.tscn" id="18_f0rq6"]
+[ext_resource type="PackedScene" uid="uid://dc3srlie11g84" path="res://scenes/room_components/tunnel.tscn" id="19_mcqdl"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_c1qis"]
 
@@ -1657,3 +1658,15 @@ position = Vector2(407, 531)
 rotation = 3.1415927
 
 [node name="Parallax_Backing" parent="." unique_id=730832840 instance=ExtResource("18_f0rq6")]
+
+[node name="Tunnel" parent="." unique_id=984068459 instance=ExtResource("19_mcqdl")]
+offset_left = 862.0
+offset_top = -2053.0
+offset_right = 1182.0
+offset_bottom = 60.0
+
+[node name="Tunnel2" parent="." unique_id=94340899 instance=ExtResource("19_mcqdl")]
+offset_left = 947.0
+offset_top = 1152.0
+offset_right = 1103.0
+offset_bottom = 5050.0

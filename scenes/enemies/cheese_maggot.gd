@@ -34,6 +34,7 @@ func _physics_process(delta: float) -> void:
 			$Hitbox/CollisionMoving.disabled = true
 			$Hitbox/CollisionSpinning.disabled = false
 		1:
+			set_collision_mask_value(4,true)
 			$AnimatedSprite2D.rotation = 0
 			$AnimatedSprite2D.animation = "movement"
 			$AnimatedSprite2D.play()
