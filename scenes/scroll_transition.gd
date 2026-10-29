@@ -9,7 +9,7 @@ var force_new_biome = false
 func _ready() -> void:
 	GlobVar.leaving_shop = false
 	if GlobVar.stage == 0:
-		new_biome = randi_range(0,3)
+		GlobVar.biome = randi_range(0,3)
 	if randf() < GlobVar.shopChance:
 		going_shop = true
 		$Shop_Sign.visible = true
@@ -45,6 +45,8 @@ func _ready() -> void:
 				if rand_level in LevelBiomes.lvl:
 					if new_biome == LevelBiomes.lvl[rand_level]:
 						valid_biome = true
+					else:
+						rand_level = randi_range(0,5)
 				else:
 					valid_biome = true
 			else:
@@ -72,6 +74,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	GlobVar.music_biome = new_biome
 	if $CharacterBody2D.position.y >= 6848:
 		if going_shop:
 			get_tree().change_scene_to_file("res://scenes/rooms/shop.tscn")

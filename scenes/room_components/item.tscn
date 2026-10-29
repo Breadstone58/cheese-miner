@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://c8wrwntaiwfoy" path="res://assets/sprites/items/skeleton_key.png" id="5_a0l3q"]
 [ext_resource type="Texture2D" uid="uid://cn1c3e50nxfo0" path="res://assets/sprites/items/money/money_blue.png" id="5_m7sda"]
 [ext_resource type="Texture2D" uid="uid://b45fm3lcjtq2g" path="res://assets/sprites/items/magic_cheese.png" id="5_vbogt"]
+[ext_resource type="Texture2D" uid="uid://co2kya6taviww" path="res://assets/sprites/items/oil.png" id="6_6wue1"]
 [ext_resource type="FontFile" uid="uid://8douc1wvghmy" path="res://assets/fonts/VCR_OSD_MONO_1.001.ttf" id="6_45ops"]
 [ext_resource type="Texture2D" uid="uid://xhxt8662caqy" path="res://assets/sprites/items/money/money_red.png" id="6_w2imf"]
 [ext_resource type="Texture2D" uid="uid://du67mb34m8p06" path="res://assets/sprites/items/money/money_green.png" id="7_1clqh"]
@@ -305,6 +306,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("5_vbogt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_6wue1")
 }],
 "loop": 1,
 "name": &"common",

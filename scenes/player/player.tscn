@@ -629,7 +629,7 @@ script = ExtResource("1_g2els")
 bullet_scene = ExtResource("2_gmlin")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=566927396]
-position = Vector2(0, -2)
+position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_ogd8f")
 animation = &"jump_aim"
 autoplay = "idle"

@@ -18,7 +18,7 @@ var iFrames = 0
 var dead = false
 var crouching = false
 
-var shoot_speed: float = 1.0/3.0
+var shoot_speed: float = 15.0/60.0
 var shoot_cooldown: float = 0
 var last_shot_dir = Vector2.ZERO
 
@@ -208,6 +208,7 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 func update_items():
 	SPEED = (300.0 + GlobVar.exMoveSpeed + (GlobVar.crouch_boost if cjb_active else 0.0)) * dash_multiplier
 	extra_jumps = GlobVar.exJumps
+	shoot_speed = 0.25 + GlobVar.exAttackSpeed
 
 func _on_bite_kill(healing: int):
 	heal(healing + GlobVar.exBiteHeal)
@@ -228,7 +229,7 @@ func update_animation():
 	var side = Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right")
 	var aim_x = facing
 	var v = Vector2(facing, 0)
-	if not is_on_floor():
+	if not is_on_floor() and not crouching:
 		sprite.animation = "jump_aim"
 		if up and side:
 			sprite.frame = 2

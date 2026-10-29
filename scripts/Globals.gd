@@ -13,6 +13,7 @@ var money = 0
 var money_disp_frame = 0
 var energy_disp_frame = 0
 var charFacing = 1
+var music_biome = -1
 
 #items
 var inventory = []
@@ -26,6 +27,7 @@ var exBiteHeal = 0
 var levelStartHeal = 0
 var crouch_boost = 0.0
 var exMaxHP = 0
+var exAttackSpeed = 0
 
 #gadget stuff
 var gadget_change_key = -1
@@ -56,3 +58,4 @@ func _process(delta: float) -> void:
 	exBulletDamage = count_items("Diamond") * 2
 	crouch_boost = 200.0 + count_items("Spring_Boots") * 300.0
 	healthMax = 100 + count_items("Magic_Cheese") * 20
+	exAttackSpeed = count_items("Drill_Oil") / -30.0
