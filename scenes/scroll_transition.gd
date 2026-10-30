@@ -5,6 +5,7 @@ var valid_biome = false
 var new_biome = 0
 var going_shop = false
 var force_new_biome = false
+var prev_biome = GlobVar.biome
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GlobVar.leaving_shop = false
@@ -81,7 +82,10 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	$Tunnel.color = GlobVar.tunnel_color[GlobVar.biome]
+	if GlobVar.stage == 1:
+		$Tunnel.color = GlobVar.tunnel_color[GlobVar.biome]
+	else:
+		$Tunnel.color = GlobVar.tunnel_color[prev_biome]
 	GlobVar.music_biome = new_biome
 	if $CharacterBody2D.position.y >= 6848:
 		if going_shop:

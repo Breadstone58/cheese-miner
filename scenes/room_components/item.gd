@@ -118,7 +118,12 @@ func _on_area_entered(area: Area2D) -> void:
 	elif get_rarity() == "energy" and GlobVar.energy < ItemID.energy[GlobVar.gadget]:
 		GlobVar.energy += 1
 	if not pickup_cooldown:
-		queue_free()
+		pickup_cooldown = true
+		var tween = create_tween()
+		$AnimationPlayer.stop()
+		$AnimationPlayer.play("pickup")
+		tween.tween_property($".","modulate",Color(1, 1, 1, 0.0),1.0)
+		tween.tween_callback($".".queue_free)
 		
 func _on_shop_refresh():
 	if state == 11:
