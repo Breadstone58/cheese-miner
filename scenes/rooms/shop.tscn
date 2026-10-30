@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://dgky00bfe00om" path="res://assets/sprites/environment/shop.png" id="16_nxful"]
 [ext_resource type="PackedScene" uid="uid://ce0d76c776f0" path="res://scenes/room_components/item.tscn" id="17_fp621"]
 [ext_resource type="PackedScene" uid="uid://w5qjak6ufh2x" path="res://scenes/room_components/crystal.tscn" id="18_menil"]
+[ext_resource type="PackedScene" uid="uid://dc3srlie11g84" path="res://scenes/room_components/tunnel.tscn" id="21_b1vae"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_c1qis"]
 
@@ -1379,3 +1380,9 @@ state = 11
 [node name="Item4" parent="." unique_id=2123590995 instance=ExtResource("17_fp621")]
 position = Vector2(1759, 862)
 state = 11
+
+[node name="Tunnel" parent="." unique_id=984068459 instance=ExtResource("21_b1vae")]
+offset_left = -51.0
+offset_top = -2089.0
+offset_right = 2100.0
+offset_bottom = 5111.0
