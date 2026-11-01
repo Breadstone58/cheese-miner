@@ -5,15 +5,26 @@
 [ext_resource type="Texture2D" uid="uid://mfdgi6wnryrn" path="res://assets/sprites/environment/parallax/parallax_yellow_2.png" id="2_s4rij"]
 [ext_resource type="Texture2D" uid="uid://wnpl8bk1w67d" path="res://assets/sprites/environment/parallax/parallax_yellow_3.png" id="3_hv7jv"]
 [ext_resource type="Texture2D" uid="uid://cxkd5fjhq0mdc" path="res://assets/sprites/environment/parallax/parallax_red_1.png" id="3_r35p0"]
+[ext_resource type="Texture2D" uid="uid://cnt5c04eabofi" path="res://assets/sprites/environment/parallax/parallax_blue_1.png" id="3_ua8uv"]
 [ext_resource type="Texture2D" uid="uid://dkdchkwssd5vk" path="res://assets/sprites/environment/parallax/parallax_yellow_4.png" id="4_7j550"]
 [ext_resource type="Texture2D" uid="uid://dxm4cuk17vv7p" path="res://assets/sprites/environment/parallax/parallax_yellow_5.png" id="5_i8ir1"]
 [ext_resource type="Texture2D" uid="uid://idrweaxi7uhy" path="res://assets/sprites/environment/parallax/parallax_red_2.png" id="5_wi8pt"]
+[ext_resource type="Texture2D" uid="uid://0psb0dr02xp6" path="res://assets/sprites/environment/parallax/parallax_green_1.png" id="5_yt81q"]
+[ext_resource type="Texture2D" uid="uid://bhhtgmri3ycg6" path="res://assets/sprites/environment/parallax/parallax_blue_2.png" id="7_3cm7w"]
 [ext_resource type="Texture2D" uid="uid://cyk16rdpiaivl" path="res://assets/sprites/environment/parallax/parallax_red_3.png" id="7_6rdjm"]
 [ext_resource type="Texture2D" uid="uid://rm718ir1j8y3" path="res://assets/sprites/environment/parallax/parallax_red_4.png" id="9_7a74u"]
+[ext_resource type="Texture2D" uid="uid://48ban2pgdexi" path="res://assets/sprites/environment/parallax/parallax_green_2.png" id="9_bvh35"]
 [ext_resource type="Texture2D" uid="uid://ct538ahx85li3" path="res://assets/sprites/environment/parallax/parallax_red_5.png" id="11_d1ovc"]
+[ext_resource type="Texture2D" uid="uid://bbgp8ekfod2bk" path="res://assets/sprites/environment/parallax/parallax_blue_3.png" id="11_mnpvl"]
 [ext_resource type="Texture2D" uid="uid://d2cxqa7q1krfv" path="res://assets/sprites/environment/parallax/parallax_blank.png" id="12_wi8pt"]
 [ext_resource type="Texture2D" uid="uid://dfit75dvarfs" path="res://assets/sprites/environment/parallax/parallax_red_6.png" id="12_ws4sk"]
+[ext_resource type="Texture2D" uid="uid://cgfcdr314hf48" path="res://assets/sprites/environment/parallax/parallax_green_3.png" id="13_p1m3q"]
 [ext_resource type="Texture2D" uid="uid://5uuiaa8gaw07" path="res://assets/sprites/environment/parallax/parallax_red_7.png" id="13_t5ge5"]
+[ext_resource type="Texture2D" uid="uid://cn4egw3g6hljc" path="res://assets/sprites/environment/parallax/parallax_blue_4.png" id="15_4wown"]
+[ext_resource type="Texture2D" uid="uid://nsmmkv3yv6cb" path="res://assets/sprites/environment/parallax/parallax_green_4.png" id="17_yg4vd"]
+[ext_resource type="Texture2D" uid="uid://3pu8no5yokp5" path="res://assets/sprites/environment/parallax/parallax_blue_5.png" id="19_xkeje"]
+[ext_resource type="Texture2D" uid="uid://3exk1vhcnxb2" path="res://assets/sprites/environment/parallax/parallax_green_5.png" id="21_5l5gt"]
+[ext_resource type="Texture2D" uid="uid://duaa81psy5mm2" path="res://assets/sprites/environment/parallax/parallax_green_6.png" id="24_cha7g"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ogd8f"]
 animations = [{
@@ -25,7 +36,10 @@ animations = [{
 "name": &"0",
 "speed": 0.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ua8uv")
+}],
 "loop": 1,
 "name": &"1",
 "speed": 5.0
@@ -38,7 +52,10 @@ animations = [{
 "name": &"2",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_yt81q")
+}],
 "loop": 1,
 "name": &"3",
 "speed": 5.0
@@ -54,7 +71,10 @@ animations = [{
 "name": &"0",
 "speed": 0.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_3cm7w")
+}],
 "loop": 1,
 "name": &"1",
 "speed": 5.0
@@ -67,7 +87,10 @@ animations = [{
 "name": &"2",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_bvh35")
+}],
 "loop": 1,
 "name": &"3",
 "speed": 5.0
@@ -83,7 +106,10 @@ animations = [{
 "name": &"0",
 "speed": 0.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_mnpvl")
+}],
 "loop": 1,
 "name": &"1",
 "speed": 5.0
@@ -96,7 +122,10 @@ animations = [{
 "name": &"2",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_p1m3q")
+}],
 "loop": 1,
 "name": &"3",
 "speed": 5.0
@@ -112,7 +141,10 @@ animations = [{
 "name": &"0",
 "speed": 0.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_4wown")
+}],
 "loop": 1,
 "name": &"1",
 "speed": 5.0
@@ -125,7 +157,10 @@ animations = [{
 "name": &"2",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_yg4vd")
+}],
 "loop": 1,
 "name": &"3",
 "speed": 5.0
@@ -157,7 +192,10 @@ animations = [{
 "name": &"0",
 "speed": 0.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_xkeje")
+}],
 "loop": 1,
 "name": &"1",
 "speed": 5.0
@@ -179,7 +217,10 @@ animations = [{
 "name": &"2",
 "speed": 6.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("21_5l5gt")
+}],
 "loop": 1,
 "name": &"3",
 "speed": 5.0
@@ -199,7 +240,10 @@ animations = [{
 "name": &"0",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_wi8pt")
+}],
 "loop": 1,
 "name": &"1",
 "speed": 5.0
@@ -212,7 +256,10 @@ animations = [{
 "name": &"2",
 "speed": 6.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("24_cha7g")
+}],
 "loop": 1,
 "name": &"3",
 "speed": 5.0
@@ -228,7 +275,10 @@ animations = [{
 "name": &"0",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_wi8pt")
+}],
 "loop": 1,
 "name": &"1",
 "speed": 5.0
@@ -241,7 +291,10 @@ animations = [{
 "name": &"2",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_wi8pt")
+}],
 "loop": 1,
 "name": &"3",
 "speed": 5.0
@@ -259,7 +312,7 @@ repeat_size = Vector2(2048, 0)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Parallax2D" unique_id=1041828827]
 position = Vector2(1024, 576)
 sprite_frames = SubResource("SpriteFrames_ogd8f")
-animation = &"2"
+animation = &"3"
 
 [node name="Parallax2D2" type="Parallax2D" parent="." unique_id=888892707]
 scroll_scale = Vector2(0.2, 0)
@@ -268,7 +321,7 @@ repeat_size = Vector2(2048, 0)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Parallax2D2" unique_id=50394313]
 position = Vector2(1024, 576)
 sprite_frames = SubResource("SpriteFrames_q3bbs")
-animation = &"2"
+animation = &"3"
 
 [node name="Parallax2D3" type="Parallax2D" parent="." unique_id=787573236]
 scroll_scale = Vector2(0.3, 0)
@@ -277,7 +330,7 @@ repeat_size = Vector2(2048, 0)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Parallax2D3" unique_id=1100051882]
 position = Vector2(1024, 576)
 sprite_frames = SubResource("SpriteFrames_4xhwt")
-animation = &"2"
+animation = &"3"
 
 [node name="Parallax2D4" type="Parallax2D" parent="." unique_id=640280680]
 scroll_scale = Vector2(0.4, 0)
@@ -286,7 +339,7 @@ repeat_size = Vector2(2048, 0)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Parallax2D4" unique_id=2113060297]
 position = Vector2(1024, 576)
 sprite_frames = SubResource("SpriteFrames_ykti1")
-animation = &"2"
+animation = &"3"
 
 [node name="Parallax2D5" type="Parallax2D" parent="." unique_id=636901301]
 scroll_scale = Vector2(0.5, 0)
@@ -295,7 +348,7 @@ repeat_size = Vector2(2048, 0)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Parallax2D5" unique_id=264460123]
 position = Vector2(1024, 576)
 sprite_frames = SubResource("SpriteFrames_i1u1y")
-animation = &"2"
+animation = &"3"
 
 [node name="Parallax2D6" type="Parallax2D" parent="." unique_id=1587419746]
 scroll_scale = Vector2(0.6, 0)
@@ -304,7 +357,7 @@ repeat_size = Vector2(2048, 0)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Parallax2D6" unique_id=1654381072]
 position = Vector2(1024, 576)
 sprite_frames = SubResource("SpriteFrames_2sdf6")
-animation = &"0"
+animation = &"3"
 
 [node name="Parallax2D7" type="Parallax2D" parent="." unique_id=2102319485]
 scroll_scale = Vector2(0.7, 1)
@@ -313,4 +366,4 @@ repeat_size = Vector2(2048, 0)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Parallax2D7" unique_id=446183254]
 position = Vector2(1024, 576)
 sprite_frames = SubResource("SpriteFrames_hun7a")
-animation = &"0"
+animation = &"3"

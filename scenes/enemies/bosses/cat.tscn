@@ -1,3 +1,53 @@
 [gd_scene format=3 uid="uid://dpeq43hkdodfr"]
 
+[ext_resource type="Texture2D" uid="uid://bnprar3lsn0yn" path="res://icon.svg" id="1_nffm6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ogd8f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_nffm6")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q3bbs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_nffm6")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4xhwt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_nffm6")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Cat" type="Node2D" unique_id=539844402]
+
+[node name="Left Hand" type="AnimatedSprite2D" parent="." unique_id=317591223]
+position = Vector2(459, 695)
+scale = Vector2(1.5, 1)
+sprite_frames = SubResource("SpriteFrames_ogd8f")
+
+[node name="Right Hand" type="AnimatedSprite2D" parent="." unique_id=2140383374]
+position = Vector2(1482, 696)
+scale = Vector2(1.5, 1)
+sprite_frames = SubResource("SpriteFrames_q3bbs")
+
+[node name="Head" type="AnimatedSprite2D" parent="." unique_id=1910377648]
+position = Vector2(964, 393)
+scale = Vector2(3.5, 2)
+sprite_frames = SubResource("SpriteFrames_4xhwt")

@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://vtiane04et3j" path="res://scenes/player/player.tscn" id="13_cyw5w"]
 [ext_resource type="PackedScene" uid="uid://x6d8m1smdvbk" path="res://scenes/room_components/drop_in_blocker.tscn" id="15_trluu"]
 [ext_resource type="PackedScene" uid="uid://3f6o42nw0jiu" path="res://scenes/hud.tscn" id="16_yyfyh"]
+[ext_resource type="PackedScene" uid="uid://dpeq43hkdodfr" path="res://scenes/enemies/bosses/cat.tscn" id="17_deaoc"]
 [ext_resource type="PackedScene" uid="uid://dc3srlie11g84" path="res://scenes/room_components/tunnel.tscn" id="19_s5quv"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_c1qis"]
@@ -1640,13 +1641,15 @@ collision_layer = 16
 [node name="HUD" parent="." unique_id=180511637 instance=ExtResource("16_yyfyh")]
 
 [node name="Tunnel" parent="." unique_id=984068459 instance=ExtResource("19_s5quv")]
-offset_left = 862.0
+offset_left = -51.0
 offset_top = -2053.0
-offset_right = 1182.0
-offset_bottom = 60.0
+offset_right = 2075.0
+offset_bottom = 1846.0
 
 [node name="Tunnel2" parent="." unique_id=94340899 instance=ExtResource("19_s5quv")]
 offset_left = 947.0
 offset_top = 1152.0
 offset_right = 1103.0
 offset_bottom = 5050.0
+
+[node name="Cat" parent="." unique_id=539844402 instance=ExtResource("17_deaoc")]
