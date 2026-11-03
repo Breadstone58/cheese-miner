@@ -40,6 +40,7 @@ func _ready() -> void:
 	
 func _process(delta: float) -> void:
 	GlobVar.PlayerX = position.x
+	GlobVar.PlayerY = position.y
 	
 	if dash_timer > 0:
 		dash_timer -= delta

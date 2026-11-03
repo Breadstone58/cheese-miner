@@ -3,6 +3,7 @@ extends Node
 var biome = 0
 var positional_biome = 0
 var PlayerX = 1024
+var PlayerY = 0
 var transitioning = false
 var stage: int = 0
 var playerHealth = 100
