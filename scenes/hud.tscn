@@ -24,7 +24,6 @@
 [ext_resource type="Texture2D" uid="uid://dj8pb36csdryw" path="res://assets/sprites/items/money/CheeseC.png" id="14_03o4m"]
 [ext_resource type="Texture2D" uid="uid://dm14nrvuim8xi" path="res://assets/sprites/items/Medkit.png" id="15_dl6ww"]
 [ext_resource type="Texture2D" uid="uid://dqntmy0bcajmw" path="res://assets/sprites/items/Jumpcan.png" id="16_8f8xv"]
-[ext_resource type="Texture2D" path="res://assets/sprites/items/rubber_bullet.png" id="17_v0qwq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8yod3"]
 atlas = ExtResource("4_apjy4")
@@ -452,9 +451,6 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("16_8f8xv")
-}, {
-"duration": 1.0,
-"texture": ExtResource("17_v0qwq")
 }],
 "loop": 1,
 "name": &"uncommon",
@@ -1084,7 +1080,7 @@ theme_override_font_sizes/normal_font_size = 32
 visible = false
 position = Vector2(52, 80)
 sprite_frames = SubResource("SpriteFrames_yawqa")
-animation = &"money0"
+animation = &"uncommon"
 
 [node name="MoneyImageOLD" type="AnimatedSprite2D" parent="Control" unique_id=400158188]
 visible = false
@@ -1106,7 +1102,7 @@ theme_override_font_sizes/normal_font_size = 32
 visible = false
 position = Vector2(64, 168)
 sprite_frames = SubResource("SpriteFrames_ogd8f")
-animation = &"gadget"
+animation = &"uncommon"
 
 [node name="ColorRect" type="ColorRect" parent="Control/GadgetImage" unique_id=1090764504]
 z_index = -1
