@@ -53,6 +53,7 @@ func play_animation():
 				if track == "idle":
 					track = attack_list.pick_random()
 			, CONNECT_ONE_SHOT)
+		
 		"paw_slam":
 			var left_hand_start_X = left_hand.position.x
 			var right_hand_start_X = right_hand.position.x
