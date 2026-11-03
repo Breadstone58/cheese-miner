@@ -52,6 +52,13 @@ func _physics_process(delta: float) -> void:
 			if body.has_method("damage"):
 				body.damage(damage,"bullet")
 		if bounces == 0:
+			speed = 0 # yeah it went off screen 
+			set_physics_process(false)
+			$DrillBlast.visible = false
+			$"Drill Explosion".visible = true
+			$"Drill Explosion".global_rotation = 0 # it was uhhh it was all tipsy turny without this
+			$"Drill Explosion".play("explosion")
+			await $"Drill Explosion".animation_finished
 			queue_free()
 		else:
 			match direction:
