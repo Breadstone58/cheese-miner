@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bp0i07p26vef0"
-path="res://.godot/imported/jump_tank.png-3c976309361d62201f8c8bc939e63270.ctex"
+uid="uid://dq4g2bl5vvsap"
+path="res://.godot/imported/BluecheesewallsOld.png-dcaee9f626743b98713abebbea0e364a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/items/jump_tank.png"
-dest_files=["res://.godot/imported/jump_tank.png-3c976309361d62201f8c8bc939e63270.ctex"]
+source_file="res://assets/sprites/environment/Old/BluecheesewallsOld.png"
+dest_files=["res://.godot/imported/BluecheesewallsOld.png-dcaee9f626743b98713abebbea0e364a.ctex"]
 
 [params]
 

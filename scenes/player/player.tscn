@@ -13,6 +13,43 @@
 [ext_resource type="Texture2D" uid="uid://dfds3xynvaru5" path="res://assets/sprites/player/2-walks.png" id="7_fm80t"]
 [ext_resource type="Texture2D" uid="uid://136dpv6hr0xv" path="res://assets/sprites/player/0-idle.png" id="7_gx1jg"]
 
+[sub_resource type="Animation" id="Animation_fm80t"]
+resource_name = "Heal Aura"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.13333334, 0.5),
+"transitions": PackedFloat32Array(1, 4.1410604),
+"update": 0,
+"values": [Color(0.09803922, 0.85490197, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gx1jg"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ugbui"]
+_data = {
+&"Heal Aura": SubResource("Animation_fm80t"),
+&"RESET": SubResource("Animation_gx1jg")
+}
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_2wy34"]
 atlas = ExtResource("3_je7p5")
 region = Rect2(0, 1024, 256, 256)
@@ -627,6 +664,9 @@ animations = [{
 collision_mask = 84
 script = ExtResource("1_g2els")
 bullet_scene = ExtResource("2_gmlin")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=509051490]
+libraries/ = SubResource("AnimationLibrary_ugbui")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=566927396]
 position = Vector2(0, -8)

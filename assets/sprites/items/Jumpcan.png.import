@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b45fm3lcjtq2g"
-path="res://.godot/imported/magic_cheese.png-1713476073525dc2a112cb76b6d11dd5.ctex"
+uid="uid://dqntmy0bcajmw"
+path="res://.godot/imported/Jumpcan.png-7d7f8becf193b8bfc8f4b986ad362ae9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/items/magic_cheese.png"
-dest_files=["res://.godot/imported/magic_cheese.png-1713476073525dc2a112cb76b6d11dd5.ctex"]
+source_file="res://assets/sprites/items/Jumpcan.png"
+dest_files=["res://.godot/imported/Jumpcan.png-7d7f8becf193b8bfc8f4b986ad362ae9.ctex"]
 
 [params]
 

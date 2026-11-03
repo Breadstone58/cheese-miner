@@ -18,6 +18,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	match status:
 		0:
+			$AnimationPlayer.play("intro")
 			$AnimatedSprite2D.animation = "spin"
 			velocity = move_direction * launch_speed * delta
 			velocity.y += fall_speed * delta
@@ -36,6 +37,7 @@ func _physics_process(delta: float) -> void:
 		1:
 			set_collision_mask_value(4,true)
 			$AnimatedSprite2D.rotation = 0
+			$AnimationPlayer.play("intro")
 			$AnimatedSprite2D.animation = "movement"
 			$AnimatedSprite2D.play()
 			if not is_on_floor():

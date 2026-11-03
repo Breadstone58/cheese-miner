@@ -12,6 +12,7 @@ var pickup_cooldown = false
 var cost = 0
 var money_amount = 0
 # Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	SignalBus.refresh_shop.connect(_on_shop_refresh)
 	match state:
@@ -76,6 +77,9 @@ func _ready() -> void:
 			sprite.animation = "energy"
 			sprite.frame = 0
 			sprite.play()
+	$AnimationPlayer.play("initial") # pop up
+	await $AnimationPlayer.animation_finished
+	$AnimationPlayer.play("idleloop") # idle bounce
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
