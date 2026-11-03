@@ -1,6 +1,18 @@
 [gd_scene format=3 uid="uid://dpeq43hkdodfr"]
 
 [ext_resource type="Texture2D" uid="uid://bnprar3lsn0yn" path="res://icon.svg" id="1_nffm6"]
+[ext_resource type="Script" uid="uid://bpnog6t25tiou" path="res://scenes/enemies/bosses/cat.gd" id="1_u6j21"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4xhwt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_nffm6")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ogd8f"]
 animations = [{
@@ -24,30 +36,21 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_4xhwt"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_nffm6")
-}],
-"loop": 1,
-"name": &"default",
-"speed": 5.0
-}]
-
 [node name="Cat" type="Node2D" unique_id=539844402]
+z_index = -1
+script = ExtResource("1_u6j21")
+
+[node name="Head" type="AnimatedSprite2D" parent="." unique_id=1910377648]
+position = Vector2(1024, 544)
+scale = Vector2(3.5, 2)
+sprite_frames = SubResource("SpriteFrames_4xhwt")
 
 [node name="Left Hand" type="AnimatedSprite2D" parent="." unique_id=317591223]
-position = Vector2(459, 695)
-scale = Vector2(1.5, 1)
+position = Vector2(544, 768)
+scale = Vector2(2, 1)
 sprite_frames = SubResource("SpriteFrames_ogd8f")
 
 [node name="Right Hand" type="AnimatedSprite2D" parent="." unique_id=2140383374]
-position = Vector2(1482, 696)
-scale = Vector2(1.5, 1)
+position = Vector2(1504, 768)
+scale = Vector2(2, 1)
 sprite_frames = SubResource("SpriteFrames_q3bbs")
-
-[node name="Head" type="AnimatedSprite2D" parent="." unique_id=1910377648]
-position = Vector2(964, 393)
-scale = Vector2(3.5, 2)
-sprite_frames = SubResource("SpriteFrames_4xhwt")

@@ -24,4 +24,4 @@ func update_input_mapping() -> void:
 		InputMap.load_from_project_settings()
 
 func _process(delta: float) -> void:
-	print(arcade_mode)
+	pass
