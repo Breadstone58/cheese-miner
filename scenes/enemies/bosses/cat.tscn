@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bnprar3lsn0yn" path="res://icon.svg" id="1_nffm6"]
 [ext_resource type="Script" uid="uid://bpnog6t25tiou" path="res://scenes/enemies/bosses/cat.gd" id="1_u6j21"]
+[ext_resource type="Script" uid="uid://btsjy4volvw4i" path="res://scenes/enemies/hitbox_damage.gd" id="3_5r7vk"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4xhwt"]
 animations = [{
@@ -25,6 +26,12 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ogd8f"]
+size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jc6lq"]
+size = Vector2(128, 128)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_q3bbs"]
 animations = [{
 "frames": [{
@@ -35,6 +42,12 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q3bbs"]
+size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5r7vk"]
+size = Vector2(128, 128)
 
 [node name="Cat" type="Node2D" unique_id=539844402]
 z_index = -1
@@ -50,7 +63,41 @@ position = Vector2(544, 768)
 scale = Vector2(2, 1)
 sprite_frames = SubResource("SpriteFrames_ogd8f")
 
+[node name="Hitbox" type="Area2D" parent="Left Hand" unique_id=1887358203]
+collision_layer = 8
+script = ExtResource("3_5r7vk")
+damage = 15
+metadata/_custom_type_script = "uid://btsjy4volvw4i"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Hand/Hitbox" unique_id=1196791307]
+shape = SubResource("RectangleShape2D_ogd8f")
+
+[node name="Hurtbox" type="Area2D" parent="Left Hand" unique_id=1099923127]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Hand/Hurtbox" unique_id=1707017753]
+shape = SubResource("RectangleShape2D_jc6lq")
+
 [node name="Right Hand" type="AnimatedSprite2D" parent="." unique_id=2140383374]
 position = Vector2(1504, 768)
 scale = Vector2(2, 1)
 sprite_frames = SubResource("SpriteFrames_q3bbs")
+
+[node name="Hitbox" type="Area2D" parent="Right Hand" unique_id=287532896]
+collision_layer = 8
+script = ExtResource("3_5r7vk")
+damage = 15
+metadata/_custom_type_script = "uid://btsjy4volvw4i"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Hand/Hitbox" unique_id=614929137]
+shape = SubResource("RectangleShape2D_q3bbs")
+
+[node name="Hurtbox" type="Area2D" parent="Right Hand" unique_id=1190830379]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Hand/Hurtbox" unique_id=574610145]
+shape = SubResource("RectangleShape2D_5r7vk")
+
+[node name="DestroyedHand" type="AnimatedSprite2D" parent="." unique_id=665128437]

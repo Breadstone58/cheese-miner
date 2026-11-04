@@ -2,20 +2,20 @@
 
 [ext_resource type="Script" uid="uid://b20v7l3yeh45" path="res://scenes/room_components/item.gd" id="1_33a60"]
 [ext_resource type="Texture2D" uid="uid://w4ad5twhmn3c" path="res://assets/sprites/items/Coffee.png" id="2_6wue1"]
-[ext_resource type="Texture2D" uid="uid://b1giwfxw6vs0i" path="res://assets/sprites/items/Bloodlust.png" id="3_t7l82"]
+[ext_resource type="Texture2D" uid="uid://b1giwfxw6vs0i" path="res://assets/sprites/items/bloodlust.png" id="3_t7l82"]
 [ext_resource type="Texture2D" uid="uid://cybd5cuc0otiw" path="res://assets/sprites/items/money/energy.png" id="3_w2imf"]
-[ext_resource type="Texture2D" uid="uid://bl61yjid7cxsw" path="res://assets/sprites/items/Diamond.png" id="4_ps343"]
+[ext_resource type="Texture2D" uid="uid://bl61yjid7cxsw" path="res://assets/sprites/items/diamond.png" id="4_ps343"]
 [ext_resource type="Texture2D" uid="uid://nptp5374ax5j" path="res://assets/sprites/items/MagicCheese.png" id="5_6wue1"]
 [ext_resource type="FontFile" uid="uid://8douc1wvghmy" path="res://assets/fonts/VCR_OSD_MONO_1.001.ttf" id="6_45ops"]
-[ext_resource type="Texture2D" uid="uid://c2e1mfxd4lb4n" path="res://assets/sprites/items/Oil.png" id="6_b2ihd"]
-[ext_resource type="Texture2D" uid="uid://dj7rs1pvg6877" path="res://assets/sprites/items/Dash.png" id="8_6wue1"]
+[ext_resource type="Texture2D" uid="uid://c2e1mfxd4lb4n" path="res://assets/sprites/items/oil.png" id="6_b2ihd"]
+[ext_resource type="Texture2D" uid="uid://dj7rs1pvg6877" path="res://assets/sprites/items/dash.png" id="8_6wue1"]
 [ext_resource type="Texture2D" uid="uid://dk485qies0bws" path="res://assets/sprites/items/Skelekey.png" id="9_j2ij8"]
 [ext_resource type="Texture2D" uid="uid://d3hqq5farpqmt" path="res://assets/sprites/items/money/Cheese.png" id="10_6wue1"]
 [ext_resource type="Texture2D" uid="uid://bwv38hccy733x" path="res://assets/sprites/items/Sawblade.png" id="10_t7l82"]
 [ext_resource type="Texture2D" uid="uid://dfnlvfu7yc0ej" path="res://assets/sprites/items/money/CheeseB.png" id="11_t7l82"]
 [ext_resource type="Texture2D" uid="uid://dgxw3bd3uhq6k" path="res://assets/sprites/items/money/CheeseA.png" id="12_ps343"]
 [ext_resource type="Texture2D" uid="uid://dj8pb36csdryw" path="res://assets/sprites/items/money/CheeseC.png" id="13_p2y2a"]
-[ext_resource type="Texture2D" uid="uid://dm14nrvuim8xi" path="res://assets/sprites/items/Medkit.png" id="14_rsg37"]
+[ext_resource type="Texture2D" uid="uid://dm14nrvuim8xi" path="res://assets/sprites/items/medkit.png" id="14_rsg37"]
 [ext_resource type="Texture2D" uid="uid://dqntmy0bcajmw" path="res://assets/sprites/items/Jumpcan.png" id="15_uq7nl"]
 [ext_resource type="Texture2D" uid="uid://8hawgl1xjeva" path="res://assets/sprites/items/Bouncybullets.png" id="17_ps343"]
 
@@ -569,9 +569,7 @@ autoplay = &"initial"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals" unique_id=883992812]
 sprite_frames = SubResource("SpriteFrames_ogd8f")
-animation = &"gadget"
-frame = 2
-frame_progress = 0.7281763
+animation = &"common"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1963493621]
 visible = false

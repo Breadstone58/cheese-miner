@@ -29,6 +29,9 @@ const DASH_SPEED_MULTIPLIER: float = 2.5
 
 var knockback_velocity: Vector2 = Vector2.ZERO
 var cjb_active = false
+var jump_buffer_timer: float = 0.0
+var crouch_buffer_timer: float = 0.0
+const INPUT_BUFFER_WINDOW: float = 2.0/60.0
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -39,6 +42,14 @@ func _ready() -> void:
 	SignalBus.bite_death.connect(_on_bite_kill)
 	
 func _process(delta: float) -> void:
+	jump_buffer_timer = max(0.0, jump_buffer_timer - delta)
+	crouch_buffer_timer = max(0.0, crouch_buffer_timer - delta)
+	
+	# Capture inputs when they are just pressed
+	if Input.is_action_just_pressed("jump"):
+		jump_buffer_timer = INPUT_BUFFER_WINDOW
+	if Input.is_action_just_pressed("crouch"):
+		crouch_buffer_timer = INPUT_BUFFER_WINDOW
 	GlobVar.PlayerX = position.x
 	GlobVar.PlayerY = position.y
 	
@@ -70,12 +81,16 @@ func _process(delta: float) -> void:
 		if is_on_floor():
 			SPEED /= 2.0
 		$CollisionShape2D.shape.size.y = 60
+		$Hurtbox/CollisionShape2D.shape.size.y = 63
 		$CollisionShape2D.position.y = 34.0
+		$Hurtbox/CollisionShape2D.position.y = 32.5
 		$BulletSpawnPoint.position.y = 32.0
 		crouching = true
 	else:
 		$CollisionShape2D.shape.size.y = 120.0
+		$Hurtbox/CollisionShape2D.shape.size.y = 127.0
 		$CollisionShape2D.position.y = 4.0
+		$Hurtbox/CollisionShape2D.position.y = 0.5
 		$BulletSpawnPoint.position.y = 0
 		if Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"):
 			if Input.is_action_pressed("aim_up"):
@@ -111,8 +126,6 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("jump") and extra_jumps_left > 0:
 			extra_jumps_left -= 1
 			air_time = AIR_TIME_MAX
-			if Input.is_action_just_pressed("crouch"):
-				cjb_active = true
 	else:
 		air_time = AIR_TIME_MAX
 		extra_jumps_left = extra_jumps
@@ -122,7 +135,7 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_pressed("jump") and air_time > 0 and not is_position_locked and not GlobVar.transitioning:
 		velocity.y = JUMP_VELOCITY
-		if Input.is_action_just_pressed("jump") and Input.is_action_just_pressed("crouch"):
+		if jump_buffer_timer > 0.0 and crouch_buffer_timer > 0.0:
 			cjb_active = true
 			
 	""" Experimental bite-dash
@@ -219,7 +232,8 @@ func update_items():
 
 func _on_bite_kill(healing: int):
 	heal(healing + GlobVar.exBiteHeal)
-	$AnimationPlayer.play("Heal Aura")
+	if healing + GlobVar.exBiteHeal > 0:
+		$AnimationPlayer.play("Heal Aura")
 	# velocity.y = -500; experimental bite dash
 	
 
