@@ -19,6 +19,8 @@ var paw_slamming = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	play_animation()
+	$"Left Hand/Hitbox".damage = GlobVar.stage
+	$"Right Hand/Hitbox".damage = GlobVar.stage
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -113,11 +115,11 @@ func play_animation():
 			var initial_tween = create_tween().set_parallel(true)
 			var left_y = 0
 			var right_y = 0
-			match randi_range(1,4): #Attack Type; 1,2 = bottom; 3,4 = top;
-				1,2:
+			match randi_range(1,2): #Attack Type; 1 = bottom; 2 = top;
+				1:
 					left_y = 1088.0
 					right_y = 1088.0
-				3,4:
+				2:
 					left_y = 896.0
 					right_y = 896.0
 			left_y = left_y if left_hand_alive else 0.0
