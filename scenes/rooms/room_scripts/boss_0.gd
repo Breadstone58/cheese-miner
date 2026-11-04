@@ -8,6 +8,7 @@ var level_complete = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalBus.spawn_particle.connect(_on_particle_spawn)
+	$Cat.killed.connect(_on_boss_kill)
 	var used_cells = $TileMapLayer.get_used_cells()
 	for coords in used_cells:
 		var atlas_coords = $TileMapLayer.get_cell_atlas_coords(coords)
@@ -61,3 +62,11 @@ func _on_particle_spawn(new_texture: Texture2D, spawn_position: Vector2i):
 	add_child(particle_instance)
 	
 	particle_instance.restart()
+
+func _on_boss_kill(deathpos: Vector2):
+	await get_tree().create_timer(10.0).timeout
+	$TileMapLayer.set_cell(Vector2(14,17),GlobVar.biome,Vector2(10,4))
+	$TileMapLayer.set_cell(Vector2(15,17),GlobVar.biome,Vector2(3,2))
+	$TileMapLayer.set_cell(Vector2(16,17),GlobVar.biome,Vector2(3,2))
+	$TileMapLayer.set_cell(Vector2(17,17),GlobVar.biome,Vector2(8,4))
+	

@@ -15,6 +15,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4xhwt"]
+size = Vector2(128, 128)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_ogd8f"]
 animations = [{
 "frames": [{
@@ -57,6 +60,13 @@ script = ExtResource("1_u6j21")
 position = Vector2(1024, 544)
 scale = Vector2(3.5, 2)
 sprite_frames = SubResource("SpriteFrames_4xhwt")
+
+[node name="Hurtbox" type="Area2D" parent="Head" unique_id=541501829]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Head/Hurtbox" unique_id=2099614773]
+shape = SubResource("RectangleShape2D_4xhwt")
 
 [node name="Left Hand" type="AnimatedSprite2D" parent="." unique_id=317591223]
 position = Vector2(544, 768)
@@ -101,3 +111,7 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_5r7vk")
 
 [node name="DestroyedHand" type="AnimatedSprite2D" parent="." unique_id=665128437]
+
+[connection signal="area_entered" from="Head/Hurtbox" to="." method="_on_head_hurtbox_area_entered"]
+[connection signal="area_entered" from="Left Hand/Hurtbox" to="." method="_on_left_hurtbox_area_entered"]
+[connection signal="area_entered" from="Right Hand/Hurtbox" to="." method="_on_right_hurtbox_area_entered"]

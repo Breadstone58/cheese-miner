@@ -31,7 +31,7 @@ var knockback_velocity: Vector2 = Vector2.ZERO
 var cjb_active = false
 var jump_buffer_timer: float = 0.0
 var crouch_buffer_timer: float = 0.0
-const INPUT_BUFFER_WINDOW: float = 2.0/60.0
+const INPUT_BUFFER_WINDOW: float = 3.0/60.0
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 

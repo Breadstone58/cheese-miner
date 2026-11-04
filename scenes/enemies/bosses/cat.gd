@@ -1,8 +1,11 @@
+class_name Cat
 extends Node2D
 
 @onready var head: AnimatedSprite2D = $Head
 @onready var left_hand: AnimatedSprite2D = $"Left Hand"
 @onready var right_hand: AnimatedSprite2D = $"Right Hand"
+
+signal killed
 
 var track = "idle" :
 	set(value):
@@ -12,15 +15,20 @@ var track = "idle" :
 var hands_left = 2
 var left_hand_alive = true
 var right_hand_alive = true
+var left_hand_health = GlobVar.stage * 10
+var right_hand_health = GlobVar.stage * 10
 
 var attack_list = ["paw_slam","side_sweep"]
 var paw_slamming = 0
 	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	GlobVar.stage = 0 if GlobVar.stage < 15 else GlobVar.stage
 	play_animation()
 	$"Left Hand/Hitbox".damage = GlobVar.stage
 	$"Right Hand/Hitbox".damage = GlobVar.stage
+	left_hand_health = GlobVar.stage * 10
+	right_hand_health = GlobVar.stage * 10
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -36,15 +44,18 @@ func _process(delta: float) -> void:
 		hands_left = 1
 	if not (left_hand_alive or right_hand_alive):
 		hands_left = 0
-	if paw_slamming == 1:
-		left_hand.position = left_hand.position.move_toward(Vector2(GlobVar.PlayerX,144.0), 700*delta)
-		left_hand.z_index = 1
-	elif paw_slamming == 2:
-		right_hand.position = right_hand.position.move_toward(Vector2(GlobVar.PlayerX,144.0), 700*delta)
-		right_hand.z_index = 1
+		if track != "stunned":
+			track = "stunned"
 	else:
-		left_hand.z_index = 0
-		right_hand.z_index = 0
+		if paw_slamming == 1:
+			left_hand.position = left_hand.position.move_toward(Vector2(GlobVar.PlayerX,144.0), 700*delta)
+			left_hand.z_index = 1
+		elif paw_slamming == 2:
+			right_hand.position = right_hand.position.move_toward(Vector2(GlobVar.PlayerX,144.0), 700*delta)
+			right_hand.z_index = 1
+		else:
+			left_hand.z_index = 0
+			right_hand.z_index = 0
 
 	
 
@@ -61,10 +72,12 @@ func play_animation():
 			tweenH.set_loops(idles)
 			tweenH.tween_property(head,"position",Vector2(1024.0,576.0 + 32.0),idle_speed)
 			tweenH.tween_property(head,"position",Vector2(1024.0,576.0 - 32.0),idle_speed)
+			
 			tweenL.set_loops(idles)
 			tweenL.tween_property(left_hand,"position",Vector2(512.0 - 32.0,768.0),idle_speed)
 			tweenL.parallel().tween_property(left_hand,"rotation_degrees",0.0,idle_speed)
 			tweenL.tween_property(left_hand,"position",Vector2(512.0 + 32.0,768.0),idle_speed)
+			
 			tweenR.set_loops(idles)
 			tweenR.tween_property(right_hand,"position",Vector2(1536.0 + 32.0,768.0),idle_speed)
 			tweenR.parallel().tween_property(right_hand,"rotation_degrees",0.0,idle_speed)
@@ -135,6 +148,45 @@ func play_animation():
 			slam_tween.tween_property(right_hand,"position",Vector2(1088.0 if left_y == right_y else 64.0,right_y),1.0 if left_y == right_y else 2.0)
 			await slam_tween.finished
 			track = "idle"
-			
+		
+		"stunned":
+			var flash = create_tween()
+			var move_head = create_tween()
+			flash.set_loops()
+			flash.tween_property(head, "modulate", Color(10, 10, 10, 1), 0.0)
+			flash.tween_interval(1.0 / 12.0)
+			flash.tween_property(head, "modulate", Color(1, 1, 1, 1), 0.0)
+			flash.tween_interval(1.0 / 12.0)
+			move_head.tween_property(head,"position",Vector2(head.position.x,960.0),3.0).from(head.position)
+
 func watch_target():
 	pass
+
+func _on_left_hurtbox_area_entered(area: Area2D) -> void:
+	if area is Bullet:
+		left_hand_health -= area.damage
+		left_hand.modulate = Color(255,0,0,255)
+		area.remove()
+		await get_tree().create_timer(0.1).timeout
+		left_hand.modulate = Color(1,1,1,1)
+		if left_hand_health <= 0:
+			left_hand_alive = false
+			left_hand.queue_free()
+		
+
+func _on_right_hurtbox_area_entered(area: Area2D) -> void:
+	if area is Bullet:
+		right_hand_health -= area.damage
+		right_hand.modulate = Color(255,0,0,255)
+		area.remove()
+		await get_tree().create_timer(0.1).timeout
+		right_hand.modulate = Color(1,1,1,1)
+		if right_hand_health <= 0:
+			right_hand_alive = false
+			right_hand.queue_free()
+
+func _on_head_hurtbox_area_entered(area: Area2D) -> void:
+	if area is Bite and track == "stunned":
+		killed.emit(head.position)
+		SignalBus.bite_death.emit(50)
+		queue_free()

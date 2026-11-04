@@ -16,6 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://x6d8m1smdvbk" path="res://scenes/room_components/drop_in_blocker.tscn" id="15_trluu"]
 [ext_resource type="PackedScene" uid="uid://3f6o42nw0jiu" path="res://scenes/hud.tscn" id="16_yyfyh"]
 [ext_resource type="PackedScene" uid="uid://dpeq43hkdodfr" path="res://scenes/enemies/bosses/cat.tscn" id="17_deaoc"]
+[ext_resource type="Texture2D" uid="uid://bnprar3lsn0yn" path="res://icon.svg" id="18_my8i7"]
+[ext_resource type="Script" uid="uid://ijpm3c6ag5ho" path="res://scenes/enemies/bosses/cat_death.gd" id="19_k7otj"]
 [ext_resource type="PackedScene" uid="uid://dc3srlie11g84" path="res://scenes/room_components/tunnel.tscn" id="19_s5quv"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_c1qis"]
@@ -1616,6 +1618,17 @@ sources/2 = SubResource("TileSetAtlasSource_lpf3e")
 sources/3 = SubResource("TileSetAtlasSource_181co")
 sources/4 = SubResource("TileSetAtlasSource_mcqdl")
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_ogd8f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18_my8i7")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Boss0" type="Node2D" unique_id=1770448767]
 script = ExtResource("1_my8i7")
 
@@ -1653,3 +1666,9 @@ offset_right = 1103.0
 offset_bottom = 5050.0
 
 [node name="Cat" parent="." unique_id=539844402 instance=ExtResource("17_deaoc")]
+
+[node name="CatDeathAnim" type="AnimatedSprite2D" parent="." unique_id=1737943368]
+z_index = -1
+scale = Vector2(3.5, 2)
+sprite_frames = SubResource("SpriteFrames_ogd8f")
+script = ExtResource("19_k7otj")

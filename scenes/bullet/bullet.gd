@@ -51,6 +51,7 @@ func _physics_process(delta: float) -> void:
 		if body is CharacterBody2D:
 			if body.has_method("damage"):
 				body.damage(damage,"bullet")
+		
 		if bounces == 0:
 			speed = 0 # yeah it went off screen 
 			set_physics_process(false)
@@ -73,3 +74,7 @@ func _physics_process(delta: float) -> void:
 	
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
+
+func remove():
+	if not is_queued_for_deletion():
+		queue_free()
