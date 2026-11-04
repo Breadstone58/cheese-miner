@@ -10,6 +10,7 @@ var health = 5
 var status = 0
 
 func _ready() -> void:
+	$AnimationPlayer.play("intro")
 	$Hitbox.damage = 1 + GlobVar.stage
 	var rand_angle = randf_range(PI/4.0,3*PI/4.0)
 	move_direction = Vector2(cos(rand_angle),-sin(rand_angle)).normalized()

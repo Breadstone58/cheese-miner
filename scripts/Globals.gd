@@ -35,10 +35,10 @@ var gadget_change_key = -1
 var energy = -1
 
 var tunnel_color = {
-	0 : Color(0.381, 0.301, 0.0, 1.0),
-	1 : Color(0.0, 0.163, 0.284, 1.0),
-	2 : Color(0.195, 0.0, 0.0, 1.0),
-	3 : Color(0.0, 0.112, 0.0, 1.0),
+	0 : Color("#250239"),
+	1 : Color("#232741"),
+	2 : Color("#3c1100"),
+	3 : Color("#2C291A"),
 }
 
 func count_items(item: String):

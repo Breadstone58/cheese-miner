@@ -25,10 +25,10 @@ func _physics_process(delta: float) -> void:
 		airborne = false
 		if wall_ray_cast.is_colliding():
 			rotate(-PI/2)
-			$Sprite2D.rotate(PI/2)
+			$AnimatedSprite2D.rotate(PI/2)
 	elif corner_ray_cast.is_colliding() and floor_collide_recent:
 		rotate(PI/2)
-		$Sprite2D.rotate(-PI/2)
+		$AnimatedSprite2D.rotate(-PI/2)
 		floor_collide_recent = false
 	elif not corner_ray_cast.is_colliding() and floor_collide_recent:
 		rotation = 0
@@ -45,9 +45,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	if position == prev_pos and not stunned:
 		rotate(-PI/2)
-		$Sprite2D.rotate(PI/2)
+		$AnimatedSprite2D.rotate(PI/2)
 	if not stunned:
-		$Sprite2D.rotate(delta * 10)
+		$AnimatedSprite2D.rotate(delta * 10)
 
 func _process(delta: float) -> void:
 	if health <= 0:
@@ -61,9 +61,13 @@ func _process(delta: float) -> void:
 			modulate = Color(1,1,1,1)
 		else:
 			modulate = Color(255,255,255,255)
+		if $AnimatedSprite2D.animation != "hurt":
+			$AnimatedSprite2D.play("hurt")
 	else:
 		stun_counter = 0
 		unstun = 0
+		if $AnimatedSprite2D.animation != "idle":
+			$AnimatedSprite2D.play("idle")
 	if unstun >= 5:
 		health = 1
 		modulate = Color(1,1,1,1)

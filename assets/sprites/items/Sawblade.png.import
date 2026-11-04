@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8wrwntaiwfoy"
-path="res://.godot/imported/skeleton_key.png-d518697f7f1b269ed8fdc38934c8cba7.ctex"
+uid="uid://bwv38hccy733x"
+path="res://.godot/imported/Sawblade.png-bca4e3ec2dd6cbc9f18ae0cb731b0bd1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/items/skeleton_key.png"
-dest_files=["res://.godot/imported/skeleton_key.png-d518697f7f1b269ed8fdc38934c8cba7.ctex"]
+source_file="res://assets/sprites/items/Sawblade.png"
+dest_files=["res://.godot/imported/Sawblade.png-bca4e3ec2dd6cbc9f18ae0cb731b0bd1.ctex"]
 
 [params]
 

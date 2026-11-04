@@ -125,6 +125,11 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("jump") and Input.is_action_just_pressed("crouch"):
 			cjb_active = true
 			
+	""" Experimental bite-dash
+	if Input.is_action_just_pressed("bite"):
+		dash_timer = 0.1
+		velocity.x = facing * 0.5
+	"""
 
 	var direction := Input.get_axis("move_left", "move_right")
 	if dead:
@@ -211,8 +216,12 @@ func update_items():
 	extra_jumps = GlobVar.exJumps
 	shoot_speed = clamp(0.25 + GlobVar.exAttackSpeed,1.0/60.0,INF)
 
+
 func _on_bite_kill(healing: int):
 	heal(healing + GlobVar.exBiteHeal)
+	$AnimationPlayer.play("Heal Aura")
+	# velocity.y = -500; experimental bite dash
+	
 
 func activate_gadget():
 	match GlobVar.gadget:
@@ -221,6 +230,7 @@ func activate_gadget():
 			velocity.x = facing * (SPEED * DASH_SPEED_MULTIPLIER)
 		"Skeleton_Key":
 			SignalBus.level_complete.emit()
+			
 
 func update_animation():
 	sprite.scale.x = facing

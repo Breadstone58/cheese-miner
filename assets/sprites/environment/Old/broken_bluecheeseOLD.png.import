@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkyt0eqgwt6ty"
-path="res://.godot/imported/rubber_bullet.png-feb775c5c4be25eeacb5d27444145261.ctex"
+uid="uid://chapnb0vgaj5r"
+path="res://.godot/imported/broken_bluecheeseOLD.png-f82e3c212ba9e5380486dae72910b0ef.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/items/rubber_bullet.png"
-dest_files=["res://.godot/imported/rubber_bullet.png-feb775c5c4be25eeacb5d27444145261.ctex"]
+source_file="res://assets/sprites/environment/Old/broken_bluecheeseOLD.png"
+dest_files=["res://.godot/imported/broken_bluecheeseOLD.png-f82e3c212ba9e5380486dae72910b0ef.ctex"]
 
 [params]
 

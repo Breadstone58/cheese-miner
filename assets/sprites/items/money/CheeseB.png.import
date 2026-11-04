@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://87ohwm0rcan3"
-path="res://.godot/imported/coffee_cup.png-32d31ab4f304ae6a9609c3d500307bb6.ctex"
+uid="uid://dfnlvfu7yc0ej"
+path="res://.godot/imported/CheeseB.png-1498e6ed2980ee978c9082cb2a8f1bdb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/items/coffee_cup.png"
-dest_files=["res://.godot/imported/coffee_cup.png-32d31ab4f304ae6a9609c3d500307bb6.ctex"]
+source_file="res://assets/sprites/items/money/CheeseB.png"
+dest_files=["res://.godot/imported/CheeseB.png-1498e6ed2980ee978c9082cb2a8f1bdb.ctex"]
 
 [params]
 
