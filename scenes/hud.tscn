@@ -1102,7 +1102,7 @@ theme_override_font_sizes/normal_font_size = 32
 visible = false
 position = Vector2(64, 168)
 sprite_frames = SubResource("SpriteFrames_ogd8f")
-animation = &"uncommon"
+animation = &"gadget"
 
 [node name="ColorRect" type="ColorRect" parent="Control/GadgetImage" unique_id=1090764504]
 z_index = -1
