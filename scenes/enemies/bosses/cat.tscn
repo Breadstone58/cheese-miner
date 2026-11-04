@@ -54,3 +54,5 @@ sprite_frames = SubResource("SpriteFrames_ogd8f")
 position = Vector2(1504, 768)
 scale = Vector2(2, 1)
 sprite_frames = SubResource("SpriteFrames_q3bbs")
+
+[node name="DestroyedHand" type="AnimatedSprite2D" parent="." unique_id=665128437]
