@@ -19,6 +19,7 @@ func _process(delta: float) -> void:
 	cam.limit_left = 0
 	cam.limit_right = 2048
 	cam.limit_top = 0
+	$Tunnel2.color = GlobVar.tunnel_color[5]
 	
 	
 	if $CharacterBody2D.position.y > 1152:
