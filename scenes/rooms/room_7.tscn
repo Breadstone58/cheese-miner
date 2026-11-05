@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://clqn2n71lgpuc"]
+[gd_scene format=4 uid="uid://fsj7hl3k3mgs"]
 
 [ext_resource type="Script" uid="uid://dvas2t7ave2j" path="res://scenes/rooms/room_scripts/room_5.gd" id="1_rr6je"]
 [ext_resource type="Texture2D" uid="uid://b48lcel35385o" path="res://assets/sprites/environment/broken_cheese.png" id="2_tny3q"]
