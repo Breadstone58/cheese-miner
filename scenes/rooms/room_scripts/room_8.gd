@@ -5,10 +5,12 @@ var scroll_down = 0
 var scroll_right = 0
 var top_locked = false
 var level_complete = false
+var enemies_remaining = 7
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalBus.spawn_particle.connect(_on_particle_spawn)
+	SignalBus.enemy_killed.connect(_on_enemy_kill)
 	var used_cells = $TileMapLayer.get_used_cells()
 	for coords in used_cells:
 		var atlas_coords = $TileMapLayer.get_cell_atlas_coords(coords)
@@ -28,10 +30,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	#Determine Scroll Lock
 	cam.limit_left = 0
-	cam.limit_right = 2048
+	cam.limit_right = 2880
 	if $CharacterBody2D.position.y >= 0:
 		GlobVar.transitioning = false
-		SignalBus.level_goal.emit("Break all the Cheese!")
+		SignalBus.level_goal.emit("Kill all ("+str(enemies_remaining)+") enemies!")
 	if top_locked == false:
 		cam.limit_top = max($CharacterBody2D.position.y - 576,cam.limit_top)
 	else:
@@ -72,3 +74,8 @@ func _on_particle_spawn(new_texture: Texture2D, spawn_position: Vector2i):
 	add_child(particle_instance)
 	
 	particle_instance.restart()
+
+func _on_enemy_kill():
+	enemies_remaining -= 1
+	if enemies_remaining <= 0:
+		SignalBus.level_complete.emit()

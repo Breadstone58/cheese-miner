@@ -1618,7 +1618,7 @@ sources/2 = SubResource("TileSetAtlasSource_lpf3e")
 sources/3 = SubResource("TileSetAtlasSource_181co")
 sources/4 = SubResource("TileSetAtlasSource_mcqdl")
 
-[node name="Room4" type="Node2D" unique_id=1770448767]
+[node name="Room8" type="Node2D" unique_id=1770448767]
 script = ExtResource("1_pewld")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=790131061]

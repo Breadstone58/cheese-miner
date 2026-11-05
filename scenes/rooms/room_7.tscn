@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://fsj7hl3k3mgs"]
+[gd_scene format=4 uid="uid://clqn2n71lgpuc"]
 
 [ext_resource type="Script" uid="uid://dvas2t7ave2j" path="res://scenes/rooms/room_scripts/room_5.gd" id="1_rr6je"]
 [ext_resource type="Texture2D" uid="uid://b48lcel35385o" path="res://assets/sprites/environment/broken_cheese.png" id="2_tny3q"]
@@ -1620,7 +1620,7 @@ sources/2 = SubResource("TileSetAtlasSource_rgk8g")
 sources/3 = SubResource("TileSetAtlasSource_65yxn")
 sources/4 = SubResource("TileSetAtlasSource_li2v6")
 
-[node name="Room5" type="Node2D" unique_id=1770448767]
+[node name="Room7" type="Node2D" unique_id=1770448767]
 script = ExtResource("1_rr6je")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=790131061]

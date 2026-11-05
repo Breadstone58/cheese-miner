@@ -121,13 +121,25 @@ func _on_area_entered(area: Area2D) -> void:
 		GlobVar.money += money_amount
 	elif get_rarity() == "energy" and GlobVar.energy < ItemID.energy[GlobVar.gadget]:
 		GlobVar.energy += 1
+		
 	if not pickup_cooldown:
 		pickup_cooldown = true
-		var tween = create_tween()
-		$AnimationPlayer.stop()
+		
+		# Disable collision immediately
+		$CollisionShape2D.set_deferred("disabled", true)
+		if has_node("CollisionPolygon2D"):
+			$CollisionPolygon2D.set_deferred("disabled", true)
+			
+		# Reset scale and modulation to standard values so the pickup animation starts clean
+		scale = Vector2.ONE
+		modulate = Color(1, 1, 1, 1)
+		position = Vector2.ZERO # If your spawn animation moved its local position
+		
+		$AnimationPlayer.stop(true)
 		$AnimationPlayer.play("pickup")
-		tween.tween_property($".","modulate",Color(1, 1, 1, 0.0),1.0)
-		tween.tween_callback($".".queue_free)
+		
+		await $AnimationPlayer.animation_finished
+		queue_free()
 		
 func _on_shop_refresh():
 	if state == 11:

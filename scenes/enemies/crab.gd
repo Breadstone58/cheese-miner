@@ -94,4 +94,5 @@ func dead():
 		if randf() < ItemID.energy[GlobVar.gadget] / (100.0/3.0) and GlobVar.energy < ItemID.energy[GlobVar.gadget]:
 			ItemSpawner.spawn_item(global_position,13)
 	ItemSpawner.spawn_money(global_position,clamp(randi_range(2 + 5 * floor(GlobVar.stage / 5.0),8 + 5 * floor(GlobVar.stage / 5.0)),1,INF))
+	SignalBus.enemy_killed.emit()
 	queue_free()
