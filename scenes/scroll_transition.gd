@@ -6,6 +6,7 @@ var new_biome = 0
 var going_shop = false
 var force_new_biome = false
 var prev_biome = GlobVar.biome
+var going_boss = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GlobVar.leaving_shop = false
@@ -26,6 +27,20 @@ func _ready() -> void:
 			var atlas_coords = $TileMapLayer2.get_cell_atlas_coords(coords)
 			var alternative_tile = $TileMapLayer2.get_cell_alternative_tile(coords)
 			$TileMapLayer2.set_cell(coords, GlobVar.biome, atlas_coords, alternative_tile)
+	elif GlobVar.stage > 0 and (GlobVar.stage + 1) % 15 == 0:
+		going_boss = true
+		new_biome = GlobVar.biome
+		var used_cells = $TileMapLayer.get_used_cells()
+		for coords in used_cells:
+			var atlas_coords = $TileMapLayer.get_cell_atlas_coords(coords)
+			var alternative_tile = $TileMapLayer.get_cell_alternative_tile(coords)
+			$TileMapLayer.set_cell(coords, GlobVar.biome, atlas_coords, alternative_tile)
+		used_cells = $TileMapLayer2.get_used_cells()
+		for coords in used_cells:
+			var atlas_coords = $TileMapLayer2.get_cell_atlas_coords(coords)
+			var alternative_tile = $TileMapLayer2.get_cell_alternative_tile(coords)
+			$TileMapLayer2.set_cell(coords, GlobVar.biome, atlas_coords, alternative_tile)
+		GlobVar.stage += 1
 	else:
 		if GlobVar.stage == 4:
 			GlobVar.shopChance = 1
@@ -90,6 +105,8 @@ func _process(delta: float) -> void:
 	if $CharacterBody2D.position.y >= 6848:
 		if going_shop:
 			get_tree().change_scene_to_file("res://scenes/rooms/shop.tscn")
+		elif going_boss:
+			get_tree().change_scene_to_file("res://scenes/rooms/boss_"+str(randi_range(0,0))+".tscn")
 		else:
 			get_tree().change_scene_to_file("res://scenes/rooms/room_"+str(rand_level)+".tscn")
 
