@@ -1,6 +1,7 @@
 extends Node2D
 
 var rand_level = 0
+const LEVEL_COUNT = 9
 var valid_biome = false
 var new_biome = 0
 var going_shop = false
@@ -11,7 +12,7 @@ var going_boss = false
 func _ready() -> void:
 	GlobVar.leaving_shop = false
 	if GlobVar.stage == 0:
-		GlobVar.biome = randi_range(0,3)
+		force_new_biome = true
 	if randf() < GlobVar.shopChance:
 		going_shop = true
 		$Shop_Sign.visible = true
@@ -48,7 +49,7 @@ func _ready() -> void:
 			force_new_biome = true 
 		if GlobVar.stage >= 5:
 			GlobVar.shopChance += 0.1
-		rand_level = randi_range(0,9)
+		rand_level = randi_range(0,LEVEL_COUNT)
 		$CharacterBody2D.heal(GlobVar.levelStartHeal)
 		GlobVar.transitioning = true
 		while not valid_biome:
@@ -72,12 +73,9 @@ func _ready() -> void:
 						if new_biome == LevelBiomes.lvl[rand_level]:
 							valid_biome = true
 						else:
-							rand_level = randi_range(0,5)
+							rand_level = randi_range(0,LEVEL_COUNT)
 					else:
 						valid_biome = true
-		if GlobVar.stage == 0:
-			GlobVar.biome = new_biome
-			GlobVar.positional_biome = new_biome
 		var used_cells = $TileMapLayer.get_used_cells()
 		for coords in used_cells:
 			var atlas_coords = $TileMapLayer.get_cell_atlas_coords(coords)
@@ -97,10 +95,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if GlobVar.stage == 1:
-		$Tunnel.color = GlobVar.tunnel_color[GlobVar.biome]
-	else:
-		$Tunnel.color = GlobVar.tunnel_color[prev_biome]
+	$Tunnel.color = GlobVar.tunnel_color[prev_biome]
 	GlobVar.music_biome = new_biome
 	if $CharacterBody2D.position.y >= 6848:
 		if going_shop:

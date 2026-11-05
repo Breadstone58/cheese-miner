@@ -2,11 +2,19 @@
 
 [ext_resource type="AudioStream" uid="uid://c3h7gprebocfs" path="res://assets/sounds/GreenBiome.mp3" id="1_ibx2e"]
 [ext_resource type="Script" uid="uid://datpqbp1hj3i1" path="res://scenes/music.gd" id="1_qnihg"]
+[ext_resource type="AudioStream" uid="uid://bp7tnqbwxblty" path="res://assets/sounds/YellowBiome.mp3" id="2_mobtd"]
 [ext_resource type="AudioStream" uid="uid://b8d44lbl3ttrb" path="res://assets/sounds/BlueBiome.mp3" id="2_qnihg"]
 [ext_resource type="AudioStream" uid="uid://cwkhptaqlcwax" path="res://assets/sounds/RedBiome.mp3" id="3_ejojg"]
+[ext_resource type="AudioStream" uid="uid://qkkgka2m2vij" path="res://assets/sounds/CheeseMinerTitle.mp3" id="5_wia2r"]
+[ext_resource type="AudioStream" uid="uid://26a4mhs32enn" path="res://assets/sounds/CheeseMinerBoss.mp3" id="7_keplp"]
 
 [node name="Music" type="Node" unique_id=34921368]
 script = ExtResource("1_qnihg")
+
+[node name="YellowBiome" type="AudioStreamPlayer" parent="." unique_id=168770453]
+stream = ExtResource("2_mobtd")
+volume_db = -80.0
+autoplay = true
 
 [node name="BlueBiome" type="AudioStreamPlayer" parent="." unique_id=1800213781]
 stream = ExtResource("2_qnihg")
@@ -24,3 +32,15 @@ stream = ExtResource("1_ibx2e")
 volume_db = -80.0
 autoplay = true
 parameters/looping = true
+
+[node name="Shop" type="AudioStreamPlayer" parent="." unique_id=1596554383]
+volume_db = -80.0
+autoplay = true
+
+[node name="Title" type="AudioStreamPlayer" parent="." unique_id=1248997290]
+stream = ExtResource("5_wia2r")
+autoplay = true
+
+[node name="Boss" type="AudioStreamPlayer" parent="." unique_id=143855959]
+stream = ExtResource("7_keplp")
+volume_db = -80.0

@@ -137,7 +137,6 @@ func _on_area_entered(area: Area2D) -> void:
 		
 	if not pickup_cooldown:
 		pickup_cooldown = true
-		print("Item picked up")
 		
 		# Disable collision immediately so the area signal doesn't double-trigger
 		if has_node("CollisionShape2D"):
