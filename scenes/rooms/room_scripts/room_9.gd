@@ -13,6 +13,14 @@ func _ready() -> void:
 		var atlas_coords = $TileMapLayer.get_cell_atlas_coords(coords)
 		var alternative_tile = $TileMapLayer.get_cell_alternative_tile(coords)
 		$TileMapLayer.set_cell(coords, GlobVar.biome, atlas_coords, alternative_tile)
+	if GlobVar.biome == 2:
+		for coords in used_cells:
+			var atlas_coords = $TileMapLayer.get_cell_atlas_coords(coords)
+			var alternative_tile = $TileMapLayer.get_cell_alternative_tile(coords)
+			randomize()
+			if randf() < 0.15 and $TileMapLayer.get_cell_tile_data(coords).get_custom_data("breakable"):
+				$TileMapLayer.set_cell(coords, 4, atlas_coords, alternative_tile)
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -40,8 +48,6 @@ func _process(delta: float) -> void:
 			get_tree().change_scene_to_file("res://scenes/scroll_transition.tscn")
 	else:
 		cam.limit_bottom = 1152
-	if Input.is_action_just_pressed("open_door_debug"):
-		SignalBus.level_complete.emit()
 		
 	var used_cells = $TileMapLayer.get_used_cells()
 	var broken_count = 0
@@ -55,7 +61,6 @@ func _process(delta: float) -> void:
 		level_complete = true
 
 func _on_particle_spawn(new_texture: Texture2D, spawn_position: Vector2i):
-	print(spawn_position)
 	var particle_instance = PARTICLE_SCENE.instantiate() as CPUParticles2D
 	particle_instance.texture = new_texture
 	
