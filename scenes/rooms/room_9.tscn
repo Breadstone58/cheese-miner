@@ -14,7 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://x6d8m1smdvbk" path="res://scenes/room_components/drop_in_blocker.tscn" id="8_pi44f"]
 [ext_resource type="PackedScene" uid="uid://3f6o42nw0jiu" path="res://scenes/hud.tscn" id="9_eej3w"]
 [ext_resource type="Texture2D" uid="uid://bf47k4duwnkdx" path="res://assets/sprites/environment/broken_magma.png" id="10_5q6qc"]
-[ext_resource type="PackedScene" uid="uid://cd11x108jf1ee" path="res://scenes/enemies/cheese_maggot.tscn" id="10_dsfbj"]
 [ext_resource type="Texture2D" uid="uid://c06021wvxcf1w" path="res://assets/sprites/environment/magma_blocks.png" id="11_23o53"]
 [ext_resource type="PackedScene" uid="uid://d24fnhde4uuq5" path="res://scenes/enemies/Stringfly.tscn" id="11_ht7um"]
 [ext_resource type="PackedScene" uid="uid://cqwagrl52auqn" path="res://scenes/enemies/crab.tscn" id="12_t7c7d"]
@@ -1648,9 +1647,6 @@ collision_layer = 16
 
 [node name="HUD" parent="." unique_id=180511637 instance=ExtResource("9_eej3w")]
 
-[node name="CheeseMaggot" parent="." unique_id=611139983 instance=ExtResource("10_dsfbj")]
-position = Vector2(259, 624)
-
 [node name="Stringfly" parent="." unique_id=905587462 instance=ExtResource("11_ht7um")]
 position = Vector2(415, 232)
 
@@ -1662,9 +1658,3 @@ position = Vector2(733, 410)
 
 [node name="Stringfly2" parent="." unique_id=278049091 instance=ExtResource("11_ht7um")]
 position = Vector2(1707, 639)
-
-[node name="CheeseMaggot2" parent="." unique_id=38544136 instance=ExtResource("10_dsfbj")]
-position = Vector2(551, 992)
-
-[node name="CheeseMaggot3" parent="." unique_id=794870339 instance=ExtResource("10_dsfbj")]
-position = Vector2(1278, 930)
