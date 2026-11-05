@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://d24fnhde4uuq5"]
 
 [ext_resource type="Texture2D" uid="uid://bfso1k1dxcm4x" path="res://assets/sprites/enemies/Stringfly.png" id="1_uuore"]
+[ext_resource type="Script" uid="uid://btsjy4volvw4i" path="res://scenes/enemies/hitbox_damage.gd" id="2_8407e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8407e"]
 atlas = ExtResource("1_uuore")
@@ -142,6 +143,13 @@ _data = {
 &"idleloop": SubResource("Animation_4ccci")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ogd8f"]
+radius = 320.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ogd8f"]
+radius = 24.0
+height = 76.0
+
 [node name="Stringfly" type="Node2D" unique_id=905587462]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=297882654]
@@ -152,3 +160,17 @@ offset = Vector2(8, 0)
 root_node = NodePath("../AnimatedSprite2D")
 libraries/ = SubResource("AnimationLibrary_2kdeo")
 autoplay = &"idleloop"
+
+[node name="DetectionRange" type="Area2D" parent="." unique_id=1741575313]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange" unique_id=975491240]
+shape = SubResource("CircleShape2D_ogd8f")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1893528492]
+script = ExtResource("2_8407e")
+metadata/_custom_type_script = "uid://btsjy4volvw4i"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1825390804]
+position = Vector2(-3, -5)
+shape = SubResource("CapsuleShape2D_ogd8f")
