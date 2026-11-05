@@ -11,25 +11,27 @@ var energy_remaining = 0
 var pickup_cooldown = false
 var cost = 0
 var money_amount = 0
-# Called when the node enters the scene tree for the first time.
+var pop_in_timer = 0
+var is_ready: bool = false # Added variable to prevent instant-grab race conditions
 
+# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalBus.refresh_shop.connect(_on_shop_refresh)
 	match state:
 		0:
 			sprite.animation = "common"
-			sprite.frame = randi_range(0,sprite.sprite_frames.get_frame_count("common")-1)
+			sprite.frame = randi_range(0, sprite.sprite_frames.get_frame_count("common") - 1)
 		1:
 			sprite.animation = "uncommon"
-			sprite.frame = randi_range(0,sprite.sprite_frames.get_frame_count("uncommon")-1)
+			sprite.frame = randi_range(0, sprite.sprite_frames.get_frame_count("uncommon") - 1)
 		2:
 			sprite.animation = "rare"
-			sprite.frame = randi_range(0,sprite.sprite_frames.get_frame_count("rare")-1)
+			sprite.frame = randi_range(0, sprite.sprite_frames.get_frame_count("rare") - 1)
 		3:
 			sprite.animation = "gadget"
-			sprite.frame = randi_range(0,sprite.sprite_frames.get_frame_count("gadget")-1)
+			sprite.frame = randi_range(0, sprite.sprite_frames.get_frame_count("gadget") - 1)
 			energy_remaining = ItemID.energy[ItemID.gadget[get_id()]]
-		8,9:
+		8, 9:
 			sprite.animation = custom_rarity
 			sprite.frame = custom_item
 		10:
@@ -41,31 +43,31 @@ func _ready() -> void:
 		11:
 			randomize()
 			var rarity = randf()
-			if rarity < 30.0/55.0:
+			if rarity < 30.0 / 55.0:
 				rarity = 0
-			elif rarity < 45.0/55.0:
+			elif rarity < 45.0 / 55.0:
 				rarity = 1
-			elif rarity < 48.0/55.0:
+			elif rarity < 48.0 / 55.0:
 				rarity = 2
 			else:
 				rarity = 3
 			match rarity:
 				0:
 					sprite.animation = "common"
-					sprite.frame = randi_range(0,sprite.sprite_frames.get_frame_count("common")-1)
-					cost = clamp(randi_range(GlobVar.stage * 5 - 5,GlobVar.stage * 5 + 5),1,INF)
+					sprite.frame = randi_range(0, sprite.sprite_frames.get_frame_count("common") - 1)
+					cost = clamp(randi_range(GlobVar.stage * 5 - 5, GlobVar.stage * 5 + 5), 1, INF)
 				1:
 					sprite.animation = "uncommon"
-					sprite.frame = randi_range(0,sprite.sprite_frames.get_frame_count("uncommon")-1)
-					cost = clamp(randi_range(GlobVar.stage * 7 - 5,GlobVar.stage * 7 + 5),1,INF)
+					sprite.frame = randi_range(0, sprite.sprite_frames.get_frame_count("uncommon") - 1)
+					cost = clamp(randi_range(GlobVar.stage * 7 - 5, GlobVar.stage * 7 + 5), 1, INF)
 				2:
 					sprite.animation = "rare"
-					sprite.frame = randi_range(0,sprite.sprite_frames.get_frame_count("rare")-1)
-					cost = clamp(randi_range(GlobVar.stage * 12 - 5,GlobVar.stage * 12 + 7),1,INF)
+					sprite.frame = randi_range(0, sprite.sprite_frames.get_frame_count("rare") - 1)
+					cost = clamp(randi_range(GlobVar.stage * 12 - 5, GlobVar.stage * 12 + 7), 1, INF)
 				3:
 					sprite.animation = "gadget"
-					sprite.frame = randi_range(0,sprite.sprite_frames.get_frame_count("gadget")-1)
-					cost = clamp(randi_range(GlobVar.stage * 7 - 5,GlobVar.stage * 7 + 5),1,INF)
+					sprite.frame = randi_range(0, sprite.sprite_frames.get_frame_count("gadget") - 1)
+					cost = clamp(randi_range(GlobVar.stage * 7 - 5, GlobVar.stage * 7 + 5), 1, INF)
 					energy_remaining = ItemID.energy[ItemID.gadget[get_id()]]
 			$Price.text = "$" + str(cost)
 			$Price.visible = true
@@ -77,9 +79,14 @@ func _ready() -> void:
 			sprite.animation = "energy"
 			sprite.frame = 0
 			sprite.play()
+			
 	$AnimationPlayer.play("initial") # pop up
 	await $AnimationPlayer.animation_finished
-	$AnimationPlayer.play("idleloop") # idle bounce
+	$AnimationPlayer.play("idleloop") #idle bounce
+	
+	# Wait for one frame so node setup and physics stabilize
+	await get_tree().process_frame
+	is_ready = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -88,6 +95,7 @@ func _process(delta: float) -> void:
 		queue_free()
 	if state == 11 and GlobVar.leaving_shop:
 		queue_free()
+	pop_in_timer += delta
 
 func get_rarity():
 	return sprite.animation
@@ -96,10 +104,15 @@ func get_id():
 	return sprite.frame
 
 func _on_area_entered(area: Area2D) -> void:
+	# If hit on the exact spawn frame before ready finishes, wait a frame
+	if not is_ready:
+		await get_tree().process_frame
+
 	if state == 11 and GlobVar.money < cost:
 		return
 	elif state == 11:
 		GlobVar.money -= cost
+		
 	if get_rarity() == "common":
 		GlobVar.inventory.append(ItemID.common[get_id()])
 	elif get_rarity() == "uncommon":
@@ -116,7 +129,7 @@ func _on_area_entered(area: Area2D) -> void:
 				GlobVar.gadget_change_key = key
 				break
 		if GlobVar.gadget_change_key != -1:
-			ItemSpawner.spawn_item(global_position,10,prev_energy)
+			ItemSpawner.spawn_item(global_position, 10, prev_energy)
 	elif "money" in get_rarity():
 		GlobVar.money += money_amount
 	elif get_rarity() == "energy" and GlobVar.energy < ItemID.energy[GlobVar.gadget]:
@@ -124,24 +137,22 @@ func _on_area_entered(area: Area2D) -> void:
 		
 	if not pickup_cooldown:
 		pickup_cooldown = true
+		print("Item picked up")
 		
-		# Disable collision immediately
-		$CollisionShape2D.set_deferred("disabled", true)
-		if has_node("CollisionPolygon2D"):
-			$CollisionPolygon2D.set_deferred("disabled", true)
-			
-		# Reset scale and modulation to standard values so the pickup animation starts clean
-		scale = Vector2.ONE
-		modulate = Color(1, 1, 1, 1)
-		position = Vector2.ZERO # If your spawn animation moved its local position
+		# Disable collision immediately so the area signal doesn't double-trigger
+		if has_node("CollisionShape2D"):
+			$CollisionShape2D.set_deferred("disabled", true)
 		
-		$AnimationPlayer.stop(true)
-		$AnimationPlayer.play("pickup")
+		$AnimationPlayer.stop()
+		modulate = Color(1,1,1,1)
+		sprite.scale = Vector2(1,1)
 		
-		await $AnimationPlayer.animation_finished
-		queue_free()
+		var tween = create_tween()
+		tween.tween_property(self, "modulate", Color(1, 1, 1, 0.0), 1.0)
+		tween.parallel().tween_property(self, "position",position + Vector2(0,-128),1.0)
+		tween.tween_callback(queue_free)
 		
 func _on_shop_refresh():
 	if state == 11:
-		ItemSpawner.spawn_item(global_position,11)
+		ItemSpawner.spawn_item(global_position, 11)
 		queue_free()
