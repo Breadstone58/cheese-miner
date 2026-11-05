@@ -23,7 +23,7 @@ var paw_slamming = 0
 	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	GlobVar.stage = 0 if GlobVar.stage < 15 else GlobVar.stage
+	GlobVar.stage = 5 if GlobVar.stage < 15 else GlobVar.stage
 	play_animation()
 	$"Left Hand/Hitbox".damage = GlobVar.stage
 	$"Right Hand/Hitbox".damage = GlobVar.stage
@@ -149,6 +149,9 @@ func play_animation():
 			await slam_tween.finished
 			track = "idle"
 		
+		"floor_slam":
+			pass
+		
 		"stunned":
 			var flash = create_tween()
 			var move_head = create_tween()
@@ -167,11 +170,11 @@ func _on_left_hurtbox_area_entered(area: Area2D) -> void:
 		left_hand_health -= area.damage
 		left_hand.modulate = Color(255,0,0,255)
 		area.remove()
-		await get_tree().create_timer(0.1).timeout
-		left_hand.modulate = Color(1,1,1,1)
 		if left_hand_health <= 0:
 			left_hand_alive = false
 			left_hand.queue_free()
+		await get_tree().create_timer(0.1).timeout
+		left_hand.modulate = Color(1,1,1,1)
 		
 
 func _on_right_hurtbox_area_entered(area: Area2D) -> void:
@@ -179,11 +182,11 @@ func _on_right_hurtbox_area_entered(area: Area2D) -> void:
 		right_hand_health -= area.damage
 		right_hand.modulate = Color(255,0,0,255)
 		area.remove()
-		await get_tree().create_timer(0.1).timeout
-		right_hand.modulate = Color(1,1,1,1)
 		if right_hand_health <= 0:
 			right_hand_alive = false
 			right_hand.queue_free()
+		await get_tree().create_timer(0.1).timeout
+		right_hand.modulate = Color(1,1,1,1)
 
 func _on_head_hurtbox_area_entered(area: Area2D) -> void:
 	if area is Bite and track == "stunned":

@@ -8,7 +8,7 @@ extends Area2D
 var random = false
 var prev_gadget = ""
 var energy_remaining = 0
-var pickup_cooldown = true
+var pickup_cooldown = false
 var cost = 0
 var money_amount = 0
 # Called when the node enters the scene tree for the first time.
@@ -79,9 +79,7 @@ func _ready() -> void:
 			sprite.play()
 	$AnimationPlayer.play("initial") # pop up
 	await $AnimationPlayer.animation_finished
-	if pickup_cooldown: # buffer so that intro scale can fully play AND pickup anim when picked up
-		pickup_cooldown = false
-		$AnimationPlayer.play("idleloop") # idle bounce
+	$AnimationPlayer.play("idleloop") # idle bounce
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
