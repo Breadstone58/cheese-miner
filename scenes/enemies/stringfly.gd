@@ -1,4 +1,4 @@
-extends Node2D
+extends CharacterBody2D
 
 var health = 5 + 5 * floor(GlobVar.stage / 5.0)
 var stunned = false
