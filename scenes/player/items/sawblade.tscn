@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://b5iwxe3k0d3mr"]
+
+[ext_resource type="Script" uid="uid://bhkrkjeowmtis" path="res://scenes/player/items/sawblade.gd" id="1_d0txr"]
+[ext_resource type="Texture2D" uid="uid://c6rh3dhtf7s6l" path="res://assets/sprites/items/Sawblade_thrown.png" id="2_d0txr"]
+[ext_resource type="Texture2D" uid="uid://ds4sdrvoe635g" path="res://assets/sprites/enemies/Cracker.png" id="3_b6sat"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lfxu0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_d0txr")
+}],
+"loop": 1,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jpe3k"]
+radius = 30.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4xhwt"]
+radius = 30.0
+
+[node name="Sawblade" type="CharacterBody2D" unique_id=709615096]
+collision_layer = 2
+collision_mask = 52
+motion_mode = 1
+script = ExtResource("1_d0txr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1990542356]
+sprite_frames = SubResource("SpriteFrames_lfxu0")
+animation = &"new_animation"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1177888146]
+visible = false
+texture = ExtResource("3_b6sat")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=577251677]
+shape = SubResource("CircleShape2D_jpe3k")
+
+[node name="FloorRayCast" type="RayCast2D" parent="." unique_id=953396698]
+position = Vector2(-30, 0)
+target_position = Vector2(0, 36)
+collision_mask = 52
+
+[node name="WallRayCast" type="RayCast2D" parent="." unique_id=1340661233]
+target_position = Vector2(32, 0)
+collision_mask = 52
+
+[node name="CornerRayCast" type="RayCast2D" parent="." unique_id=1180715822]
+target_position = Vector2(-40, 40)
+collision_mask = 52
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1856796518]
+collision_layer = 2
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=826293672]
+shape = SubResource("CircleShape2D_4xhwt")

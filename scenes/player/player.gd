@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @export var bullet_scene: PackedScene
+var sawblade_gadget = preload("res://scenes/player/items/sawblade.tscn")
 
 var SPEED = 300.0
 @export var ACCELERATION: float = 5000.0
@@ -244,6 +245,12 @@ func activate_gadget():
 			velocity.x = facing * (SPEED * DASH_SPEED_MULTIPLIER)
 		"Skeleton_Key":
 			SignalBus.level_complete.emit()
+		"Sawblade":
+			var saw = sawblade_gadget.instantiate()
+			saw.global_position = global_position
+			saw.scale.x = facing
+			get_tree().current_scene.add_child(saw)
+		
 			
 
 func update_animation():
