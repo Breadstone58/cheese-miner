@@ -248,7 +248,7 @@ func activate_gadget():
 		"Sawblade":
 			var saw = sawblade_gadget.instantiate()
 			saw.global_position = global_position
-			saw.scale.x = facing
+			saw.init_dir = facing
 			get_tree().current_scene.add_child(saw)
 		
 			

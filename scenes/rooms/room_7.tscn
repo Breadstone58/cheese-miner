@@ -1634,6 +1634,7 @@ tile_set = SubResource("TileSet_2sdf6")
 
 [node name="CharacterBody2D" parent="." unique_id=590245782 instance=ExtResource("13_ssx1v")]
 position = Vector2(1024, -1468)
+bullet_scene = null
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=615378426]
 position = Vector2(0, 1)
@@ -1656,7 +1657,7 @@ collision_layer = 16
 
 [node name="Lever" parent="." unique_id=1780346431 instance=ExtResource("17_ebqyr")]
 z_index = -1
-position = Vector2(146, 164)
+position = Vector2(214, 164)
 
 [node name="Parallax_Backing" parent="." unique_id=730832840 instance=ExtResource("18_h41tj")]
 

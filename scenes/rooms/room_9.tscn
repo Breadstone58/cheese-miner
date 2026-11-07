@@ -18,6 +18,8 @@
 [ext_resource type="PackedScene" uid="uid://d24fnhde4uuq5" path="res://scenes/enemies/Stringfly.tscn" id="11_ht7um"]
 [ext_resource type="PackedScene" uid="uid://dhmrmdfo0efak" path="res://scenes/room_components/item_sheen.tscn" id="12_5q6qc"]
 [ext_resource type="PackedScene" uid="uid://cqwagrl52auqn" path="res://scenes/enemies/crab.tscn" id="12_t7c7d"]
+[ext_resource type="PackedScene" uid="uid://swfnmsq5wx2h" path="res://scenes/room_components/parallax_backing.tscn" id="19_yvi50"]
+[ext_resource type="PackedScene" uid="uid://dc3srlie11g84" path="res://scenes/room_components/tunnel.tscn" id="20_w4a7w"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_c1qis"]
 
@@ -1661,3 +1663,16 @@ position = Vector2(733, 410)
 
 [node name="Stringfly2" parent="." unique_id=278049091 instance=ExtResource("11_ht7um")]
 position = Vector2(1707, 639)
+
+[node name="Parallax_Backing" parent="." unique_id=730832840 instance=ExtResource("19_yvi50")]
+
+[node name="Tunnel" parent="." unique_id=984068459 instance=ExtResource("20_w4a7w")]
+offset_left = 938.0
+offset_top = -2262.0
+offset_right = 1112.0
+offset_bottom = 60.0
+
+[node name="Tunnel2" parent="." unique_id=884210201 instance=ExtResource("20_w4a7w")]
+offset_top = 1152.0
+offset_right = 2070.0
+offset_bottom = 3704.0
