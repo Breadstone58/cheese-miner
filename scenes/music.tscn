@@ -2,28 +2,27 @@
 
 [ext_resource type="AudioStream" uid="uid://c3h7gprebocfs" path="res://assets/sounds/GreenBiome.mp3" id="1_ibx2e"]
 [ext_resource type="Script" uid="uid://datpqbp1hj3i1" path="res://scenes/music.gd" id="1_qnihg"]
-[ext_resource type="AudioStream" uid="uid://bp7tnqbwxblty" path="res://assets/sounds/YellowBiome.mp3" id="2_mobtd"]
-[ext_resource type="AudioStream" uid="uid://b8d44lbl3ttrb" path="res://assets/sounds/BlueBiome.mp3" id="2_qnihg"]
-[ext_resource type="AudioStream" uid="uid://cwkhptaqlcwax" path="res://assets/sounds/RedBiome.mp3" id="3_ejojg"]
-[ext_resource type="AudioStream" uid="uid://qkkgka2m2vij" path="res://assets/sounds/CheeseMinerTitle.mp3" id="5_wia2r"]
-[ext_resource type="AudioStream" uid="uid://26a4mhs32enn" path="res://assets/sounds/CheeseMinerBoss.mp3" id="7_keplp"]
+[ext_resource type="AudioStream" uid="uid://bywxye8l7v25i" path="res://assets/sounds/YellowBiome.wav" id="2_keplp"]
+[ext_resource type="AudioStream" uid="uid://uw4qsfvf6aor" path="res://assets/sounds/BlueBiome.wav" id="3_d6bcn"]
+[ext_resource type="AudioStream" uid="uid://djo77wwm8lq80" path="res://assets/sounds/RedBiome.wav" id="4_okdju"]
+[ext_resource type="AudioStream" uid="uid://qt3ee3lh01gj" path="res://assets/sounds/CheeseMinerTitle.wav" id="6_qntvw"]
+[ext_resource type="AudioStream" uid="uid://cgogi3r7fqslw" path="res://assets/sounds/CheeseMinerBoss.wav" id="7_3dw7u"]
 
 [node name="Music" type="Node" unique_id=34921368]
 script = ExtResource("1_qnihg")
 
 [node name="YellowBiome" type="AudioStreamPlayer" parent="." unique_id=168770453]
-stream = ExtResource("2_mobtd")
+stream = ExtResource("2_keplp")
 volume_db = -80.0
 autoplay = true
 
 [node name="BlueBiome" type="AudioStreamPlayer" parent="." unique_id=1800213781]
-stream = ExtResource("2_qnihg")
+stream = ExtResource("3_d6bcn")
 volume_db = -80.0
 autoplay = true
-parameters/looping = true
 
 [node name="RedBiome" type="AudioStreamPlayer" parent="." unique_id=530236719]
-stream = ExtResource("3_ejojg")
+stream = ExtResource("4_okdju")
 volume_db = -80.0
 autoplay = true
 
@@ -38,9 +37,9 @@ volume_db = -80.0
 autoplay = true
 
 [node name="Title" type="AudioStreamPlayer" parent="." unique_id=1248997290]
-stream = ExtResource("5_wia2r")
+stream = ExtResource("6_qntvw")
 autoplay = true
 
 [node name="Boss" type="AudioStreamPlayer" parent="." unique_id=143855959]
-stream = ExtResource("7_keplp")
+stream = ExtResource("7_3dw7u")
 volume_db = -80.0

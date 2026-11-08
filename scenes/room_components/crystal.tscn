@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cobobws4rxgah" path="res://assets/sprites/environment/blue_stone.png" id="2_v4jjt"]
 [ext_resource type="Texture2D" uid="uid://heyqeftaggi" path="res://assets/sprites/environment/red_stone.png" id="3_kecsc"]
 [ext_resource type="Texture2D" uid="uid://bnld5bho0p6ow" path="res://assets/sprites/environment/green_stone.png" id="4_sx38q"]
+[ext_resource type="Texture2D" uid="uid://c5n47pl1vm5fo" path="res://assets/sprites/environment/white_stone.png" id="6_kecsc"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ogd8f"]
 animations = [{
@@ -20,6 +21,12 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("4_sx38q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_kecsc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_kecsc")
 }],
 "loop": 1,
 "name": &"default",
@@ -31,6 +38,7 @@ radius = 32.0
 height = 128.0
 
 [node name="Crystal" type="Area2D" unique_id=1269376109]
+z_index = -1
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_v4jjt")

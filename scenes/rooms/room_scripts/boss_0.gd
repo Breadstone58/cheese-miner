@@ -2,7 +2,11 @@ extends Node2D
 const PARTICLE_SCENE = preload("res://scenes/room_components/break_particles.tscn")
 @onready var cam: Camera2D = $CharacterBody2D/Camera2D
 var scroll_down = 0
-var top_locked = false
+var top_locked = false:
+	set(value):
+		top_locked = value
+		if value == true:
+			$Cat.boss_intro()
 var level_complete = false
 
 # Called when the node enters the scene tree for the first time.
@@ -71,4 +75,3 @@ func _on_boss_kill(deathpos: Vector2):
 	$TileMapLayer.set_cell(Vector2(15,17),GlobVar.biome,Vector2(3,2))
 	$TileMapLayer.set_cell(Vector2(16,17),GlobVar.biome,Vector2(3,2))
 	$TileMapLayer.set_cell(Vector2(17,17),GlobVar.biome,Vector2(8,4))
-	

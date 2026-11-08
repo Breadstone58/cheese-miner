@@ -163,7 +163,8 @@ func play_animation():
 			move_head.tween_property(head,"position",Vector2(head.position.x,960.0),3.0).from(head.position)
 
 func watch_target():
-	pass
+	var pupil_angle = $Head.global_position.angle_to_point(Vector2(GlobVar.PlayerX,GlobVar.PlayerY))
+	$Head/Pupils.position = Vector2(37*cos(pupil_angle),13*sin(pupil_angle))
 
 func _on_left_hurtbox_area_entered(area: Area2D) -> void:
 	if area is Bullet:
@@ -193,3 +194,6 @@ func _on_head_hurtbox_area_entered(area: Area2D) -> void:
 		killed.emit(head.position)
 		SignalBus.bite_death.emit(50)
 		queue_free()
+
+func boss_intro():
+	pass

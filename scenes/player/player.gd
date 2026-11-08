@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var bullet_scene: PackedScene
+var bullet_scene = preload("res://scenes/bullet/bullet.tscn")
 var sawblade_gadget = preload("res://scenes/player/items/sawblade.tscn")
 
 var SPEED = 300.0
@@ -86,13 +86,17 @@ func _process(delta: float) -> void:
 		$CollisionShape2D.position.y = 34.0
 		$Hurtbox/CollisionShape2D.position.y = 32.5
 		$BulletSpawnPoint.position.y = 32.0
+		if Input.is_action_pressed("aim_up") or Input.is_action_pressed("aim_down"):
+			$BulletSpawnPoint.position.x = 34.0 * facing
+		else:
+			$BulletSpawnPoint.position.x = 0
 		crouching = true
 	else:
 		$CollisionShape2D.shape.size.y = 120.0
 		$Hurtbox/CollisionShape2D.shape.size.y = 127.0
 		$CollisionShape2D.position.y = 4.0
 		$Hurtbox/CollisionShape2D.position.y = 0.5
-		$BulletSpawnPoint.position.y = 0
+		$BulletSpawnPoint.position = Vector2(0,0)
 		if Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"):
 			if Input.is_action_pressed("aim_up"):
 				$BulletSpawnPoint.position.y = 22
@@ -195,6 +199,7 @@ func get_aim_vector() -> Vector2:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("shoot") and not GlobVar.transitioning and shoot_cooldown <= 0:
 		shoot_cooldown = shoot_speed
+
 		var bullet = bullet_scene.instantiate()
 		var aim_direction = get_aim_vector()
 		bullet.global_position = $BulletSpawnPoint.global_position

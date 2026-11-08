@@ -32,16 +32,6 @@ func _process(delta: float) -> void:
 	else:
 		cam.limit_bottom = 1152
 		
-	var used_cells = $TileMapLayer.get_used_cells()
-	var broken_count = 0
-	for coords in used_cells:
-		var tile_data = $TileMapLayer.get_cell_tile_data(coords)
-		if tile_data and tile_data.get_custom_data("breakable"):
-			broken_count += 1
-			break
-	if broken_count == 0 and not level_complete:
-		SignalBus.level_complete.emit()
-		level_complete = true
 
 func _on_particle_spawn(new_texture: Texture2D, spawn_position: Vector2i):
 	var particle_instance = PARTICLE_SCENE.instantiate() as CPUParticles2D
@@ -54,3 +44,17 @@ func _on_particle_spawn(new_texture: Texture2D, spawn_position: Vector2i):
 	add_child(particle_instance)
 	
 	particle_instance.restart()
+
+
+func _on_crystal_hit() -> void:
+	if not level_complete:
+		$TileMapLayer.set_cell(Vector2i(15,15),0,Vector2i(0,0))
+		$TileMapLayer.set_cell(Vector2i(16,15),0,Vector2i(2,0))
+		$TileMapLayer.set_cell(Vector2i(14,16),0,Vector2i(0,0))
+		$TileMapLayer.set_cell(Vector2i(15,16),0,Vector2i(4,1))
+		$TileMapLayer.set_cell(Vector2i(16,16),0,Vector2i(3,1))
+		$TileMapLayer.set_cell(Vector2i(17,16),0,Vector2i(2,0))
+		$TileMapLayer.set_cell(Vector2i(15,17),0,Vector2i(1,1))
+		$TileMapLayer.set_cell(Vector2i(16,17),0,Vector2i(1,1))
+		level_complete = true
+	

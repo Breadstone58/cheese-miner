@@ -15,7 +15,7 @@ func _process(_delta: float) -> void:
 	$"Control/Hp Bar Back/Hp Bar Color/HpDisp".text = str(int(GlobVar.playerHealth)) + "/" + str(GlobVar.healthMax)
 	$"Control/Hp Bar Back".visible = true
 	$Control/MoneyLabel.text = "$" + str(GlobVar.money)
-	$Control/MoneyImage.animation = "money" + str(GlobVar.positional_biome)
+	$Control/MoneyImage.animation = "money" + str(GlobVar.positional_biome % 5)
 	$Control/MoneyImage.play()
 	$Control/MoneyImage.visible = true
 	GlobVar.money_disp_frame = $Control/MoneyImage.frame

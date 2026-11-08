@@ -1084,7 +1084,7 @@ theme_override_font_sizes/normal_font_size = 32
 visible = false
 position = Vector2(52, 80)
 sprite_frames = SubResource("SpriteFrames_yawqa")
-animation = &"uncommon"
+animation = &"money0"
 
 [node name="MoneyImageOLD" type="AnimatedSprite2D" parent="Control" unique_id=400158188]
 visible = false

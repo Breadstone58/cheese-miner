@@ -56,18 +56,18 @@ func _ready() -> void:
 			randomize()
 			if not force_new_biome:
 				if randf() > (2.0/3.0):
-					new_biome = randi_range(0,3)
+					new_biome = randi_range(0, 3 if GlobVar.stage >= 5 else 0)
 				else:
 					new_biome = GlobVar.biome
 				if rand_level in LevelBiomes.lvl:
 					if new_biome == LevelBiomes.lvl[rand_level]:
 						valid_biome = true
 					else:
-						rand_level = randi_range(0,5)
+						rand_level = randi_range(0,LEVEL_COUNT)
 				else:
 					valid_biome = true
 			else:
-				new_biome = randi_range(0,3)
+				new_biome = randi_range(0,3 if GlobVar.stage >= 5 else 0)
 				if new_biome != GlobVar.biome:
 					if rand_level in LevelBiomes.lvl:
 						if new_biome == LevelBiomes.lvl[rand_level]:

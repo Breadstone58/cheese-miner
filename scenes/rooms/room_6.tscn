@@ -1630,7 +1630,6 @@ tile_set = SubResource("TileSet_2sdf6")
 
 [node name="CharacterBody2D" parent="." unique_id=590245782 instance=ExtResource("13_fjlkh")]
 position = Vector2(1024, -1468)
-bullet_scene = null
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=615378426]
 position = Vector2(0, 1)
