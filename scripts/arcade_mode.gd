@@ -5,8 +5,9 @@ var arcade_mode = false :
 		update_input_mapping()
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("fn") and Input.is_action_pressed("crouch") and Input.is_action_pressed("lock_position"):
-		arcade_mode = not arcade_mode
+	pass
+	#if Input.is_action_just_pressed("fn") and Input.is_action_pressed("crouch") and Input.is_action_pressed("lock_position"):
+	#	arcade_mode = not arcade_mode
 
 func update_input_mapping() -> void:
 	if arcade_mode:

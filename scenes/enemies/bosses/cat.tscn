@@ -386,12 +386,14 @@ sprite_frames = SubResource("SpriteFrames_ogd8f")
 
 [node name="Hitbox" type="Area2D" parent="Left Hand" unique_id=1887358203]
 collision_layer = 8
+monitorable = false
 script = ExtResource("3_5r7vk")
 damage = 15
 metadata/_custom_type_script = "uid://btsjy4volvw4i"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Left Hand/Hitbox" unique_id=1196791307]
 shape = SubResource("RectangleShape2D_ogd8f")
+disabled = true
 
 [node name="Hurtbox" type="Area2D" parent="Left Hand" unique_id=1099923127]
 collision_layer = 8
@@ -406,12 +408,14 @@ sprite_frames = SubResource("SpriteFrames_q3bbs")
 
 [node name="Hitbox" type="Area2D" parent="Right Hand" unique_id=287532896]
 collision_layer = 8
+monitorable = false
 script = ExtResource("3_5r7vk")
 damage = 15
 metadata/_custom_type_script = "uid://btsjy4volvw4i"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Right Hand/Hitbox" unique_id=614929137]
 shape = SubResource("RectangleShape2D_q3bbs")
+disabled = true
 
 [node name="Hurtbox" type="Area2D" parent="Right Hand" unique_id=1190830379]
 collision_layer = 8

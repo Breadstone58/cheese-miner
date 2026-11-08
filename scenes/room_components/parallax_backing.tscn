@@ -420,7 +420,6 @@ animations = [{
 }]
 
 [node name="Parallax_Backing" type="Node2D" unique_id=730832840]
-visible = false
 z_index = -100
 script = ExtResource("1_lwx4h")
 

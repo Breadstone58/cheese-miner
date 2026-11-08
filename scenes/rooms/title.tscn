@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://vtiane04et3j" path="res://scenes/player/player.tscn" id="13_7ylv1"]
 [ext_resource type="PackedScene" uid="uid://w5qjak6ufh2x" path="res://scenes/room_components/crystal.tscn" id="15_x1m5c"]
 [ext_resource type="FontFile" uid="uid://8douc1wvghmy" path="res://assets/fonts/VCR_OSD_MONO_1.001.ttf" id="16_jdmft"]
+[ext_resource type="Texture2D" uid="uid://q00shj1meo2t" path="res://assets/sprites/environment/cheese_miner_logo.png" id="17_hr1db"]
 [ext_resource type="PackedScene" uid="uid://swfnmsq5wx2h" path="res://scenes/room_components/parallax_backing.tscn" id="18_82u7c"]
 [ext_resource type="PackedScene" uid="uid://dc3srlie11g84" path="res://scenes/room_components/tunnel.tscn" id="19_7pqbi"]
 
@@ -1628,7 +1629,9 @@ position = Vector2(397, 1024)
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=615378426]
 position = Vector2(0, 1)
 limit_left = 0
+limit_top = -1152
 limit_right = 2048
+limit_bottom = 0
 position_smoothing_speed = 1152.0
 
 [node name="Tunnel2" parent="." unique_id=94340899 instance=ExtResource("19_7pqbi")]
@@ -1638,6 +1641,7 @@ offset_right = 1103.0
 offset_bottom = 5050.0
 
 [node name="Parallax_Backing" parent="." unique_id=730832840 instance=ExtResource("18_82u7c")]
+visible = false
 
 [node name="Crystal" parent="." unique_id=1269376109 instance=ExtResource("15_x1m5c")]
 position = Vector2(1768, 1028)
@@ -1649,5 +1653,9 @@ theme_override_fonts/normal_font = ExtResource("16_jdmft")
 theme_override_font_sizes/normal_font_size = 64
 text = "Complete the tutorial!"
 vertical_alignment = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=68759689]
+position = Vector2(624, -705)
+texture = ExtResource("17_hr1db")
 
 [connection signal="crystal_hit" from="Crystal" to="." method="_on_crystal_hit"]

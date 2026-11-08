@@ -1,7 +1,7 @@
 extends Node2D
 
 var rand_level = 0
-const LEVEL_COUNT = 9
+const LEVEL_COUNT = 10
 var valid_biome = false
 var new_biome = 0
 var going_shop = false
@@ -11,8 +11,14 @@ var going_boss = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GlobVar.leaving_shop = false
-	if GlobVar.stage == 0:
+	print(GlobVar.levels_remaining)
+	if GlobVar.stage == 0 or GlobVar.levels_remaining.size() == 0:
 		force_new_biome = true
+		GlobVar.levels_remaining = range(0,LEVEL_COUNT+1)
+		if GlobVar.stage == 0:
+			for level in GlobVar.levels_remaining:
+				if level in LevelBiomes.hard:
+					GlobVar.levels_remaining.erase(level)
 	if randf() < GlobVar.shopChance:
 		going_shop = true
 		$Shop_Sign.visible = true
@@ -49,7 +55,8 @@ func _ready() -> void:
 			force_new_biome = true 
 		if GlobVar.stage >= 5:
 			GlobVar.shopChance += 0.1
-		rand_level = randi_range(0,LEVEL_COUNT)
+		rand_level = GlobVar.levels_remaining.pick_random()
+
 		$CharacterBody2D.heal(GlobVar.levelStartHeal)
 		GlobVar.transitioning = true
 		while not valid_biome:
@@ -63,7 +70,8 @@ func _ready() -> void:
 					if new_biome == LevelBiomes.lvl[rand_level]:
 						valid_biome = true
 					else:
-						rand_level = randi_range(0,LEVEL_COUNT)
+						GlobVar.levels_remaining.erase(rand_level)
+						rand_level = GlobVar.levels_remaining.pick_random()
 				else:
 					valid_biome = true
 			else:
@@ -89,6 +97,8 @@ func _ready() -> void:
 			var alternative_tile = $TileMapLayer2.get_cell_alternative_tile(coords)
 			$TileMapLayer2.set_cell(coords, new_biome, atlas_coords, alternative_tile)
 		$Tunnel2.color = GlobVar.tunnel_color[new_biome]
+		if GlobVar.stage >= 1 and GlobVar.biome != new_biome:
+			GlobVar.levels_remaining = range(0,LEVEL_COUNT+1)
 		GlobVar.biome = new_biome
 		GlobVar.stage += 1
 

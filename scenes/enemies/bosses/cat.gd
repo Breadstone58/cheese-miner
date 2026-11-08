@@ -21,8 +21,15 @@ var left_hand_health = GlobVar.stage * 10
 var right_hand_health = GlobVar.stage * 10
 var body_frame = 0
 
-var attack_list = ["paw_slam","side_sweep","floor_slam",]
+var attack_list = [
+	"paw_slam", "paw_slam", "paw_slam",
+	"side_sweep", "side_sweep", "side_sweep",
+	"floor_slam",
+	]
 var paw_slamming = 0
+var player_desperation = 3:
+	set(value):
+		player_desperation = clamp(value,0,3)
 	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -80,6 +87,10 @@ func play_animation():
 		"intro":
 			pass
 		"idle":
+			if is_instance_valid($"Left Hand/Hitbox"):
+				$"Left Hand/Hitbox".monitorable = false
+			if is_instance_valid($"Right Hand/Hitbox"):
+				$"Right Hand/Hitbox".monitorable = false
 			var tweenH = create_tween()
 			var tweenL = create_tween()
 			var tweenR = create_tween()
@@ -94,16 +105,25 @@ func play_animation():
 			tweenL.set_loops(idles)
 			tweenL.tween_property(left_hand,"position",Vector2(512.0 - 32.0,768.0),idle_speed)
 			tweenL.parallel().tween_property(left_hand,"rotation_degrees",0.0,idle_speed)
+			if is_instance_valid($"Left Hand/Hitbox"):
+				tweenL.tween_callback(monitor.bind(1))
 			tweenL.tween_property(left_hand,"position",Vector2(512.0 + 32.0,768.0),idle_speed)
 			
 			tweenR.set_loops(idles)
 			tweenR.tween_property(right_hand,"position",Vector2(1536.0 + 32.0,768.0),idle_speed)
 			tweenR.parallel().tween_property(right_hand,"rotation_degrees",0.0,idle_speed)
+			if is_instance_valid($"Right Hand/Hitbox"):
+				tweenR.tween_callback(monitor.bind(2))
 			tweenR.tween_property(right_hand,"position",Vector2(1536.0 - 32.0,768.0),idle_speed)
 			
 			tweenH.finished.connect(func():
 				if track == "idle":
-					track = attack_list.pick_random()
+					if GlobVar.playerHealth <= 10 and player_desperation > 0:
+						player_desperation -= 1
+						track = "floor_slam"
+					else:
+						player_desperation += 1
+						track = attack_list.pick_random()
 			, CONNECT_ONE_SHOT)
 		
 		"paw_slam":
@@ -119,7 +139,7 @@ func play_animation():
 			for loops in range(0, randi_range(1, 2) * (3-hands_left)):
 				if left_hand_alive:
 					paw_slamming = 1
-					await get_tree().create_timer(1.5 * hands_left).timeout
+					await get_tree().create_timer(1.0 * hands_left).timeout
 					paw_slamming = 3
 					var slamL = create_tween()
 					slamL.tween_property(left_hand, "position", Vector2(left_hand.position.x, 1088.0), 0.6)
@@ -130,7 +150,7 @@ func play_animation():
 				
 				if right_hand_alive:
 					paw_slamming = 2
-					await get_tree().create_timer(1.5 * hands_left).timeout
+					await get_tree().create_timer(1.0 * hands_left).timeout
 					paw_slamming = 3
 					var slamR = create_tween()
 					slamR.tween_property(right_hand, "position", Vector2(right_hand.position.x, 1088.0), 0.6)
@@ -177,6 +197,10 @@ func play_animation():
 			slam.parallel().tween_property(right_hand,"position:y",768.0,0.2)
 			await slam.finished
 			track = "idle"
+			
+		"punch":
+			pass
+			
 		"stunned":
 			var flash = create_tween()
 			var move_head = create_tween()
@@ -233,5 +257,11 @@ func summon_crab():
 	var crab = CRAB_SCENE.instantiate()
 	crab.global_position = Vector2(randi_range(96,1952),96)
 	crab.airborne = true
-	crab.health /= 3.0
+	crab.health /= 4
 	get_tree().current_scene.add_child(crab)
+	
+func monitor(hand: int):
+	if hand == 1 and is_instance_valid($"Left Hand/Hitbox"):
+				$"Left Hand/Hitbox".monitorable = true
+	elif is_instance_valid($"Right Hand/Hitbox"):
+		$"Right Hand/Hitbox".monitorable = true

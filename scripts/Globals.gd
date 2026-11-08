@@ -15,6 +15,7 @@ var money_disp_frame = 0
 var energy_disp_frame = 0
 var charFacing = 1
 var music_biome = -1
+var levels_remaining = []
 
 #items
 var inventory = []
@@ -33,6 +34,10 @@ var exAttackSpeed = 0
 #gadget stuff
 var gadget_change_key = -1
 var energy = -1
+
+#stats
+var blocks_broken = 0
+var enemies_killed = 0
 
 var tunnel_color = {
 	0 : Color("#250239"),

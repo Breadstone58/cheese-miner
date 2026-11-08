@@ -13,7 +13,7 @@ func _process(delta: float) -> void:
 		$RedBiome.volume_db = clamp($RedBiome.volume_db - delta * 80,-80,0)
 		$GreenBiome.volume_db = clamp($GreenBiome.volume_db - delta * 80,-80,0)
 		$Shop.volume_db = clamp($Shop.volume_db + delta * 80,-80,0)
-	elif "boss" in get_tree().current_scene.name:
+	elif "Boss" in get_tree().current_scene.name:
 		$YellowBiome.volume_db = clamp($YellowBiome.volume_db - delta * 80,-80,0)
 		$BlueBiome.volume_db = clamp($BlueBiome.volume_db - delta * 80, -80, 0)
 		$RedBiome.volume_db = clamp($RedBiome.volume_db - delta * 80,-80,0)

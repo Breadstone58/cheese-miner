@@ -52,16 +52,6 @@ func _process(delta: float) -> void:
 	else:
 		cam.limit_bottom = 1152
 		
-	var used_cells = $TileMapLayer.get_used_cells()
-	var broken_count = 0
-	for coords in used_cells:
-		var tile_data = $TileMapLayer.get_cell_tile_data(coords)
-		if tile_data and tile_data.get_custom_data("breakable"):
-			broken_count += 1
-			break
-	if broken_count == 0 and not level_complete:
-		SignalBus.level_complete.emit()
-		level_complete = true
 
 func _on_particle_spawn(new_texture: Texture2D, spawn_position: Vector2i):
 	var particle_instance = PARTICLE_SCENE.instantiate() as CPUParticles2D
