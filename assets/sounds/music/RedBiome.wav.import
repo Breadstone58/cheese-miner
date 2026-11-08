@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://djo77wwm8lq80"
-path="res://.godot/imported/RedBiome.wav-895144f7c5ee93e0fc7f1658d3a886c3.sample"
+path="res://.godot/imported/RedBiome.wav-86677ac2a7e73dcd561328b6d71792fe.sample"
 
 [deps]
 
-source_file="res://assets/sounds/RedBiome.wav"
-dest_files=["res://.godot/imported/RedBiome.wav-895144f7c5ee93e0fc7f1658d3a886c3.sample"]
+source_file="res://assets/sounds/music/RedBiome.wav"
+dest_files=["res://.godot/imported/RedBiome.wav-86677ac2a7e73dcd561328b6d71792fe.sample"]
 
 [params]
 

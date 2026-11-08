@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://drvcymw6goloq" path="res://assets/sprites/player/DrillExplosion.png" id="1_17npe"]
 [ext_resource type="Script" uid="uid://tg17dvkicomg" path="res://scenes/explosion.gd" id="2_nfeox"]
+[ext_resource type="AudioStream" uid="uid://d4h22wdglofph" path="res://assets/sounds/sfx/player/CMExplosion.wav" id="3_aw4cw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nfeox"]
 atlas = ExtResource("1_17npe")
@@ -73,3 +74,6 @@ autoplay = "default"
 frame = 7
 frame_progress = 1.0
 script = ExtResource("2_nfeox")
+
+[node name="SFX" type="AudioStreamPlayer" parent="." unique_id=1744002526]
+stream = ExtResource("3_aw4cw")

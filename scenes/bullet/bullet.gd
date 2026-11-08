@@ -59,7 +59,8 @@ func _physics_process(delta: float) -> void:
 			$"Drill Explosion".visible = true
 			$"Drill Explosion".global_rotation = 0 # it was uhhh it was all tipsy turny without this
 			$"Drill Explosion".play("explosion")
-			await $"Drill Explosion".animation_finished
+			$Explosion.play()
+			await $Explosion.finished
 			queue_free()
 		else:
 			match direction:
@@ -77,4 +78,12 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 
 func remove():
 	if not is_queued_for_deletion():
+		speed = 0 # yeah it went off screen 
+		set_physics_process(false)
+		$DrillBlast.visible = false
+		$"Drill Explosion".visible = true
+		$"Drill Explosion".global_rotation = 0 # it was uhhh it was all tipsy turny without this
+		$"Drill Explosion".play("explosion")
+		$Explosion.play()
+		await $Explosion.finished
 		queue_free()

@@ -11,6 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://dmjo1b17jfnhy" path="res://assets/sprites/player/3-jumps.png" id="6_je7p5"]
 [ext_resource type="Texture2D" uid="uid://dfds3xynvaru5" path="res://assets/sprites/player/2-walks.png" id="7_fm80t"]
 [ext_resource type="Texture2D" uid="uid://136dpv6hr0xv" path="res://assets/sprites/player/0-idle.png" id="7_gx1jg"]
+[ext_resource type="AudioStream" uid="uid://2dgmjr4aq5gc" path="res://assets/sounds/sfx/player/CMWalk.wav" id="12_fm80t"]
+[ext_resource type="AudioStream" uid="uid://c0wvwvii5pw3i" path="res://assets/sounds/sfx/player/CMHurt.wav" id="13_ugbui"]
+[ext_resource type="AudioStream" uid="uid://coma6p6mfts3" path="res://assets/sounds/sfx/player/CMJump.wav" id="14_fcs02"]
+[ext_resource type="AudioStream" uid="uid://cl4r13x5khkq8" path="res://assets/sounds/sfx/player/CMShoot.wav" id="15_fcs02"]
 
 [sub_resource type="Animation" id="Animation_fm80t"]
 resource_name = "Heal Aura"
@@ -720,5 +724,22 @@ hit_from_inside = true
 target_position = Vector2(0, 65)
 collision_mask = 4
 hit_from_inside = true
+
+[node name="Sounds" type="Node" parent="." unique_id=272122379]
+
+[node name="Walk" type="AudioStreamPlayer" parent="Sounds" unique_id=1543082189]
+stream = ExtResource("12_fm80t")
+volume_db = 7.0
+
+[node name="Hurt" type="AudioStreamPlayer" parent="Sounds" unique_id=965859378]
+stream = ExtResource("13_ugbui")
+volume_db = 15.0
+
+[node name="Jump" type="AudioStreamPlayer" parent="Sounds" unique_id=1993590784]
+stream = ExtResource("14_fcs02")
+volume_db = 10.0
+
+[node name="Shoot" type="AudioStreamPlayer" parent="Sounds" unique_id=2143676834]
+stream = ExtResource("15_fcs02")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

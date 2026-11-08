@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://qt3ee3lh01gj"
-path="res://.godot/imported/CheeseMinerTitle.wav-7b0c9d0903729e0296ba82e84e2b9b2b.sample"
+path="res://.godot/imported/CheeseMinerTitle.wav-95d64e0ee27a5e20040f5f69b5e24d87.sample"
 
 [deps]
 
-source_file="res://assets/sounds/CheeseMinerTitle.wav"
-dest_files=["res://.godot/imported/CheeseMinerTitle.wav-7b0c9d0903729e0296ba82e84e2b9b2b.sample"]
+source_file="res://assets/sounds/music/CheeseMinerTitle.wav"
+dest_files=["res://.godot/imported/CheeseMinerTitle.wav-95d64e0ee27a5e20040f5f69b5e24d87.sample"]
 
 [params]
 

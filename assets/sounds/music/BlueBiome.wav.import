@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://uw4qsfvf6aor"
-path="res://.godot/imported/BlueBiome.wav-399314dff892d606e86a481d162efaf1.sample"
+path="res://.godot/imported/BlueBiome.wav-cf6422a9f96c9dda9b4cc36a37ec0706.sample"
 
 [deps]
 
-source_file="res://assets/sounds/BlueBiome.wav"
-dest_files=["res://.godot/imported/BlueBiome.wav-399314dff892d606e86a481d162efaf1.sample"]
+source_file="res://assets/sounds/music/BlueBiome.wav"
+dest_files=["res://.godot/imported/BlueBiome.wav-cf6422a9f96c9dda9b4cc36a37ec0706.sample"]
 
 [params]
 

@@ -11,14 +11,14 @@ var going_boss = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GlobVar.leaving_shop = false
-	print(GlobVar.levels_remaining)
 	if GlobVar.stage == 0 or GlobVar.levels_remaining.size() == 0:
 		force_new_biome = true
 		GlobVar.levels_remaining = range(0,LEVEL_COUNT+1)
 		if GlobVar.stage == 0:
-			for level in GlobVar.levels_remaining:
+			for level in GlobVar.levels_remaining.duplicate():
 				if level in LevelBiomes.hard:
 					GlobVar.levels_remaining.erase(level)
+	print(GlobVar.levels_remaining)
 	if randf() < GlobVar.shopChance:
 		going_shop = true
 		$Shop_Sign.visible = true
@@ -81,7 +81,7 @@ func _ready() -> void:
 						if new_biome == LevelBiomes.lvl[rand_level]:
 							valid_biome = true
 						else:
-							rand_level = randi_range(0,LEVEL_COUNT)
+							rand_level = GlobVar.levels_remaining.pick_random()
 					else:
 						valid_biome = true
 		var used_cells = $TileMapLayer.get_used_cells()
@@ -113,6 +113,7 @@ func _process(delta: float) -> void:
 		elif going_boss:
 			get_tree().change_scene_to_file("res://scenes/rooms/boss_"+str(randi_range(0,0))+".tscn")
 		else:
+			GlobVar.levels_remaining.erase(rand_level)
 			get_tree().change_scene_to_file("res://scenes/rooms/room_"+str(rand_level)+".tscn")
 
 func _on_next_biome_area_entered(area: Area2D) -> void:

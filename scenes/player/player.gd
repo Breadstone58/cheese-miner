@@ -18,6 +18,7 @@ var is_position_locked: bool = false
 var iFrames = 0
 var dead = false
 var crouching = false
+var jump_sfx_played = false
 
 var shoot_speed: float = 15.0/60.0
 var shoot_cooldown: float = 0
@@ -49,6 +50,7 @@ func _process(delta: float) -> void:
 	# Capture inputs when they are just pressed
 	if Input.is_action_just_pressed("jump"):
 		jump_buffer_timer = INPUT_BUFFER_WINDOW
+			
 	if Input.is_action_just_pressed("crouch"):
 		crouch_buffer_timer = INPUT_BUFFER_WINDOW
 	GlobVar.PlayerX = position.x
@@ -131,17 +133,22 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("jump") and extra_jumps_left > 0:
 			extra_jumps_left -= 1
 			air_time = AIR_TIME_MAX
+			$Sounds/Jump.play()
 	else:
 		air_time = AIR_TIME_MAX
 		extra_jumps_left = extra_jumps
 		cjb_active = false
+		jump_sfx_played = false
 		
-	handle_lock_input()
-
+	handle_lock_input()	
+	
 	if Input.is_action_pressed("jump") and air_time > 0 and not is_position_locked and not GlobVar.transitioning:
 		velocity.y = JUMP_VELOCITY
 		if jump_buffer_timer > 0.0 and crouch_buffer_timer > 0.0:
 			cjb_active = true
+		if not jump_sfx_played:
+			$Sounds/Jump.play()
+			jump_sfx_played = true
 			
 	""" Experimental bite-dash
 	if Input.is_action_just_pressed("bite"):
@@ -206,6 +213,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if bullet.has_method("setup"):
 			bullet.setup(aim_direction)
 		get_tree().current_scene.add_child(bullet)
+		$Sounds/Shoot.play()
 		
 func handle_lock_input() -> void:
 	if toggle_lock_mode:
@@ -218,6 +226,7 @@ func damage(amount: int, location: Vector2 = Vector2(-1,-1)):
 	if iFrames == 0 and GlobVar.playerHealth > 0:
 		GlobVar.playerHealth -= amount
 		iFrames = 60
+		$Sounds/Hurt.play()
 		if location != Vector2(-1,-1):
 			var knockback_dir = (global_position - location).normalized()
 			knockback_dir.y = min(knockback_dir.y, -0.4)
@@ -366,6 +375,9 @@ func update_animation():
 						else:
 							sprite.animation = "idle_aim"
 							sprite.frame = 4
-			
+	if is_on_floor() and not crouching and side and not $Sounds/Walk.is_playing():
+		$Sounds/Walk.play()
+	elif not is_on_floor() or crouching or not side:
+		$Sounds/Walk.stop()
 			
 			

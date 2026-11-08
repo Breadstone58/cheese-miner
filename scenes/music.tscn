@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://blkoljb8lx6ej"]
 
-[ext_resource type="AudioStream" uid="uid://c3h7gprebocfs" path="res://assets/sounds/GreenBiome.mp3" id="1_ibx2e"]
+[ext_resource type="AudioStream" uid="uid://c3h7gprebocfs" path="res://assets/sounds/music/GreenBiome.mp3" id="1_ibx2e"]
 [ext_resource type="Script" uid="uid://datpqbp1hj3i1" path="res://scenes/music.gd" id="1_qnihg"]
-[ext_resource type="AudioStream" uid="uid://bywxye8l7v25i" path="res://assets/sounds/YellowBiome.wav" id="2_keplp"]
-[ext_resource type="AudioStream" uid="uid://uw4qsfvf6aor" path="res://assets/sounds/BlueBiome.wav" id="3_d6bcn"]
-[ext_resource type="AudioStream" uid="uid://djo77wwm8lq80" path="res://assets/sounds/RedBiome.wav" id="4_okdju"]
-[ext_resource type="AudioStream" uid="uid://qt3ee3lh01gj" path="res://assets/sounds/CheeseMinerTitle.wav" id="6_qntvw"]
-[ext_resource type="AudioStream" uid="uid://cgogi3r7fqslw" path="res://assets/sounds/CheeseMinerBoss.wav" id="7_3dw7u"]
+[ext_resource type="AudioStream" uid="uid://bywxye8l7v25i" path="res://assets/sounds/music/YellowBiome.wav" id="2_keplp"]
+[ext_resource type="AudioStream" uid="uid://uw4qsfvf6aor" path="res://assets/sounds/music/BlueBiome.wav" id="3_d6bcn"]
+[ext_resource type="AudioStream" uid="uid://djo77wwm8lq80" path="res://assets/sounds/music/RedBiome.wav" id="4_okdju"]
+[ext_resource type="AudioStream" uid="uid://qt3ee3lh01gj" path="res://assets/sounds/music/CheeseMinerTitle.wav" id="6_qntvw"]
+[ext_resource type="AudioStream" uid="uid://cgogi3r7fqslw" path="res://assets/sounds/music/CheeseMinerBoss.wav" id="7_3dw7u"]
 
 [node name="Music" type="Node" unique_id=34921368]
 script = ExtResource("1_qnihg")

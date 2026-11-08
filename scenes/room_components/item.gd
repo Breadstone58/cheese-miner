@@ -145,11 +145,20 @@ func _on_area_entered(area: Area2D) -> void:
 		$AnimationPlayer.stop()
 		modulate = Color(1,1,1,1)
 		sprite.scale = Vector2(1,1)
+		if state == 11:
+			$Purchase.play()
+		else:
+			$Pickup.play()
 		
 		var tween = create_tween()
 		tween.tween_property(self, "modulate", Color(1, 1, 1, 0.0), 1.0)
 		tween.parallel().tween_property(self, "position",position + Vector2(0,-128),1.0)
-		tween.tween_callback(queue_free)
+		await tween.finished
+		if state == 11 and $Purchase.is_playing():
+			await $Purchase.finished
+		elif $Pickup.is_playing():
+			await $Pickup.finished
+		queue_free()
 		
 func _on_shop_refresh():
 	if state == 11:

@@ -18,6 +18,8 @@
 [ext_resource type="Texture2D" uid="uid://dm14nrvuim8xi" path="res://assets/sprites/items/medkit.png" id="14_rsg37"]
 [ext_resource type="Texture2D" uid="uid://dqntmy0bcajmw" path="res://assets/sprites/items/Jumpcan.png" id="15_uq7nl"]
 [ext_resource type="Texture2D" uid="uid://8hawgl1xjeva" path="res://assets/sprites/items/Bouncybullets.png" id="17_ps343"]
+[ext_resource type="AudioStream" uid="uid://c74e3clbjncvo" path="res://assets/sounds/sfx/player/CMPickUp.wav" id="19_p2y2a"]
+[ext_resource type="AudioStream" uid="uid://ftybg51xglm" path="res://assets/sounds/sfx/player/CMPurchase.wav" id="20_b2ihd"]
 
 [sub_resource type="Animation" id="Animation_6muww"]
 length = 0.001
@@ -593,5 +595,11 @@ theme_override_font_sizes/normal_font_size = 64
 text = "$0"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Pickup" type="AudioStreamPlayer" parent="." unique_id=1064439930]
+stream = ExtResource("19_p2y2a")
+
+[node name="Purchase" type="AudioStreamPlayer" parent="." unique_id=1139733827]
+stream = ExtResource("20_b2ihd")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

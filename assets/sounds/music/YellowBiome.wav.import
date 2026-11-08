@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bywxye8l7v25i"
-path="res://.godot/imported/YellowBiome.wav-d7df4f3cc2b1f3d84afc2b0a55b5f03a.sample"
+path="res://.godot/imported/YellowBiome.wav-78f3a5396edbe7d853a7a59478838f1f.sample"
 
 [deps]
 
-source_file="res://assets/sounds/YellowBiome.wav"
-dest_files=["res://.godot/imported/YellowBiome.wav-d7df4f3cc2b1f3d84afc2b0a55b5f03a.sample"]
+source_file="res://assets/sounds/music/YellowBiome.wav"
+dest_files=["res://.godot/imported/YellowBiome.wav-78f3a5396edbe7d853a7a59478838f1f.sample"]
 
 [params]
 
