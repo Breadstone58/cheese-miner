@@ -210,8 +210,6 @@ autoplay = "blank"
 [node name="DrillBlast" type="AnimatedSprite2D" parent="." unique_id=1044762479]
 sprite_frames = SubResource("SpriteFrames_lfxu0")
 autoplay = "default"
-frame = 5
-frame_progress = 1.0
 offset = Vector2(-36, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1855784266]

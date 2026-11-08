@@ -42,4 +42,3 @@ autoplay = true
 
 [node name="Boss" type="AudioStreamPlayer" parent="." unique_id=143855959]
 stream = ExtResource("7_3dw7u")
-volume_db = -80.0

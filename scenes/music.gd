@@ -2,7 +2,7 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	SignalBus.boss_music.emit(_on_boss_music)
+	SignalBus.boss_music.connect(_on_boss_music)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

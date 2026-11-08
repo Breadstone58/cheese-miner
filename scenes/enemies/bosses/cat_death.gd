@@ -9,6 +9,7 @@ func _ready() -> void:
 	
 func _on_kill(death_area: Vector2):
 	position = death_area
+	$Body.frame = $"../Cat".body_frame
 	visible = true
 	
 	await get_tree().create_timer(3.0).timeout

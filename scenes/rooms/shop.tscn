@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://ce0d76c776f0" path="res://scenes/room_components/item.tscn" id="17_fp621"]
 [ext_resource type="PackedScene" uid="uid://w5qjak6ufh2x" path="res://scenes/room_components/crystal.tscn" id="18_menil"]
 [ext_resource type="PackedScene" uid="uid://dc3srlie11g84" path="res://scenes/room_components/tunnel.tscn" id="21_b1vae"]
+[ext_resource type="Texture2D" uid="uid://3fugbkmwgokm" path="res://assets/sprites/environment/shop_background.png" id="22_3kbvw"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_c1qis"]
 
@@ -1359,7 +1360,7 @@ collision_layer = 16
 [node name="Lever" parent="." unique_id=1780346431 instance=ExtResource("15_2w6pf")]
 position = Vector2(1120, 1064)
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=355077249]
+[node name="Shopkeeper" type="Sprite2D" parent="." unique_id=355077249]
 z_index = -1
 position = Vector2(1024, 618)
 scale = Vector2(1, 0.781)
@@ -1385,4 +1386,17 @@ state = 11
 offset_left = -51.0
 offset_top = -2089.0
 offset_right = 2100.0
-offset_bottom = 5111.0
+offset_bottom = 1174.0
+
+[node name="Tunnel2" parent="." unique_id=424873058 instance=ExtResource("21_b1vae")]
+offset_left = -51.0
+offset_top = 1152.0
+offset_right = 2100.0
+offset_bottom = 5081.0
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1219840706]
+visible = false
+z_index = -100
+position = Vector2(1025.394, 601.25)
+scale = Vector2(1.6627586, 1.6627586)
+texture = ExtResource("22_3kbvw")

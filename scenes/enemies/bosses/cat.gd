@@ -6,8 +6,10 @@ extends Node2D
 @onready var right_hand: AnimatedSprite2D = $"Right Hand"
 
 signal killed
+const CRAB_SCENE = preload("res://scenes/enemies/crab.tscn")
 
-var track = "idle" :
+
+var track = "intro" :
 	set(value):
 		track = value
 		play_animation()
@@ -17,13 +19,15 @@ var left_hand_alive = true
 var right_hand_alive = true
 var left_hand_health = GlobVar.stage * 10
 var right_hand_health = GlobVar.stage * 10
+var body_frame = 0
 
-var attack_list = ["paw_slam","side_sweep"]
+var attack_list = ["paw_slam","side_sweep","floor_slam",]
 var paw_slamming = 0
 	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	GlobVar.stage = 5 if GlobVar.stage < 15 else GlobVar.stage
+	visible = false
+	GlobVar.stage = 15 if GlobVar.stage < 15 else GlobVar.stage
 	play_animation()
 	$"Left Hand/Hitbox".damage = GlobVar.stage
 	$"Right Hand/Hitbox".damage = GlobVar.stage
@@ -33,34 +37,48 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	watch_target()
-	if not is_instance_valid(left_hand) or not left_hand_alive:
-		left_hand = $DestroyedHand
-		left_hand_alive = false
-		hands_left = 1
-	if not is_instance_valid(right_hand) or not right_hand_alive:
-		right_hand = $DestroyedHand
-		right_hand_alive = false
-		hands_left = 1
-	if not (left_hand_alive or right_hand_alive):
-		hands_left = 0
-		if track != "stunned":
-			track = "stunned"
+	if $Head.animation == "intro" and $Head.frame < 7:
+		pass
+	elif $Head.animation == "intro" and $Head.frame == 7:
+		#await get_tree().create_timer(1.0).timeout
+		$Head.play("idle")
+		$Head/Body.play("idle")
+		SignalBus.boss_music.emit(true)
+		track = "idle"
 	else:
-		if paw_slamming == 1:
-			left_hand.position = left_hand.position.move_toward(Vector2(GlobVar.PlayerX,144.0), 700*delta)
-			left_hand.z_index = 1
-		elif paw_slamming == 2:
-			right_hand.position = right_hand.position.move_toward(Vector2(GlobVar.PlayerX,144.0), 700*delta)
-			right_hand.z_index = 1
+		watch_target()
+		if not is_instance_valid(left_hand) or not left_hand_alive:
+			left_hand = $DestroyedHand
+			left_hand_alive = false
+			hands_left = 1
+		if not is_instance_valid(right_hand) or not right_hand_alive:
+			right_hand = $DestroyedHand
+			right_hand_alive = false
+			hands_left = 1
+		if not (left_hand_alive or right_hand_alive):
+			hands_left = 0
+			if track != "stunned":
+				track = "stunned"
+				$Head.play("stun")
+				$Head/Body.stop()
+				body_frame = $Head/Body.frame
 		else:
-			left_hand.z_index = 0
-			right_hand.z_index = 0
+			if paw_slamming == 1:
+				left_hand.position = left_hand.position.move_toward(Vector2(GlobVar.PlayerX,144.0), 700*delta)
+				left_hand.z_index = 1
+			elif paw_slamming == 2:
+				right_hand.position = right_hand.position.move_toward(Vector2(GlobVar.PlayerX,144.0), 700*delta)
+				right_hand.z_index = 1
+			else:
+				left_hand.z_index = 0
+				right_hand.z_index = 0
 
 	
 
 func play_animation():
 	match track:
+		"intro":
+			pass
 		"idle":
 			var tweenH = create_tween()
 			var tweenL = create_tween()
@@ -144,14 +162,21 @@ func play_animation():
 			await initial_tween.finished
 			await get_tree().create_timer(2.0).timeout
 			var slam_tween = create_tween().set_parallel(true)
-			slam_tween.tween_property(left_hand,"position",Vector2(960.0 if left_y == right_y else 1984.0,left_y),1.0 if left_y == right_y else 2.0)
-			slam_tween.tween_property(right_hand,"position",Vector2(1088.0 if left_y == right_y else 64.0,right_y),1.0 if left_y == right_y else 2.0)
+			slam_tween.tween_property(left_hand,"position",Vector2(960.0 if left_y == right_y else 1984.0,left_y),1.0)
+			slam_tween.tween_property(right_hand,"position",Vector2(1088.0 if left_y == right_y else 64.0,right_y),1.0)
 			await slam_tween.finished
 			track = "idle"
 		
 		"floor_slam":
-			pass
-		
+			var slam = create_tween()
+			slam.set_loops(clamp(floor(GlobVar.stage/15.0)*2+1,3,INF))
+			slam.tween_property(left_hand,"position:y",1088.0,0.2)
+			slam.parallel().tween_property(right_hand,"position:y",1088.0,0.2)
+			slam.tween_callback(summon_crab)
+			slam.tween_property(left_hand,"position:y",768.0,0.2)
+			slam.parallel().tween_property(right_hand,"position:y",768.0,0.2)
+			await slam.finished
+			track = "idle"
 		"stunned":
 			var flash = create_tween()
 			var move_head = create_tween()
@@ -196,4 +221,17 @@ func _on_head_hurtbox_area_entered(area: Area2D) -> void:
 		queue_free()
 
 func boss_intro():
-	pass
+	await get_tree().create_timer(3.0).timeout
+	visible = true
+	$Head.play("intro")
+	$Head/Body.play("intro")
+	var raise_hands = create_tween().set_parallel(true)
+	raise_hands.tween_property(left_hand,"position",Vector2(544.0,768.0),7.0/12.0).from(Vector2(544.0,1172.0))
+	raise_hands.tween_property(right_hand,"position",Vector2(1504.0,768.0),7.0/12.0).from(Vector2(1504.0,1172.0))
+
+func summon_crab():
+	var crab = CRAB_SCENE.instantiate()
+	crab.global_position = Vector2(randi_range(96,1952),96)
+	crab.airborne = true
+	crab.health /= 3.0
+	get_tree().current_scene.add_child(crab)

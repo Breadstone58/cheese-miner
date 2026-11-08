@@ -2,17 +2,13 @@ extends Node2D
 const PARTICLE_SCENE = preload("res://scenes/room_components/break_particles.tscn")
 @onready var cam: Camera2D = $CharacterBody2D/Camera2D
 var scroll_down = 0
-var top_locked = false:
-	set(value):
-		top_locked = value
-		if value == true:
-			$Cat.boss_intro()
+var top_locked = false
 var level_complete = false
+var boss_intro_start = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalBus.spawn_particle.connect(_on_particle_spawn)
-	SignalBus.boss_music.emit(true)
 	$Cat.killed.connect(_on_boss_kill)
 	var used_cells = $TileMapLayer.get_used_cells()
 	for coords in used_cells:
@@ -45,6 +41,10 @@ func _process(delta: float) -> void:
 	
 	if $CharacterBody2D.position.y - 576 > 0:
 		top_locked = true
+		
+	if top_locked and not boss_intro_start:
+		boss_intro_start = true
+		$Cat.boss_intro()
 	
 	if $CharacterBody2D.position.y > 1152:
 		GlobVar.transitioning = true
