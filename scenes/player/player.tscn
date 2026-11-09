@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://vtiane04et3j"]
 
 [ext_resource type="Script" uid="uid://dttxohih5jh6v" path="res://scenes/player/player.gd" id="1_g2els"]
+[ext_resource type="Texture2D" uid="uid://dw4r21ijjfx5y" path="res://assets/sprites/player/9-bitedash.png" id="2_kvlxm"]
 [ext_resource type="Texture2D" uid="uid://bpd261fp3v1cw" path="res://assets/sprites/player/4-crouchidletrans.png" id="3_5gtgg"]
 [ext_resource type="Texture2D" uid="uid://berrckyi2na3c" path="res://assets/sprites/player/6-crouchidleshoots.png" id="3_h17s1"]
 [ext_resource type="Texture2D" uid="uid://cvakpe5ac774c" path="res://assets/sprites/player/7-crawls.png" id="3_je7p5"]
@@ -98,6 +99,42 @@ _data = {
 &"Maggot Aura": SubResource("Animation_fcs02"),
 &"RESET": SubResource("Animation_gx1jg")
 }
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xbmr"]
+atlas = ExtResource("2_kvlxm")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hir57"]
+atlas = ExtResource("2_kvlxm")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7072n"]
+atlas = ExtResource("2_kvlxm")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gmu8b"]
+atlas = ExtResource("2_kvlxm")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lclul"]
+atlas = ExtResource("2_kvlxm")
+region = Rect2(0, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ej2d6"]
+atlas = ExtResource("2_kvlxm")
+region = Rect2(256, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fvjb1"]
+atlas = ExtResource("2_kvlxm")
+region = Rect2(512, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bysbl"]
+atlas = ExtResource("2_kvlxm")
+region = Rect2(768, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vkc6f"]
+atlas = ExtResource("2_kvlxm")
+region = Rect2(0, 512, 256, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2wy34"]
 atlas = ExtResource("3_je7p5")
@@ -381,6 +418,38 @@ region = Rect2(1280, 512, 256, 256)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ogd8f"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xbmr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hir57")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7072n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gmu8b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lclul")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ej2d6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fvjb1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bysbl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vkc6f")
+}],
+"loop": 0,
+"name": &"bite_dash",
+"speed": 18.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2wy34")
@@ -745,9 +814,9 @@ libraries/ = SubResource("AnimationLibrary_ugbui")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=566927396]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_ogd8f")
-animation = &"hurt"
+animation = &"bite_dash"
 autoplay = "idle"
-frame = 2
+frame = 8
 frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1659014958]
@@ -775,6 +844,7 @@ shape = SubResource("RectangleShape2D_4xhwt")
 disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Bite Hitbox/CollisionShape2D" unique_id=2114854181]
+visible = false
 z_index = 10
 z_as_relative = false
 position = Vector2(16, 0)
@@ -806,7 +876,7 @@ volume_db = 7.0
 
 [node name="Hurt" type="AudioStreamPlayer" parent="Sounds" unique_id=965859378]
 stream = ExtResource("13_ugbui")
-volume_db = 15.0
+volume_db = 5.0
 
 [node name="Jump" type="AudioStreamPlayer" parent="Sounds" unique_id=1993590784]
 stream = ExtResource("14_fcs02")

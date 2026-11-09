@@ -288,6 +288,12 @@ func update_animation():
 			# $AnimationPlayer.play("Hurt") nvm this shit looks like hot ASS
 			await $AnimationPlayer.animation_finished 
 		return
+	elif Input.is_action_just_pressed("bite") and not crouching:
+		if sprite.animation != "bite_dash":
+			sprite.animation = "bite_dash"
+			sprite.play()
+	if sprite.animation == "bite_dash" and sprite.is_playing():
+		return
 	elif not is_on_floor() and not crouching:
 		sprite.animation = "jump_aim"
 		if up and side:
