@@ -1785,7 +1785,7 @@ position = Vector2(394, 1026)
 sprite_frames = SubResource("SpriteFrames_ogd8f")
 animation = &"new_animation"
 autoplay = "new_animation"
-frame_progress = 0.7408783
+frame_progress = 0.68582416
 
 [node name="Jump" type="AnimatedSprite2D" parent="Instructions" unique_id=608711504]
 modulate = Color(0, 0, 0, 1)
@@ -1812,6 +1812,6 @@ sprite_frames = SubResource("SpriteFrames_i1u1y")
 position = Vector2(1564, -512)
 sprite_frames = SubResource("SpriteFrames_hun7a")
 autoplay = "default"
-frame_progress = 0.85212964
+frame_progress = 0.37048063
 
 [connection signal="crystal_hit" from="Crystal" to="." method="_on_crystal_hit"]
