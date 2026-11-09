@@ -26,7 +26,8 @@ func _process(_delta: float) -> void:
 				$Control/GadgetImage/EnergyAmount.text = str(GlobVar.energy) + "/" + str(ItemID.energy[GlobVar.gadget])
 				$Control/GadgetImage/EnergyImage.play()
 				GlobVar.energy_disp_frame = $Control/GadgetImage/EnergyImage.frame
-				
+	if ArcadeMode.arcade_mode == true:
+		$Control/GadgetImage/Tooltip.frame = 1
 
 func _on_goal_change(goal: String):
 	$Control/LevelGoal.text = goal

@@ -21,6 +21,9 @@ func _ready() -> void:
 	InputMap.action_add_event("fn", (func(): var e = InputEventKey.new(); e.keycode = KEY_ENTER; return e).call())
 	InputMap.action_add_event("arcade_mode", (func(): var e = InputEventJoypadButton.new(); e.button_index = JOY_BUTTON_BACK; return e).call())
 
+
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	#Determine Scroll Lock
@@ -71,6 +74,7 @@ func _on_crystal_hit() -> void:
 		$TileMapLayer.set_cell(Vector2i(15,17),0,Vector2i(1,1))
 		$TileMapLayer.set_cell(Vector2i(16,17),0,Vector2i(1,1))
 		level_complete = true
+		$Instructions/Shoot.visible = true
 	
 func scroll_title():
 	game_start = true
@@ -78,3 +82,6 @@ func scroll_title():
 	InputMap.load_from_project_settings()
 	if trigger_arcade_mode:
 		ArcadeMode.arcade_mode = true
+		$Instructions/Jump.frame = 1
+		$Instructions/Crouch.frame = 1
+		$Instructions/Bite.frame = 1
