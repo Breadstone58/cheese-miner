@@ -60,9 +60,9 @@ func damage(amount: int,source: String):
 	health -= amount
 	if health <= 0 and source == "Bite":
 		SignalBus.bite_death.emit(-5 - GlobVar.exBiteHeal)
-		queue_free()
+		SignalBus.grub_killed.emit()
 	if health <= 0:
-		queue_free()
+		SignalBus.grub_killed.emit()
 	modulate = Color(255,0,0,255)
 	await get_tree().create_timer(0.1).timeout
 	modulate = Color(1,1,1,1)

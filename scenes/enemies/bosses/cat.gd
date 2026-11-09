@@ -242,6 +242,7 @@ func _on_head_hurtbox_area_entered(area: Area2D) -> void:
 	if area is Bite and track == "stunned":
 		killed.emit(head.position)
 		SignalBus.bite_death.emit(50)
+		SignalBus.enemy_killed.emit()
 		queue_free()
 
 func boss_intro():

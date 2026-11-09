@@ -1,6 +1,13 @@
 [gd_scene format=3 uid="uid://s1mpdttieuft"]
 
 [ext_resource type="Script" uid="uid://dog656f2thbm2" path="res://scenes/room_components/break_particles.gd" id="1_g2cl2"]
+[ext_resource type="AudioStream" uid="uid://bt6qgetm6ktq7" path="res://assets/sounds/sfx/player/CMBreak1.wav" id="2_0v4kf"]
+[ext_resource type="AudioStream" uid="uid://dkklgy5m0jdat" path="res://assets/sounds/sfx/player/CMBreak2.wav" id="3_32tce"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4dum0"]
+streams_count = 2
+stream_0/stream = ExtResource("2_0v4kf")
+stream_1/stream = ExtResource("3_32tce")
 
 [node name="CPUParticles2D" type="CPUParticles2D" unique_id=1805701548]
 emitting = false
@@ -11,3 +18,6 @@ gravity = Vector2(0, 2000)
 initial_velocity_min = 200.0
 initial_velocity_max = 400.0
 script = ExtResource("1_g2cl2")
+
+[node name="SFX" type="AudioStreamPlayer" parent="." unique_id=1937279286]
+stream = SubResource("AudioStreamRandomizer_4dum0")

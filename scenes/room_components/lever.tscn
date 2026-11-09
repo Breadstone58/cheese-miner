@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cedi5p4a7y1db" path="res://scenes/room_components/lever.gd" id="1_jbo1a"]
 [ext_resource type="Texture2D" uid="uid://dcldxx06nw8vo" path="res://assets/sprites/environment/door_lever.png" id="2_132qw"]
+[ext_resource type="AudioStream" uid="uid://3tmmgpsp4ybd" path="res://assets/sounds/sfx/player/CMLeverFlip.wav" id="3_132qw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nxful"]
 atlas = ExtResource("2_132qw")
@@ -46,5 +47,9 @@ autoplay = "off"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1232129064]
 position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_ogd8f")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=970640431]
+stream = ExtResource("3_132qw")
+volume_db = 12.0
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

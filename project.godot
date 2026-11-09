@@ -24,6 +24,7 @@ ItemID="*uid://dpix5s0jns7v4"
 ItemSpawner="*uid://de2n5hfbr0mxy"
 Music="*uid://blkoljb8lx6ej"
 ArcadeMode="*uid://hji3eoatn84e"
+SceneTransitions="*uid://c2mqfga8ovgxi"
 
 [display]
 

@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://heyqeftaggi" path="res://assets/sprites/environment/red_stone.png" id="3_kecsc"]
 [ext_resource type="Texture2D" uid="uid://bnld5bho0p6ow" path="res://assets/sprites/environment/green_stone.png" id="4_sx38q"]
 [ext_resource type="Texture2D" uid="uid://c5n47pl1vm5fo" path="res://assets/sprites/environment/white_stone.png" id="6_kecsc"]
+[ext_resource type="AudioStream" uid="uid://ejp12anih5fx" path="res://assets/sounds/sfx/player/CMCrystal.wav" id="7_sx38q"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ogd8f"]
 animations = [{
@@ -48,5 +49,9 @@ sprite_frames = SubResource("SpriteFrames_ogd8f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1874957432]
 shape = SubResource("CapsuleShape2D_ogd8f")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=934290115]
+stream = ExtResource("7_sx38q")
+volume_db = 12.0
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

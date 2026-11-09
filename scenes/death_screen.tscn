@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://cv6xcra0e64vl"]
+
+[ext_resource type="Script" uid="uid://bana6f167dyeh" path="res://scenes/death_screen.gd" id="1_mqh5l"]
+[ext_resource type="Texture2D" uid="uid://cri8l0maml6p8" path="res://assets/sprites/environment/GameOver.png" id="1_uyutr"]
+[ext_resource type="FontFile" uid="uid://8douc1wvghmy" path="res://assets/fonts/VCR_OSD_MONO_1.001.ttf" id="2_dwo6e"]
+
+[node name="Death" type="Node2D" unique_id=501467183]
+script = ExtResource("1_mqh5l")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1320582500]
+z_index = -5
+offset_right = 2048.0
+offset_bottom = 1152.0
+color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="ColorRect" unique_id=95947764]
+position = Vector2(1024, 277)
+texture = ExtResource("1_uyutr")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=64078802]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 512.0
+offset_top = 441.0
+offset_right = 1536.0
+offset_bottom = 946.0
+grow_horizontal = 2
+theme_override_fonts/normal_font = ExtResource("2_dwo6e")
+theme_override_font_sizes/normal_font_size = 64
+text = "Highest Stage:
+Blocks Broken:
+Kills:
+Items Gathered:
+
+
+<Press Start>"
+horizontal_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="RichTextLabel" unique_id=1156796671]
+visible = false
+layout_mode = 0
+offset_left = 229.0
+offset_top = 334.0
+offset_right = 796.0
+offset_bottom = 444.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)

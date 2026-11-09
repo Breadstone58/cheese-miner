@@ -15,3 +15,4 @@ func _on_area_entered(area: Area2D) -> void:
 	if area is Bite and $AnimatedSprite2D.animation == "off":
 		$AnimatedSprite2D.animation = "on"
 		SignalBus.level_complete.emit()
+		$AudioStreamPlayer.play()

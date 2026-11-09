@@ -15,6 +15,8 @@
 [ext_resource type="AudioStream" uid="uid://c0wvwvii5pw3i" path="res://assets/sounds/sfx/player/CMHurt.wav" id="13_ugbui"]
 [ext_resource type="AudioStream" uid="uid://coma6p6mfts3" path="res://assets/sounds/sfx/player/CMJump.wav" id="14_fcs02"]
 [ext_resource type="AudioStream" uid="uid://cl4r13x5khkq8" path="res://assets/sounds/sfx/player/CMShoot.wav" id="15_fcs02"]
+[ext_resource type="AudioStream" uid="uid://c10fiea63r8sf" path="res://assets/sounds/sfx/player/CMDeath.wav" id="16_myrg7"]
+[ext_resource type="AudioStream" uid="uid://bbcl3n7415ohk" path="res://assets/sounds/sfx/player/CMCrouchWalk.wav" id="17_kvlxm"]
 
 [sub_resource type="Animation" id="Animation_fm80t"]
 resource_name = "Heal Aura"
@@ -673,9 +675,8 @@ libraries/ = SubResource("AnimationLibrary_ugbui")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=566927396]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_ogd8f")
-animation = &"crouch_idle_shoots"
+animation = &"idle"
 autoplay = "idle"
-frame = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1659014958]
 position = Vector2(0, 4)
@@ -741,5 +742,12 @@ volume_db = 10.0
 
 [node name="Shoot" type="AudioStreamPlayer" parent="Sounds" unique_id=2143676834]
 stream = ExtResource("15_fcs02")
+
+[node name="Death" type="AudioStreamPlayer" parent="Sounds" unique_id=1414841033]
+stream = ExtResource("16_myrg7")
+volume_db = 12.0
+
+[node name="CrouchWalk" type="AudioStreamPlayer" parent="Sounds" unique_id=1074517036]
+stream = ExtResource("17_kvlxm")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

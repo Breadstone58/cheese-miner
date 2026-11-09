@@ -77,6 +77,8 @@ func _process(delta: float) -> void:
 		is_position_locked = true
 		GlobVar.transitioning = true
 		dead = true
+		await get_tree().create_timer(2.0).timeout
+		SceneTransitions.transition_to("res://scenes/death_screen.tscn",1.0)
 		
 	update_items()
 	
@@ -226,7 +228,10 @@ func damage(amount: int, location: Vector2 = Vector2(-1,-1)):
 	if iFrames == 0 and GlobVar.playerHealth > 0:
 		GlobVar.playerHealth -= amount
 		iFrames = 60
-		$Sounds/Hurt.play()
+		if GlobVar.playerHealth > 0:
+			$Sounds/Hurt.play()
+		else:
+			$Sounds/Death.play(0.22)
 		if location != Vector2(-1,-1):
 			var knockback_dir = (global_position - location).normalized()
 			knockback_dir.y = min(knockback_dir.y, -0.4)
@@ -379,5 +384,7 @@ func update_animation():
 		$Sounds/Walk.play()
 	elif not is_on_floor() or crouching or not side:
 		$Sounds/Walk.stop()
-			
-			
+	if is_on_floor() and crouching and side and not $Sounds/CrouchWalk.is_playing():
+		$Sounds/CrouchWalk.play()
+	elif not is_on_floor() or not crouching or not side:
+		$Sounds/CrouchWalk.stop()
