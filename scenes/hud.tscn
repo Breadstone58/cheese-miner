@@ -25,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://dm14nrvuim8xi" path="res://assets/sprites/items/medkit.png" id="15_dl6ww"]
 [ext_resource type="Texture2D" uid="uid://dqntmy0bcajmw" path="res://assets/sprites/items/Jumpcan.png" id="16_8f8xv"]
 [ext_resource type="Texture2D" uid="uid://bwv38hccy733x" path="res://assets/sprites/items/Sawblade.png" id="18_kp442"]
+[ext_resource type="Texture2D" uid="uid://brgt7bmqhwjui" path="res://assets/sprites/environment/Instructions.png" id="26_gltyx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8yod3"]
 atlas = ExtResource("4_apjy4")
@@ -1022,6 +1023,28 @@ animations = [{
 "speed": 30.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_wi3kw"]
+atlas = ExtResource("26_gltyx")
+region = Rect2(0, 300, 624, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ka0sb"]
+atlas = ExtResource("26_gltyx")
+region = Rect2(0, 720, 624, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q3bbs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wi3kw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ka0sb")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 0.0
+}]
+
 [node name="HUD" type="CanvasLayer" unique_id=180511637]
 script = ExtResource("1_oo0fn")
 
@@ -1130,15 +1153,19 @@ scale = Vector2(1.5, 1.5)
 texture = ExtResource("11_0m4u7")
 
 [node name="EnergyImage" type="AnimatedSprite2D" parent="Control/GadgetImage" unique_id=976989088]
-position = Vector2(83, 0)
+position = Vector2(83, -24)
 sprite_frames = SubResource("SpriteFrames_mvlge")
 autoplay = "default"
 
 [node name="EnergyAmount" type="RichTextLabel" parent="Control/GadgetImage" unique_id=1993593475]
 offset_left = 113.0
-offset_top = -24.0
+offset_top = -40.0
 offset_right = 468.0
-offset_bottom = 16.0
 theme_override_fonts/normal_font = ExtResource("1_ahhtf")
 theme_override_font_sizes/normal_font_size = 32
 vertical_alignment = 1
+
+[node name="Tooltip" type="AnimatedSprite2D" parent="Control/GadgetImage" unique_id=482543835]
+position = Vector2(210, 33)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_q3bbs")
