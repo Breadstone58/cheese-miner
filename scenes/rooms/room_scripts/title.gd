@@ -40,9 +40,10 @@ func _process(delta: float) -> void:
 			scroll_down += delta * 1152
 			if scroll_down >= 1152:
 				get_tree().change_scene_to_file("res://scenes/scroll_transition.tscn")
-		else:
-			cam.limit_bottom = min(cam.limit_bottom + delta * 1152 * 0.5,1152)
-			cam.limit_top = cam.limit_bottom - 1152
+		else: # oh ok this is the thing that makes it go down
+			#cam.limit_bottom = min(cam.limit_bottom + delta * 1152 * 0.5,1152)
+			#cam.limit_top = cam.limit_bottom - 1152
+			pass
 	else:
 		if Input.is_action_just_pressed("fn"):
 			scroll_title()
@@ -77,8 +78,11 @@ func _on_crystal_hit() -> void:
 		$Instructions/Shoot.visible = true
 	
 func scroll_title():
+	var tween = create_tween().set_parallel(true) # set parallel makes the 2 tweens happen at the same time which is cool and awesome
 	game_start = true
-	await get_tree().create_timer(2.0).timeout
+	tween.tween_property(cam, "limit_bottom", 1152, 2.0).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(cam, "limit_top", 0, 2.0).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+	await tween.finished
 	InputMap.load_from_project_settings()
 	if trigger_arcade_mode:
 		ArcadeMode.arcade_mode = true

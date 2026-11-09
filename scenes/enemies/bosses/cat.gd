@@ -34,7 +34,7 @@ var player_desperation = 3:
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	visible = false
-	GlobVar.stage = 15 if GlobVar.stage < 15 else GlobVar.stage
+	GlobVar.stage = 1 if GlobVar.stage < 15 else GlobVar.stage
 	play_animation()
 	$"Left Hand/Hitbox".damage = GlobVar.stage
 	$"Right Hand/Hitbox".damage = GlobVar.stage
@@ -91,12 +91,13 @@ func play_animation():
 				$"Left Hand/Hitbox".monitorable = false
 			if is_instance_valid($"Right Hand/Hitbox"):
 				$"Right Hand/Hitbox".monitorable = false
-			var tweenH = create_tween()
-			var tweenL = create_tween()
-			var tweenR = create_tween()
+			var tweenH = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+			var tweenL = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+			var tweenR = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 			var idles = randi_range(2,4)
 			var idle_speed = 0.375 * hands_left
 			
+
 			
 			tweenH.set_loops(idles)
 			tweenH.tween_property(head,"position",Vector2(1024.0,576.0 + 32.0),idle_speed)
@@ -131,7 +132,7 @@ func play_animation():
 			var right_hand_start_X = right_hand.position.x
 			
 			# 1. Move both hands up initially
-			var initial_tween = create_tween().set_parallel(true)
+			var initial_tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 			initial_tween.tween_property(left_hand, "position", Vector2(left_hand_start_X, 208.0), 0.5)
 			initial_tween.tween_property(right_hand, "position", Vector2(right_hand_start_X, 208.0), 0.5)
 			await initial_tween.finished
@@ -142,10 +143,10 @@ func play_animation():
 					await get_tree().create_timer(1.0 * hands_left).timeout
 					paw_slamming = 3
 					var slamL = create_tween()
-					slamL.tween_property(left_hand, "position", Vector2(left_hand.position.x, 1088.0), 0.6)
+					slamL.tween_property(left_hand, "position", Vector2(left_hand.position.x, 1088.0), 1.2).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 					if not right_hand_alive:
 						left_hand_start_X = left_hand.position.x
-					slamL.tween_property(left_hand, "position", Vector2(left_hand_start_X, 208.0), 0.5)
+					slamL.tween_property(left_hand, "position", Vector2(left_hand_start_X, 208.0), 0.75).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 					await slamL.finished
 				
 				if right_hand_alive:
@@ -153,17 +154,17 @@ func play_animation():
 					await get_tree().create_timer(1.0 * hands_left).timeout
 					paw_slamming = 3
 					var slamR = create_tween()
-					slamR.tween_property(right_hand, "position", Vector2(right_hand.position.x, 1088.0), 0.6)
+					slamR.tween_property(right_hand, "position", Vector2(right_hand.position.x, 1088.0), 1.2).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 					if not left_hand_alive:
 						right_hand_start_X = right_hand.position.x
-					slamR.tween_property(right_hand, "position", Vector2(right_hand_start_X, 208.0), 0.5)
+					slamR.tween_property(right_hand, "position", Vector2(right_hand_start_X, 208.0), 0.75).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 					await slamR.finished
 
 			paw_slamming = 0
 			track = "idle"
 			
 		"side_sweep":
-			var initial_tween = create_tween().set_parallel(true)
+			var initial_tween = create_tween().set_parallel(true).set_parallel(true).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 			var left_y = 0
 			var right_y = 0
 			match randi_range(1,2): #Attack Type; 1 = bottom; 2 = top;
@@ -181,14 +182,14 @@ func play_animation():
 			initial_tween.tween_property(right_hand,"rotation_degrees",90.0,0.75)
 			await initial_tween.finished
 			await get_tree().create_timer(2.0).timeout
-			var slam_tween = create_tween().set_parallel(true)
+			var slam_tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 			slam_tween.tween_property(left_hand,"position",Vector2(960.0 if left_y == right_y else 1984.0,left_y),1.0)
 			slam_tween.tween_property(right_hand,"position",Vector2(1088.0 if left_y == right_y else 64.0,right_y),1.0)
 			await slam_tween.finished
 			track = "idle"
 		
 		"floor_slam":
-			var slam = create_tween()
+			var slam = create_tween().set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 			slam.set_loops(clamp(floor(GlobVar.stage/15.0)*2+1,3,INF))
 			slam.tween_property(left_hand,"position:y",1088.0,0.2)
 			slam.parallel().tween_property(right_hand,"position:y",1088.0,0.2)
@@ -203,7 +204,7 @@ func play_animation():
 			
 		"stunned":
 			var flash = create_tween()
-			var move_head = create_tween()
+			var move_head = create_tween().set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 			flash.set_loops()
 			flash.tween_property(head, "modulate", Color(10, 10, 10, 1), 0.0)
 			flash.tween_interval(1.0 / 12.0)
@@ -250,7 +251,7 @@ func boss_intro():
 	visible = true
 	$Head.play("intro")
 	$Head/Body.play("intro")
-	var raise_hands = create_tween().set_parallel(true)
+	var raise_hands = create_tween().set_parallel(true).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	raise_hands.tween_property(left_hand,"position",Vector2(544.0,768.0),7.0/12.0).from(Vector2(544.0,1172.0))
 	raise_hands.tween_property(right_hand,"position",Vector2(1504.0,768.0),7.0/12.0).from(Vector2(1504.0,1172.0))
 
