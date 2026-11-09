@@ -1782,13 +1782,20 @@ collision_layer = 16
 offset_left = -51.0
 offset_top = -2053.0
 offset_right = 2075.0
-offset_bottom = 1846.0
+offset_bottom = 61.0
 
 [node name="Tunnel2" parent="." unique_id=94340899 instance=ExtResource("19_s5quv")]
+z_index = -98
 offset_left = 947.0
 offset_top = 1152.0
 offset_right = 1103.0
 offset_bottom = 5050.0
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=123636926]
+z_index = -200
+offset_right = 2027.0
+offset_bottom = 1122.0
+color = Color(0, 0, 0, 1)
 
 [node name="Cat" parent="." unique_id=539844402 instance=ExtResource("17_deaoc")]
 

@@ -150,11 +150,13 @@ func _physics_process(delta: float) -> void:
 			$Sounds/Jump.play()
 			jump_sfx_played = true
 			
-	""" Experimental bite-dash
+	# Experimental bite-dash
 	if Input.is_action_just_pressed("bite"):
-		dash_timer = 0.1
-		velocity.x = facing * 0.5
-	"""
+		dash_timer = 0.15
+		if velocity.x == 0:
+			velocity.x += facing * 500
+		else:
+			velocity.x = facing * 1.5
 
 	var direction := Input.get_axis("move_left", "move_right")
 	if dead:
@@ -249,7 +251,11 @@ func _on_bite_kill(healing: int):
 	heal(healing + GlobVar.exBiteHeal)
 	if healing + GlobVar.exBiteHeal > 0:
 		$AnimationPlayer.play("Heal Aura")
-	# velocity.y = -500; experimental bite dash
+	else:
+		$AnimationPlayer.play("Maggot Aura")
+	velocity.y = -650
+	velocity.x = facing * -500
+	# experimental bite dash
 	
 
 func activate_gadget():
@@ -275,7 +281,14 @@ func update_animation():
 	var side = Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right")
 	var aim_x = facing
 	var v = Vector2(facing, 0)
-	if not is_on_floor() and not crouching:
+	if iFrames != 0:
+		if sprite.animation != "hurt":
+			sprite.animation = "hurt"
+			sprite.play()
+			# $AnimationPlayer.play("Hurt") nvm this shit looks like hot ASS
+			await $AnimationPlayer.animation_finished 
+		return
+	elif not is_on_floor() and not crouching:
 		sprite.animation = "jump_aim"
 		if up and side:
 			sprite.frame = 2
