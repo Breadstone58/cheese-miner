@@ -18,6 +18,8 @@
 [ext_resource type="PackedScene" uid="uid://swfnmsq5wx2h" path="res://scenes/room_components/parallax_backing.tscn" id="18_82u7c"]
 [ext_resource type="Texture2D" uid="uid://brgt7bmqhwjui" path="res://assets/sprites/environment/Instructions.png" id="18_ppi1v"]
 [ext_resource type="PackedScene" uid="uid://dc3srlie11g84" path="res://scenes/room_components/tunnel.tscn" id="19_7pqbi"]
+[ext_resource type="Texture2D" uid="uid://c32uyu0m8pt33" path="res://assets/sprites/environment/press_start.png" id="19_d0x66"]
+[ext_resource type="Texture2D" uid="uid://d2cxqa7q1krfv" path="res://assets/sprites/environment/parallax/parallax_blank.png" id="20_3lujo"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_c1qis"]
 
@@ -1720,6 +1722,20 @@ animations = [{
 "speed": 0.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_hun7a"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": ExtResource("19_d0x66")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_3lujo")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 2.0
+}]
+
 [node name="Title" type="Node2D" unique_id=1770448767]
 script = ExtResource("1_h2uga")
 
@@ -1769,7 +1785,7 @@ position = Vector2(394, 1026)
 sprite_frames = SubResource("SpriteFrames_ogd8f")
 animation = &"new_animation"
 autoplay = "new_animation"
-frame_progress = 0.9774898
+frame_progress = 0.7408783
 
 [node name="Jump" type="AnimatedSprite2D" parent="Instructions" unique_id=608711504]
 modulate = Color(0, 0, 0, 1)
@@ -1791,5 +1807,11 @@ visible = false
 modulate = Color(0, 0, 0, 1)
 position = Vector2(1242, 921)
 sprite_frames = SubResource("SpriteFrames_i1u1y")
+
+[node name="Start" type="AnimatedSprite2D" parent="Instructions" unique_id=1713304792]
+position = Vector2(1564, -512)
+sprite_frames = SubResource("SpriteFrames_hun7a")
+autoplay = "default"
+frame_progress = 0.85212964
 
 [connection signal="crystal_hit" from="Crystal" to="." method="_on_crystal_hit"]
