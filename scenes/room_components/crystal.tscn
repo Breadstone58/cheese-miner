@@ -38,6 +38,66 @@ animations = [{
 radius = 32.0
 height = 128.0
 
+[sub_resource type="Animation" id="Animation_sx38q"]
+resource_name = "Hit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 0.4204483, 0.48296815, 0.5000001, 0.4061262),
+"update": 0,
+"values": [Vector2(-4, 0), Vector2(6, 0), Vector2(-6, 0), Vector2(4, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.29730147, 1),
+"update": 0,
+"values": [Color(18.712435, 18.712435, 18.712435, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_srgg5"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hxrb1"]
+_data = {
+&"Hit": SubResource("Animation_sx38q"),
+&"RESET": SubResource("Animation_srgg5")
+}
+
 [node name="Crystal" type="Area2D" unique_id=1269376109]
 z_index = -1
 collision_layer = 4
@@ -53,5 +113,8 @@ shape = SubResource("CapsuleShape2D_ogd8f")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=934290115]
 stream = ExtResource("7_sx38q")
 volume_db = 12.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1695815016]
+libraries/ = SubResource("AnimationLibrary_hxrb1")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

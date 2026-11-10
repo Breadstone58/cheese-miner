@@ -755,7 +755,7 @@ animations = [{
 }],
 "loop": 0,
 "name": &"still_bite",
-"speed": 12.0
+"speed": 18.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -897,7 +897,7 @@ animations = [{
 }],
 "loop": 0,
 "name": &"default",
-"speed": 12.0
+"speed": 18.0
 }]
 
 [sub_resource type="Animation" id="Animation_3j4b4"]
@@ -963,8 +963,10 @@ libraries/ = SubResource("AnimationLibrary_ugbui")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=566927396]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_ogd8f")
-animation = &"jump_aim"
+animation = &"still_bite"
 autoplay = "idle"
+frame = 5
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1659014958]
 position = Vector2(0, 4)
