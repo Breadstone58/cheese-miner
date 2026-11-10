@@ -847,7 +847,6 @@ shape = SubResource("RectangleShape2D_4xhwt")
 disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Bite Hitbox/CollisionShape2D" unique_id=2114854181]
-visible = false
 z_index = 10
 z_as_relative = false
 position = Vector2(16, 0)
