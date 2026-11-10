@@ -153,6 +153,7 @@ func _physics_process(delta: float) -> void:
 			jump_sfx_played = true
 			
 	# Experimental bite-dash
+	"""
 	if Input.is_action_just_pressed("bite"):
 		$Sounds/Bite.play(0.13)
 		dash_timer = 0.15
@@ -160,6 +161,36 @@ func _physics_process(delta: float) -> void:
 			velocity.x += facing * 500
 		else:
 			velocity.x = facing * 1.5
+	"""
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	'
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	'
 
 	var direction := Input.get_axis("move_left", "move_right")
 	if dead:
@@ -259,9 +290,9 @@ func _on_bite_kill(healing: int):
 		$AnimationPlayer.play("Heal Aura")
 	else:
 		$AnimationPlayer.play("Maggot Aura")
-	velocity.y = -650
-	velocity.x = facing * -500
-	# experimental bite dash
+	# experimental bite dash:
+	# velocity.y = -650
+	# velocity.x = facing * -500
 	
 
 func activate_gadget():
