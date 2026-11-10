@@ -2,13 +2,22 @@ extends Node2D
 const PARTICLE_SCENE = preload("res://scenes/room_components/break_particles.tscn")
 @onready var cam: Camera2D = $CharacterBody2D/Camera2D
 var scroll_down = 0
-var top_locked = false
+var top_locked = false:
+	set(value):
+		if top_locked == false and value == true:
+			$Voicelines/Welcome.play(0.19)
+		top_locked = value
 var level_complete = false
 var refresh_cost = clamp(GlobVar.stage * 3,1,INF)
+var item_purchased = false
+var refresh_count = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalBus.spawn_particle.connect(_on_particle_spawn)
+	SignalBus.too_poor.connect(_too_poor)
+	SignalBus.item_purchase.connect(_item_purchase)
+	SignalBus.level_complete.connect(_leaving)
 	$Crystal.crystal_hit.connect(_on_refresh)
 	var used_cells = $TileMapLayer.get_used_cells()
 	for coords in used_cells:
@@ -45,6 +54,11 @@ func _process(delta: float) -> void:
 	else:
 		cam.limit_bottom = 1152
 	$Crystal/RefreshCost.text = "$" + str(refresh_cost)
+	if $Voicelines/ItemBuy.is_playing() or $Voicelines/Poor.is_playing() or $Voicelines/Welcome.is_playing() or $Voicelines/Refresh.is_playing() or $Voicelines/RefreshLots.is_playing() or $Voicelines/Leaving.is_playing() or $Voicelines/LeavingPoor.is_playing() or $Voicelines/LeavingRich.is_playing():
+		if not $Shopkeeper/AnimationPlayer.is_playing():
+			$Shopkeeper/AnimationPlayer.play("talking")
+	else:
+		$Shopkeeper/AnimationPlayer.stop()
 	
 func _on_particle_spawn(new_texture: Texture2D, spawn_position: Vector2i):
 	var particle_instance = PARTICLE_SCENE.instantiate() as CPUParticles2D
@@ -60,8 +74,48 @@ func _on_particle_spawn(new_texture: Texture2D, spawn_position: Vector2i):
 
 func _on_refresh():
 	if GlobVar.money >= refresh_cost:
+		refresh_count += 1
 		GlobVar.money -= refresh_cost
 		refresh_cost = int(ceil(refresh_cost * 1.5))
 		SignalBus.refresh_shop.emit()
+		if refresh_count == 3:
+			clear_voices()
+			$Voicelines/RefreshLots.play(0.36)
+		elif not $Voicelines/RefreshLots.is_playing():
+			clear_voices()
+			$Voicelines/Refresh.play(0.11)
 		var tween = create_tween()
 		tween.tween_property($Crystal/RefreshIcon,"rotation",$Crystal/RefreshIcon.rotation + PI, 0.3)
+	else:
+		clear_voices()
+		$Voicelines/RefreshLots.play(0.36)
+
+func _too_poor():
+	clear_voices()
+	$Voicelines/Poor.play(0.23)
+	
+func _item_purchase():
+	clear_voices()
+	$Voicelines/ItemBuy.play()
+	item_purchased = true
+	
+func _leaving():
+	if item_purchased:
+		clear_voices()
+		$Voicelines/Leaving.play(0.34)
+	elif GlobVar.money < min($Item.cost,$Item.cost,$Item.cost,$Item.cost):
+		clear_voices()
+		$Voicelines/LeavingPoor.play(0.46)
+	else:
+		clear_voices()
+		$Voicelines/LeavingRich.play(0.34)
+		
+func clear_voices():
+	$Voicelines/ItemBuy.stop()
+	$Voicelines/Poor.stop()
+	$Voicelines/Welcome.stop()
+	$Voicelines/Refresh.stop()
+	$Voicelines/RefreshLots.stop()
+	$Voicelines/Leaving.stop()
+	$Voicelines/LeavingPoor.stop()
+	$Voicelines/LeavingRich.stop()

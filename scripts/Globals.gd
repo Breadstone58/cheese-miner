@@ -70,7 +70,7 @@ func _process(delta: float) -> void:
 	levelStartHeal = count_items("Medkit") * 10
 	exBiteHeal = count_items("Bloodlust") * 3
 	exBulletDamage = count_items("Diamond") * 2
-	crouch_boost = 200.0 + count_items("Spring_Boots") * 300.0
+	crouch_boost = 200.0 + count_items("Spring_Boots") * 150.0
 	healthMax = 100 + count_items("Magic_Cheese") * 20
 	exAttackSpeed = count_items("Drill_Oil") / -30.0
 	items = inventory.size()

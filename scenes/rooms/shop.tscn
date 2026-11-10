@@ -22,6 +22,18 @@
 [ext_resource type="PackedScene" uid="uid://w5qjak6ufh2x" path="res://scenes/room_components/crystal.tscn" id="18_menil"]
 [ext_resource type="PackedScene" uid="uid://dc3srlie11g84" path="res://scenes/room_components/tunnel.tscn" id="21_b1vae"]
 [ext_resource type="Texture2D" uid="uid://3fugbkmwgokm" path="res://assets/sprites/environment/shop_background.png" id="22_3kbvw"]
+[ext_resource type="AudioStream" uid="uid://bwxj46byrybni" path="res://assets/sounds/shop_voices/Item buy 1.wav" id="23_er7kj"]
+[ext_resource type="AudioStream" uid="uid://bb1cmby0qn0fo" path="res://assets/sounds/shop_voices/Item buy 2.wav" id="24_yb687"]
+[ext_resource type="AudioStream" uid="uid://dnh85kj517cl" path="res://assets/sounds/shop_voices/Item buy 3.wav" id="25_if2au"]
+[ext_resource type="AudioStream" uid="uid://dynemd1ehaofj" path="res://assets/sounds/shop_voices/Lamp oil, rope, bombs.wav" id="26_yb687"]
+[ext_resource type="AudioStream" uid="uid://dtfur6uldlrg6" path="res://assets/sounds/shop_voices/Shop entrance.wav" id="27_if2au"]
+[ext_resource type="AudioStream" uid="uid://gbapk3l6m42j" path="res://assets/sounds/shop_voices/Refresh 1.wav" id="28_66cxv"]
+[ext_resource type="AudioStream" uid="uid://dulgmqcfm4aif" path="res://assets/sounds/shop_voices/Refresh 2.wav" id="29_a81kk"]
+[ext_resource type="AudioStream" uid="uid://ctxiaqhod6r1h" path="res://assets/sounds/shop_voices/Refresh 3.wav" id="30_f8kb6"]
+[ext_resource type="AudioStream" uid="uid://cswdw4r6bnk3h" path="res://assets/sounds/shop_voices/Multiple refreshers.wav" id="31_adv23"]
+[ext_resource type="AudioStream" uid="uid://cv04uapbst323" path="res://assets/sounds/shop_voices/Leaving if you buy something.wav" id="32_a81kk"]
+[ext_resource type="AudioStream" uid="uid://ddwelqpolyxna" path="res://assets/sounds/shop_voices/You broke 😭.wav" id="33_f8kb6"]
+[ext_resource type="AudioStream" uid="uid://u28a0nx4fqim" path="res://assets/sounds/shop_voices/Leaving if you had money but didn’t buy.wav" id="34_adv23"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_c1qis"]
 
@@ -1301,6 +1313,56 @@ sources/1 = SubResource("TileSetAtlasSource_ge76k")
 sources/2 = SubResource("TileSetAtlasSource_lpf3e")
 sources/3 = SubResource("TileSetAtlasSource_181co")
 
+[sub_resource type="Animation" id="Animation_if2au"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 0.781)]
+}
+
+[sub_resource type="Animation" id="Animation_kecwu"]
+resource_name = "talking"
+length = 0.19999999999999998
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 0.781), Vector2(1, 0.6)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nkuxe"]
+_data = {
+&"RESET": SubResource("Animation_if2au"),
+&"talking": SubResource("Animation_kecwu")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_if2au"]
+streams_count = 3
+stream_0/stream = ExtResource("23_er7kj")
+stream_1/stream = ExtResource("24_yb687")
+stream_2/stream = ExtResource("25_if2au")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ogd8f"]
+streams_count = 3
+stream_0/stream = ExtResource("28_66cxv")
+stream_1/stream = ExtResource("29_a81kk")
+stream_2/stream = ExtResource("30_f8kb6")
+
 [node name="shop" type="Node2D" unique_id=1770448767]
 script = ExtResource("1_il372")
 
@@ -1360,12 +1422,6 @@ collision_layer = 16
 [node name="Lever" parent="." unique_id=1780346431 instance=ExtResource("15_2w6pf")]
 position = Vector2(1120, 1064)
 
-[node name="Shopkeeper" type="Sprite2D" parent="." unique_id=355077249]
-z_index = -1
-position = Vector2(1024, 618)
-scale = Vector2(1, 0.781)
-texture = ExtResource("16_nxful")
-
 [node name="Item" parent="." unique_id=7415273 instance=ExtResource("17_fp621")]
 position = Vector2(286, 862)
 state = 11
@@ -1383,10 +1439,10 @@ position = Vector2(1759, 862)
 state = 11
 
 [node name="Tunnel" parent="." unique_id=984068459 instance=ExtResource("21_b1vae")]
-offset_left = -51.0
-offset_top = -2089.0
-offset_right = 2100.0
-offset_bottom = 1174.0
+offset_left = -50.0
+offset_top = -2074.0
+offset_right = 2101.0
+offset_bottom = 1189.0
 
 [node name="Tunnel2" parent="." unique_id=424873058 instance=ExtResource("21_b1vae")]
 offset_left = -51.0
@@ -1394,9 +1450,54 @@ offset_top = 1152.0
 offset_right = 2100.0
 offset_bottom = 5081.0
 
+[node name="Shopkeeper" type="Sprite2D" parent="." unique_id=355077249]
+z_index = -1
+position = Vector2(831, 708)
+scale = Vector2(1, 0.781)
+texture = ExtResource("16_nxful")
+centered = false
+offset = Vector2(0, -235)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Shopkeeper" unique_id=492404013]
+libraries/ = SubResource("AnimationLibrary_nkuxe")
+
 [node name="Background" type="Sprite2D" parent="." unique_id=1219840706]
 visible = false
 z_index = -100
 position = Vector2(1025.394, 601.25)
 scale = Vector2(1.6627586, 1.6627586)
 texture = ExtResource("22_3kbvw")
+
+[node name="Voicelines" type="Node" parent="." unique_id=1528753837]
+
+[node name="ItemBuy" type="AudioStreamPlayer" parent="Voicelines" unique_id=163205316]
+stream = SubResource("AudioStreamRandomizer_if2au")
+volume_db = 15.0
+
+[node name="Poor" type="AudioStreamPlayer" parent="Voicelines" unique_id=1878901275]
+stream = ExtResource("26_yb687")
+volume_db = 8.0
+
+[node name="Welcome" type="AudioStreamPlayer" parent="Voicelines" unique_id=1406963703]
+stream = ExtResource("27_if2au")
+volume_db = 15.0
+
+[node name="Refresh" type="AudioStreamPlayer" parent="Voicelines" unique_id=788515587]
+stream = SubResource("AudioStreamRandomizer_ogd8f")
+volume_db = 15.0
+
+[node name="RefreshLots" type="AudioStreamPlayer" parent="Voicelines" unique_id=1660062921]
+stream = ExtResource("31_adv23")
+volume_db = 15.0
+
+[node name="Leaving" type="AudioStreamPlayer" parent="Voicelines" unique_id=1027904034]
+stream = ExtResource("32_a81kk")
+volume_db = 15.0
+
+[node name="LeavingPoor" type="AudioStreamPlayer" parent="Voicelines" unique_id=544794949]
+stream = ExtResource("33_f8kb6")
+volume_db = 15.0
+
+[node name="LeavingRich" type="AudioStreamPlayer" parent="Voicelines" unique_id=464662513]
+stream = ExtResource("34_adv23")
+volume_db = 15.0

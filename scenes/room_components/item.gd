@@ -109,6 +109,7 @@ func _on_area_entered(area: Area2D) -> void:
 		await get_tree().process_frame
 
 	if state == 11 and GlobVar.money < cost:
+		SignalBus.too_poor.emit()
 		return
 	elif state == 11:
 		GlobVar.money -= cost
@@ -147,6 +148,7 @@ func _on_area_entered(area: Area2D) -> void:
 		sprite.scale = Vector2(1,1)
 		if state == 11:
 			$Purchase.play()
+			SignalBus.item_purchase.emit()
 		else:
 			$Pickup.play()
 		
@@ -154,7 +156,7 @@ func _on_area_entered(area: Area2D) -> void:
 		tween.tween_property(self, "modulate", Color(1, 1, 1, 0.0), 1.0)
 		tween.parallel().tween_property(self, "position",position + Vector2(0,-128),0.5).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 		await tween.finished
-		if state == 11 and $Purchase.is_playing():
+		if $Purchase.is_playing():
 			await $Purchase.finished
 		elif $Pickup.is_playing():
 			await $Pickup.finished
