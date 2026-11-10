@@ -154,6 +154,7 @@ func _physics_process(delta: float) -> void:
 			
 	# Experimental bite-dash
 	if Input.is_action_just_pressed("bite"):
+		$Sounds/Bite.play(0.13)
 		dash_timer = 0.15
 		if velocity.x == 0:
 			velocity.x += facing * 500

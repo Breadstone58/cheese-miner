@@ -19,6 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://cl4r13x5khkq8" path="res://assets/sounds/sfx/player/CMShoot.wav" id="15_fcs02"]
 [ext_resource type="AudioStream" uid="uid://c10fiea63r8sf" path="res://assets/sounds/sfx/player/CMDeath.wav" id="16_myrg7"]
 [ext_resource type="AudioStream" uid="uid://bbcl3n7415ohk" path="res://assets/sounds/sfx/player/CMCrouchWalk.wav" id="17_kvlxm"]
+[ext_resource type="AudioStream" uid="uid://xqbcrbn8hkhp" path="res://assets/sounds/sfx/player/CMBite.wav" id="20_8ydkj"]
 
 [sub_resource type="Animation" id="Animation_fm80t"]
 resource_name = "Heal Aura"
@@ -893,5 +894,8 @@ volume_db = 12.0
 
 [node name="CrouchWalk" type="AudioStreamPlayer" parent="Sounds" unique_id=1074517036]
 stream = ExtResource("17_kvlxm")
+
+[node name="Bite" type="AudioStreamPlayer" parent="Sounds" unique_id=1170499597]
+stream = ExtResource("20_8ydkj")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
