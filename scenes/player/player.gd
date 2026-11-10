@@ -155,42 +155,12 @@ func _physics_process(delta: float) -> void:
 	# Experimental bite-dash
 	"""
 	if Input.is_action_just_pressed("bite"):
-		$Sounds/Bite.play(0.13)
 		dash_timer = 0.15
 		if velocity.x == 0:
 			velocity.x += facing * 500
 		else:
 			velocity.x = facing * 1.5
 	"""
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	'
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	'
 
 	var direction := Input.get_axis("move_left", "move_right")
 	if dead:
@@ -326,10 +296,10 @@ func update_animation():
 			await $AnimationPlayer.animation_finished 
 		return
 	elif Input.is_action_just_pressed("bite") and not crouching:
-		if sprite.animation != "bite_dash":
-			sprite.animation = "bite_dash"
+		if sprite.animation != "still_bite":
+			sprite.animation = "still_bite"
 			sprite.play()
-	if sprite.animation == "bite_dash" and sprite.is_playing():
+	if sprite.animation == "still_bite" and sprite.is_playing():
 		return
 	elif not is_on_floor() and not crouching:
 		sprite.animation = "jump_aim"
