@@ -22,6 +22,37 @@
 [ext_resource type="AudioStream" uid="uid://bbcl3n7415ohk" path="res://assets/sounds/sfx/player/CMCrouchWalk.wav" id="17_kvlxm"]
 [ext_resource type="AudioStream" uid="uid://xqbcrbn8hkhp" path="res://assets/sounds/sfx/player/CMBite.wav" id="20_8ydkj"]
 
+[sub_resource type="Animation" id="Animation_cnsyf"]
+resource_name = "CrouchJump"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.2973015, 0.13397177),
+"update": 0,
+"values": [0.0, 6.283185307179586]
+}
+
+[sub_resource type="Animation" id="Animation_007i1"]
+resource_name = "CrouchJumpR"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.2973015, 0.13397177),
+"update": 0,
+"values": [0.0, -6.283185307179586]
+}
+
 [sub_resource type="Animation" id="Animation_fm80t"]
 resource_name = "Heal Aura"
 length = 0.5
@@ -95,9 +126,23 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ugbui"]
 _data = {
+&"CrouchJump": SubResource("Animation_cnsyf"),
+&"CrouchJumpR": SubResource("Animation_007i1"),
 &"Heal Aura": SubResource("Animation_fm80t"),
 &"Hurt": SubResource("Animation_myrg7"),
 &"Maggot Aura": SubResource("Animation_fcs02"),
@@ -918,7 +963,7 @@ libraries/ = SubResource("AnimationLibrary_ugbui")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=566927396]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_ogd8f")
-animation = &"still_bite"
+animation = &"jump_aim"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1659014958]
