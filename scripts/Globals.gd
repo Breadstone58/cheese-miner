@@ -74,6 +74,7 @@ func _process(delta: float) -> void:
 	healthMax = 100 + count_items("Magic_Cheese") * 20
 	exAttackSpeed = count_items("Drill_Oil") / -30.0
 	items = inventory.size()
+	GlobVar.biome = 3
 
 func _ready() -> void:
 	SignalBus.enemy_killed.connect(_on_kill)
