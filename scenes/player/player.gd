@@ -148,6 +148,10 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 		if jump_buffer_timer > 0.0 and crouch_buffer_timer > 0.0:
 			cjb_active = true
+			if facing == 1:
+				$AnimationPlayer.play("CrouchJump")
+			else:
+				$AnimationPlayer.play("CrouchJumpR")
 		if not jump_sfx_played:
 			$Sounds/Jump.play()
 			jump_sfx_played = true
@@ -155,42 +159,12 @@ func _physics_process(delta: float) -> void:
 	# Experimental bite-dash
 	"""
 	if Input.is_action_just_pressed("bite"):
-		$Sounds/Bite.play(0.13)
 		dash_timer = 0.15
 		if velocity.x == 0:
 			velocity.x += facing * 500
 		else:
 			velocity.x = facing * 1.5
 	"""
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	'
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	'
 
 	var direction := Input.get_axis("move_left", "move_right")
 	if dead:
@@ -318,6 +292,8 @@ func update_animation():
 	var side = Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right")
 	var aim_x = facing
 	var v = Vector2(facing, 0)
+	if cjb_active:
+		pass # will use to add anim
 	if iFrames != 0:
 		if sprite.animation != "hurt":
 			sprite.animation = "hurt"
@@ -326,12 +302,12 @@ func update_animation():
 			await $AnimationPlayer.animation_finished 
 		return
 	elif Input.is_action_just_pressed("bite") and not crouching:
-		if sprite.animation != "bite_dash":
-			sprite.animation = "bite_dash"
+		if sprite.animation != "still_bite":
+			sprite.animation = "still_bite"
 			sprite.play()
-	if sprite.animation == "bite_dash" and sprite.is_playing():
+	if sprite.animation == "still_bite" and sprite.is_playing():
 		return
-	elif not is_on_floor() and not crouching:
+	elif not is_on_floor() and not crouching: 
 		sprite.animation = "jump_aim"
 		if up and side:
 			sprite.frame = 2
@@ -349,7 +325,7 @@ func update_animation():
 			else:
 				sprite.frame = 0
 	else:
-		if crouching:
+		if crouching and not cjb_active: # going to make a cjb anim/frame so this needs to be added
 			if not ("crawl" in sprite.animation or "crouch" in sprite.animation):
 				sprite.animation = "crouch_trans"
 				sprite.play()
