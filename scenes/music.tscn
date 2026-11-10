@@ -5,6 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://bywxye8l7v25i" path="res://assets/sounds/music/YellowBiome.wav" id="2_keplp"]
 [ext_resource type="AudioStream" uid="uid://uw4qsfvf6aor" path="res://assets/sounds/music/BlueBiome.wav" id="3_d6bcn"]
 [ext_resource type="AudioStream" uid="uid://djo77wwm8lq80" path="res://assets/sounds/music/RedBiome.wav" id="4_okdju"]
+[ext_resource type="AudioStream" uid="uid://doavr56m1yvl0" path="res://assets/sounds/music/Sneaky Snitch.wav" id="6_d6bcn"]
 [ext_resource type="AudioStream" uid="uid://qt3ee3lh01gj" path="res://assets/sounds/music/CheeseMinerTitle.wav" id="6_qntvw"]
 [ext_resource type="AudioStream" uid="uid://cgogi3r7fqslw" path="res://assets/sounds/music/CheeseMinerBoss.wav" id="7_3dw7u"]
 
@@ -33,6 +34,7 @@ autoplay = true
 parameters/looping = true
 
 [node name="Shop" type="AudioStreamPlayer" parent="." unique_id=1596554383]
+stream = ExtResource("6_d6bcn")
 volume_db = -80.0
 autoplay = true
 
