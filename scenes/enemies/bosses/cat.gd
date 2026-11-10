@@ -22,11 +22,13 @@ var right_hand_health = GlobVar.stage * 10
 var body_frame = 0
 
 var attack_list = [
-	"paw_slam", "paw_slam", "paw_slam",
-	"side_sweep", "side_sweep", "side_sweep",
+	"paw_slam",
+	"side_sweep",
 	"floor_slam",
+	"punch"
 	]
 var paw_slamming = 0
+var punching = 0
 var player_desperation = 3:
 	set(value):
 		player_desperation = clamp(value,0,3)
@@ -73,12 +75,17 @@ func _process(delta: float) -> void:
 			if paw_slamming == 1:
 				left_hand.position = left_hand.position.move_toward(Vector2(GlobVar.PlayerX,144.0), 700*delta)
 				left_hand.z_index = 1
+				right_hand.z_index = 0
 			elif paw_slamming == 2:
 				right_hand.position = right_hand.position.move_toward(Vector2(GlobVar.PlayerX,144.0), 700*delta)
-				right_hand.z_index = 1
-			else:
 				left_hand.z_index = 0
-				right_hand.z_index = 0
+				right_hand.z_index = 1
+			if punching == 1:
+				left_hand.position = left_hand.position.move_toward(Vector2(GlobVar.PlayerX,GlobVar.PlayerY), 700*delta)
+				left_hand.z_index = -1
+			elif punching == 2:
+				right_hand.position = right_hand.position.move_toward(Vector2(GlobVar.PlayerX,GlobVar.PlayerY), 700*delta)
+				right_hand.z_index = -1
 
 	
 
@@ -89,8 +96,10 @@ func play_animation():
 		"idle":
 			if is_instance_valid($"Left Hand/Hitbox"):
 				$"Left Hand/Hitbox".monitorable = false
+				left_hand.z_index = 0
 			if is_instance_valid($"Right Hand/Hitbox"):
 				$"Right Hand/Hitbox".monitorable = false
+				right_hand.z_index = 0
 			var tweenH = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 			var tweenL = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 			var tweenR = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
@@ -200,7 +209,50 @@ func play_animation():
 			track = "idle"
 			
 		"punch":
-			pass
+			var pull_back = create_tween()
+			if is_instance_valid($"Left Hand/Hitbox"):
+				$"Left Hand/Hitbox".monitorable = false
+				left_hand.z_index = -1
+			if is_instance_valid($"Right Hand/Hitbox"):
+				$"Right Hand/Hitbox".monitorable = false
+				right_hand.z_index = -1
+			pull_back.tween_property(left_hand,"scale",Vector2(0.8,0.8),0.3)
+			pull_back.parallel().tween_property(right_hand,"scale",Vector2(0.8,0.8),0.3)
+			
+			punching = 1
+			await get_tree().create_timer(3.0).timeout
+			punching = 3
+			var punchShakeL = create_tween()
+			var initL = left_hand.position.x
+			punchShakeL.set_loops(10)
+			punchShakeL.tween_property(left_hand,"position:x",initL - 32.0,1.0/40.0)
+			punchShakeL.tween_property(left_hand,"position:x",initL + 32.0,2.0/40.0)
+			punchShakeL.tween_property(left_hand,"position:x",initL,1.0/40.0)
+			await punchShakeL.finished
+			var punchL = create_tween()
+			if is_instance_valid($"Left Hand/Hitbox"):
+				$"Left Hand/Hitbox".monitorable = true
+				right_hand.z_index = 0
+			punchL.tween_property(left_hand,"scale",Vector2(1,1),0.1)
+			
+			punching = 2
+			await get_tree().create_timer(3.0).timeout
+			punching = 3
+			var punchShakeR = create_tween()
+			var initR = right_hand.position.x
+			punchShakeR.set_loops(10)
+			punchShakeR.tween_property(right_hand,"position:x",initR - 32.0,1.0/40.0)
+			punchShakeR.tween_property(right_hand,"position:x",initR + 32.0,2.0/40.0)
+			punchShakeR.tween_property(right_hand,"position:x",initR,1.0/40.0)
+			await punchShakeR.finished
+			var punchR = create_tween()
+			if is_instance_valid($"Right Hand/Hitbox"):
+				$"Right Hand/Hitbox".monitorable = true
+				right_hand.z_index = 0
+			punchR.tween_property(right_hand,"scale",Vector2(1,1),0.1)
+			
+			track = "idle"
+			
 			
 		"stunned":
 			var flash = create_tween()

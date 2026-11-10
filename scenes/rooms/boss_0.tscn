@@ -1787,7 +1787,7 @@ offset_bottom = 61.0
 [node name="Tunnel2" parent="." unique_id=94340899 instance=ExtResource("19_s5quv")]
 z_index = -98
 offset_left = 947.0
-offset_top = 1152.0
+offset_top = 1092.0
 offset_right = 1103.0
 offset_bottom = 5050.0
 
