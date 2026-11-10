@@ -15,8 +15,9 @@
 [ext_resource type="Texture2D" uid="uid://dfnlvfu7yc0ej" path="res://assets/sprites/items/money/CheeseB.png" id="11_t7l82"]
 [ext_resource type="Texture2D" uid="uid://dgxw3bd3uhq6k" path="res://assets/sprites/items/money/CheeseA.png" id="12_ps343"]
 [ext_resource type="Texture2D" uid="uid://dj8pb36csdryw" path="res://assets/sprites/items/money/CheeseC.png" id="13_p2y2a"]
-[ext_resource type="Texture2D" uid="uid://dm14nrvuim8xi" path="res://assets/sprites/items/medkit.png" id="14_rsg37"]
+[ext_resource type="Texture2D" uid="uid://gyxrve46cduo" path="res://assets/sprites/items/medkit.png" id="14_rsg37"]
 [ext_resource type="Texture2D" uid="uid://dqntmy0bcajmw" path="res://assets/sprites/items/Jumpcan.png" id="15_uq7nl"]
+[ext_resource type="Texture2D" uid="uid://d1021008icpcj" path="res://assets/sprites/items/Boots.png" id="16_b2ihd"]
 [ext_resource type="Texture2D" uid="uid://8hawgl1xjeva" path="res://assets/sprites/items/Bouncybullets.png" id="17_ps343"]
 [ext_resource type="AudioStream" uid="uid://c74e3clbjncvo" path="res://assets/sounds/sfx/player/CMPickUp.wav" id="19_p2y2a"]
 [ext_resource type="AudioStream" uid="uid://ftybg51xglm" path="res://assets/sounds/sfx/player/CMPurchase.wav" id="20_b2ihd"]
@@ -537,6 +538,9 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("14_rsg37")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_b2ihd")
 }],
 "loop": 1,
 "name": &"rare",
@@ -571,7 +575,7 @@ autoplay = &"initial"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals" unique_id=883992812]
 sprite_frames = SubResource("SpriteFrames_ogd8f")
-animation = &"common"
+animation = &"rare"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1963493621]
 visible = false

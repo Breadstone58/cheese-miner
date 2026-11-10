@@ -15,6 +15,7 @@ var uncommon = {
 
 var rare = {
 	0 : "Medkit",
+	1 : "Spring_Boots"
 }
 
 var gadget = {
