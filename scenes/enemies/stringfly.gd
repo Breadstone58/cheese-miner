@@ -87,7 +87,7 @@ func damage(amount: int,source: String):
 	if health <= 0 and source == "Bite":
 		SignalBus.bite_death.emit(10)
 		dead()
-	if health <= -20:
+	elif health <= -20:
 		dead()
 	modulate = Color(255,0,0,255)
 	await get_tree().create_timer(0.1).timeout

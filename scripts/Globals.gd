@@ -10,6 +10,7 @@ var playerHealth = 100
 var healthMax = 100
 var shopChance = 0
 var leaving_shop = false
+var leaving_boss = false
 var money = 0
 var money_disp_frame = 0
 var energy_disp_frame = 0

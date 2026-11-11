@@ -1651,7 +1651,6 @@ collision_layer = 16
 [node name="HUD" parent="." unique_id=180511637 instance=ExtResource("16_3pnqi")]
 
 [node name="Parallax_Backing" parent="." unique_id=730832840 instance=ExtResource("18_yeel4")]
-visible = false
 
 [node name="Tunnel" parent="." unique_id=984068459 instance=ExtResource("19_ypjol")]
 offset_left = 941.0

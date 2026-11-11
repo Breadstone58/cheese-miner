@@ -51,8 +51,9 @@ func _ready() -> void:
 	else:
 		if GlobVar.stage == 4:
 			GlobVar.shopChance = 1
-		if GlobVar.stage >= 5 and GlobVar.shopChance == 0:
+		if (GlobVar.stage >= 5 and GlobVar.shopChance == 0 and not going_boss) or GlobVar.leaving_boss:
 			force_new_biome = true 
+			GlobVar.leaving_boss = false
 		if GlobVar.stage >= 5:
 			GlobVar.shopChance += 0.1
 		rand_level = GlobVar.levels_remaining.pick_random()
