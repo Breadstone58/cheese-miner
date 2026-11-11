@@ -21,10 +21,13 @@
 [ext_resource type="PackedScene" uid="uid://ce0d76c776f0" path="res://scenes/room_components/item.tscn" id="17_fp621"]
 [ext_resource type="PackedScene" uid="uid://w5qjak6ufh2x" path="res://scenes/room_components/crystal.tscn" id="18_menil"]
 [ext_resource type="PackedScene" uid="uid://dc3srlie11g84" path="res://scenes/room_components/tunnel.tscn" id="21_b1vae"]
-[ext_resource type="Texture2D" uid="uid://3fugbkmwgokm" path="res://assets/sprites/environment/shop_background.png" id="22_3kbvw"]
+[ext_resource type="Texture2D" uid="uid://b7up56c0h826a" path="res://assets/sprites/environment/ShopBiomes/New_Background_For_Chuddy.png" id="22_2qi0n"]
 [ext_resource type="AudioStream" uid="uid://bwxj46byrybni" path="res://assets/sounds/shop_voices/Item buy 1.wav" id="23_er7kj"]
+[ext_resource type="Texture2D" uid="uid://bmvcxe7koor5h" path="res://assets/sprites/environment/ShopBiomes/Ice_Biome_for_Chuddy.png" id="23_y11qy"]
+[ext_resource type="Texture2D" uid="uid://co2uijotyislw" path="res://assets/sprites/environment/ShopBiomes/Magma_Biome_for_Chuddy.png" id="24_8jk84"]
 [ext_resource type="AudioStream" uid="uid://bb1cmby0qn0fo" path="res://assets/sounds/shop_voices/Item buy 2.wav" id="24_yb687"]
 [ext_resource type="AudioStream" uid="uid://dnh85kj517cl" path="res://assets/sounds/shop_voices/Item buy 3.wav" id="25_if2au"]
+[ext_resource type="Texture2D" uid="uid://8qjxyhl3df0v" path="res://assets/sprites/environment/ShopBiomes/Mold_Biome_for_Chuddy.png" id="25_ncu2e"]
 [ext_resource type="AudioStream" uid="uid://dynemd1ehaofj" path="res://assets/sounds/shop_voices/Lamp oil, rope, bombs.wav" id="26_yb687"]
 [ext_resource type="AudioStream" uid="uid://dtfur6uldlrg6" path="res://assets/sounds/shop_voices/Shop entrance.wav" id="27_if2au"]
 [ext_resource type="AudioStream" uid="uid://gbapk3l6m42j" path="res://assets/sounds/shop_voices/Refresh 1.wav" id="28_66cxv"]
@@ -1351,6 +1354,26 @@ _data = {
 &"talking": SubResource("Animation_kecwu")
 }
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_lfxu0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_2qi0n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_y11qy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_8jk84")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_ncu2e")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_if2au"]
 streams_count = 3
 stream_0/stream = ExtResource("23_er7kj")
@@ -1498,11 +1521,11 @@ offset = Vector2(0, -235)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Shopkeeper" unique_id=492404013]
 libraries/ = SubResource("AnimationLibrary_nkuxe")
 
-[node name="Background" type="Sprite2D" parent="." unique_id=1219840706]
+[node name="Background" type="AnimatedSprite2D" parent="." unique_id=1897279693]
 z_index = -100
 position = Vector2(1025.394, 601.25)
 scale = Vector2(1.6627586, 1.6627586)
-texture = ExtResource("22_3kbvw")
+sprite_frames = SubResource("SpriteFrames_lfxu0")
 
 [node name="Voicelines" type="Node" parent="." unique_id=1528753837]
 

@@ -48,6 +48,7 @@ var energy = -1
 var blocks_broken = 0
 var enemies_killed = 0
 var items = 0
+var last_money_tier: int = 0
 
 # save
 var save_path = "user://CHEESEMINERSCORE.save"

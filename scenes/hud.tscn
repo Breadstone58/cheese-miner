@@ -7,16 +7,16 @@
 [ext_resource type="Texture2D" uid="uid://bhyu1twbihs73" path="res://assets/sprites/player/uifacenew.png" id="3_mgfyp"]
 [ext_resource type="Texture2D" uid="uid://87ohwm0rcan3" path="res://assets/sprites/items/Old/coffee_cup.png" id="3_mphia"]
 [ext_resource type="Texture2D" uid="uid://cybd5cuc0otiw" path="res://assets/sprites/items/money/energy.png" id="4_apjy4"]
-[ext_resource type="Texture2D" uid="uid://b1giwfxw6vs0i" path="res://assets/sprites/items/bloodlust.png" id="4_mgfyp"]
-[ext_resource type="Texture2D" uid="uid://bl61yjid7cxsw" path="res://assets/sprites/items/diamond.png" id="5_ptr5m"]
+[ext_resource type="Texture2D" uid="uid://b1giwfxw6vs0i" path="res://assets/sprites/items/Bloodlust.png" id="4_mgfyp"]
+[ext_resource type="Texture2D" uid="uid://bl61yjid7cxsw" path="res://assets/sprites/items/Diamond.png" id="5_ptr5m"]
 [ext_resource type="Texture2D" uid="uid://dk485qies0bws" path="res://assets/sprites/items/Skelekey.png" id="6_5n1hp"]
 [ext_resource type="Texture2D" uid="uid://cn1c3e50nxfo0" path="res://assets/sprites/items/money/money_blue.png" id="6_apjy4"]
 [ext_resource type="Texture2D" uid="uid://nptp5374ax5j" path="res://assets/sprites/items/MagicCheese.png" id="6_of3ib"]
 [ext_resource type="Texture2D" uid="uid://xhxt8662caqy" path="res://assets/sprites/items/money/money_red.png" id="7_5n1hp"]
-[ext_resource type="Texture2D" uid="uid://c2e1mfxd4lb4n" path="res://assets/sprites/items/oil.png" id="7_7600b"]
+[ext_resource type="Texture2D" uid="uid://c2e1mfxd4lb4n" path="res://assets/sprites/items/Oil.png" id="7_7600b"]
 [ext_resource type="Texture2D" uid="uid://du67mb34m8p06" path="res://assets/sprites/items/money/money_green.png" id="8_eld54"]
 [ext_resource type="Texture2D" uid="uid://cl1ej1k8ftmx" path="res://assets/sprites/items/Old/medkit.png" id="9_3swnk"]
-[ext_resource type="Texture2D" uid="uid://dj7rs1pvg6877" path="res://assets/sprites/items/dash.png" id="9_e558t"]
+[ext_resource type="Texture2D" uid="uid://dj7rs1pvg6877" path="res://assets/sprites/items/Dash.png" id="9_e558t"]
 [ext_resource type="Texture2D" uid="uid://bp0i07p26vef0" path="res://assets/sprites/items/Old/jump_tank.png" id="10_qkknv"]
 [ext_resource type="Texture2D" uid="uid://88wbb55imwuq" path="res://assets/sprites/player/gadget_frame.png" id="11_0m4u7"]
 [ext_resource type="Texture2D" uid="uid://d3hqq5farpqmt" path="res://assets/sprites/items/money/Cheese.png" id="11_frrke"]
@@ -1141,16 +1141,27 @@ grow_vertical = 2
 layout_mode = 0
 offset_right = 2048.0
 offset_bottom = 1152.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 8
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 8
 theme_override_fonts/normal_font = ExtResource("2_ptr5m")
 theme_override_font_sizes/normal_font_size = 140
 horizontal_alignment = 1
 
 [node name="LevelGoal" type="RichTextLabel" parent="Control" unique_id=631272238]
 layout_mode = 0
-offset_left = 2.0
-offset_top = 10.0
-offset_right = 2050.0
-offset_bottom = 1162.0
+offset_left = 8.0
+offset_right = 2056.0
+offset_bottom = 1152.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 8
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 0
 theme_override_fonts/normal_font = ExtResource("2_ptr5m")
 theme_override_font_sizes/normal_font_size = 64
 vertical_alignment = 2
@@ -1333,7 +1344,6 @@ sprite_frames = SubResource("SpriteFrames_ogd8f")
 animation = &"gadget"
 
 [node name="ColorRect" type="ColorRect" parent="Control/GadgetImage" unique_id=1090764504]
-visible = false
 z_index = -1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1354,14 +1364,14 @@ scale = Vector2(1.5, 1.5)
 texture = ExtResource("11_0m4u7")
 
 [node name="Tooltip" type="AnimatedSprite2D" parent="Control/GadgetImage" unique_id=482543835]
-position = Vector2(4, 51)
+position = Vector2(4, 60)
 sprite_frames = SubResource("SpriteFrames_q3bbs")
 
 [node name="cheddytext" type="RichTextLabel" parent="." unique_id=222748365]
 modulate = Color(1, 1, 1, 0)
 offset_left = 300.0
 offset_top = 72.0
-offset_right = 612.0
+offset_right = 1193.0
 offset_bottom = 216.0
 theme_override_fonts/normal_font = ExtResource("2_ptr5m")
 theme_override_font_sizes/normal_font_size = 48

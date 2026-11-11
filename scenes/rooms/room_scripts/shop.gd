@@ -14,6 +14,16 @@ var refresh_count = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if GlobVar.biome == 0:
+		$Background.frame = 0
+	elif GlobVar.biome == 1:
+		$Background.frame = 1
+	elif GlobVar.biome == 2:
+		$Background.frame = 2
+	elif GlobVar.biome == 3:
+		$Background.frame = 3
+	
+	
 	SignalBus.spawn_particle.connect(_on_particle_spawn)
 	SignalBus.too_poor.connect(_too_poor)
 	SignalBus.item_purchase.connect(_item_purchase)

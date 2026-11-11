@@ -2,15 +2,15 @@ extends CanvasLayer
 # bro.
 var last_money_tier: = 0
 var moneylines = {
-	0: "Bring the\nbrie.",
-	1: "It's the\nChed' life.",
-	2: "Very\ngouda.",
-	3: "Cheese\npun.",
+	0: "Bring the brie.",
+	1: "It's the Ched' life.",
+	2: "Very gouda.",
+	3: "Cheese pun.",
 	4: "Gotta fetch the feta.",
-	5: "Orange you\ngl.. wait.. no...",
-	6: "DON'T\nLEAVE ME\nPROVALONE.",
+	5: "Orange you gl.. wait.. no...",
+	6: "DON'T LEAVE ME PROVALONE.",
 	7: "Hungry for havarti.",
-	8: "I'm the goat...\n...\ncheese.",
+	8: "I'm the goat...cheese.",
 	9: "Do I even like cheese?",
 	10: "Cheddar is always better."
 }
@@ -32,7 +32,7 @@ func _process(_delta: float) -> void:
 	$"Control/Hp Bar Back/Hp Bar Color/HpDisp".text = str(int(GlobVar.playerHealth)) + "/" + str(GlobVar.healthMax)
 	$"Control/Hp Bar Back".visible = true
 	# money time...
-	var money_max: =100.0
+	var money_max: = 100.0
 	var moneynotyetson: = fmod(float(GlobVar.money), money_max)
 	var moneyson: = 176* (moneynotyetson / money_max)
 	var current_tier: = int(floor(float(GlobVar.money) / money_max))
@@ -44,8 +44,8 @@ func _process(_delta: float) -> void:
 	$Control/MoneyImage.play()
 	$Control/MoneyImage.visible = true
 	GlobVar.money_disp_frame = $Control/MoneyImage.frame
-	if current_tier > last_money_tier:
-		last_money_tier = current_tier
+	if current_tier > GlobVar.last_money_tier:
+		GlobVar.last_money_tier = current_tier
 		var random_key: = int(randi() % moneylines.size())
 		$cheddytext.text = moneylines[random_key]
 		GlobVar.playerHealth = clamp(GlobVar.playerHealth + 25, 0, GlobVar.healthMax)

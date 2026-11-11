@@ -75,7 +75,9 @@ func _process(delta: float) -> void:
 	else:
 		sprite.modulate = Color(1,1,1,1)
 		
-	if GlobVar.playerHealth <= 0:
+	if GlobVar.playerHealth <= 0 and not dead:
+		dead = true
+		$Sounds/CheddyDeath.play()
 		$AnimationPlayer.play("manimdead")
 		await $AnimationPlayer.animation_finished 
 		visible = false
@@ -246,6 +248,7 @@ func damage(amount: int, location: Vector2 = Vector2(-1,-1)):
 			$Sounds/Hurt.play()
 		else:
 			$Sounds/Death.play(0.22)
+			#$Sounds/CheddyDeath.play()
 		if location != Vector2(-1,-1):
 			var knockback_dir = (global_position - location).normalized()
 			knockback_dir.y = min(knockback_dir.y, -0.4)
@@ -298,6 +301,8 @@ func update_animation():
 	var side = Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right")
 	var aim_x = facing
 	var v = Vector2(facing, 0)
+	#if GlobVar.playerHealth <= 0:
+		#$Sounds/CheddyDeath.play()
 	if cjb_active and not is_on_floor():
 		if sprite.animation != "cj":
 			sprite.animation = "cj"

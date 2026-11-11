@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://ccgt5igckleig" path="res://assets/sprites/player/11-bitemarker.png" id="14_3j4b4"]
 [ext_resource type="AudioStream" uid="uid://coma6p6mfts3" path="res://assets/sounds/sfx/player/CMJump.wav" id="14_fcs02"]
 [ext_resource type="AudioStream" uid="uid://cl4r13x5khkq8" path="res://assets/sounds/sfx/player/CMShoot.wav" id="15_fcs02"]
+[ext_resource type="AudioStream" uid="uid://bvgcv7t62vun" path="res://assets/sounds/sfx/player/CheddyDeath.wav" id="16_ioxgp"]
 [ext_resource type="AudioStream" uid="uid://c10fiea63r8sf" path="res://assets/sounds/sfx/player/CMDeath.wav" id="16_myrg7"]
 [ext_resource type="AudioStream" uid="uid://bbcl3n7415ohk" path="res://assets/sounds/sfx/player/CMCrouchWalk.wav" id="17_kvlxm"]
 [ext_resource type="AudioStream" uid="uid://xqbcrbn8hkhp" path="res://assets/sounds/sfx/player/CMBite.wav" id="20_8ydkj"]
@@ -1132,6 +1133,10 @@ collision_mask = 4
 hit_from_inside = true
 
 [node name="Sounds" type="Node" parent="." unique_id=272122379]
+
+[node name="CheddyDeath" type="AudioStreamPlayer" parent="Sounds" unique_id=974321264]
+stream = ExtResource("16_ioxgp")
+volume_db = 7.0
 
 [node name="Walk" type="AudioStreamPlayer" parent="Sounds" unique_id=1543082189]
 stream = ExtResource("12_fm80t")

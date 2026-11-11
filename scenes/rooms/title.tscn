@@ -1796,7 +1796,8 @@ visible = false
 position = Vector2(1425, 371)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_lfxu0")
-frame_progress = 0.75860685
+frame = 1
+frame_progress = 0.73833376
 
 [node name="BITE" type="RichTextLabel" parent="Instructions" unique_id=1224055674]
 anchors_preset = -1

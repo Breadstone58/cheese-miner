@@ -9,6 +9,7 @@ var trigger_arcade_mode = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$Instructions/FULLCONTROLS.frame = 0
 	if GlobVar.high_score == [0,0,0,0]:
 		$ControlHigh/HighScore.visible = false
 		$Instructions/RESET.visible = false
@@ -123,7 +124,7 @@ func scroll_title():
 		ArcadeMode.arcade_mode = true
 		#$Instructions/Jump.frame = 1
 		#$Instructions/Crouch.frame = 1
-		#$Instructions/Bite.frame = 1
+		$Instructions/FULLCONTROLS.frame = 1
 		$Instructions/JUMP.text = "(Y)JUMP"
 		$Instructions/CROUCH.text = "(B)CROUCH"
 		$Instructions/SHOOT.text = "(X) SHOOT"
