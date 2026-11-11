@@ -76,11 +76,13 @@ func _process(delta: float) -> void:
 		sprite.modulate = Color(1,1,1,1)
 		
 	if GlobVar.playerHealth <= 0:
+		$AnimationPlayer.play("manimdead")
+		await $AnimationPlayer.animation_finished 
 		visible = false
 		is_position_locked = true
 		GlobVar.transitioning = true
 		dead = true
-		await get_tree().create_timer(2.0).timeout
+		# await get_tree().create_timer(2.0).timeout
 		SceneTransitions.transition_to("res://scenes/death_screen.tscn",1.0)
 		
 	update_items()

@@ -9,6 +9,9 @@ var trigger_arcade_mode = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if GlobVar.high_score == [0,0,0,0]:
+		$ControlHigh/HighScore.visible = false
+		$Instructions/RESET.visible = false
 	cam.limit_top = -1152
 	cam.limit_bottom = 0
 	SignalBus.spawn_particle.connect(_on_particle_spawn)
@@ -20,10 +23,15 @@ func _ready() -> void:
 	InputMap.action_add_event("fn", (func(): var e = InputEventJoypadButton.new(); e.button_index = JOY_BUTTON_START; return e).call())
 	InputMap.action_add_event("fn", (func(): var e = InputEventKey.new(); e.keycode = KEY_ENTER; return e).call())
 	InputMap.action_add_event("arcade_mode", (func(): var e = InputEventJoypadButton.new(); e.button_index = JOY_BUTTON_BACK; return e).call())
-
-
-
-
+	$ControlHigh/HighScore.text = ("~ PERSONAL BEST ~" 
+	+ "\nHighest Stage: " 
+	+ str(GlobVar.high_score[0]) 
+	+ "\nBlocks Broken: " 
+	+ str(GlobVar.high_score[1]) 
+	+ "\nKills: " + str(GlobVar.high_score[2]) 
+	+ "\nItems Gathered: " + str(GlobVar.high_score[3])
+	)
+	 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	#Determine Scroll Lock
@@ -47,7 +55,7 @@ func _process(delta: float) -> void:
 	else:
 		if Input.is_action_just_pressed("fn"):
 			scroll_title()
-		elif Input.is_action_just_pressed("arcade_mode"):
+		if Input.is_action_just_pressed("arcade_mode"):
 			trigger_arcade_mode = true
 			scroll_title()
 
@@ -63,6 +71,21 @@ func _on_particle_spawn(new_texture: Texture2D, spawn_position: Vector2i):
 	
 	particle_instance.restart()
 
+func _on_crystal_hit_2() -> void:
+	$Instructions/FULLCONTROLS.visible = true
+	$Instructions/CONTROLS.visible = false
+	
+func _on_save_crystal_save_hit() -> void:
+	GlobVar.high_score=[0,0,0,0]
+	GlobVar.save()
+	$ControlHigh/HighScore.text = ("~ PERSONAL BEST ~" 
+	+ "\nHighest Stage: " 
+	+ str(GlobVar.high_score[0]) 
+	+ "\nBlocks Broken: " 
+	+ str(GlobVar.high_score[1]) 
+	+ "\nKills: " + str(GlobVar.high_score[2]) 
+	+ "\nItems Gathered: " + str(GlobVar.high_score[3])
+	)
 
 func _on_crystal_hit() -> void:
 	if not level_complete:
@@ -74,8 +97,17 @@ func _on_crystal_hit() -> void:
 		$TileMapLayer.set_cell(Vector2i(17,16),0,Vector2i(2,0))
 		$TileMapLayer.set_cell(Vector2i(15,17),0,Vector2i(1,1))
 		$TileMapLayer.set_cell(Vector2i(16,17),0,Vector2i(1,1))
+		
+		$TileMapLayer.set_cell(Vector2i(20,16), 0, Vector2i(5,5))
+		$TileMapLayer.set_cell(Vector2i(21,16), 0, Vector2i(3,5))
+		$TileMapLayer.set_cell(Vector2i(22,16), 0, Vector2i(3,5))
+		$TileMapLayer.set_cell(Vector2i(23,16), 0, Vector2i(3,5))
+		$TileMapLayer.set_cell(Vector2i(24,16), 0, Vector2i(6,5))
 		level_complete = true
-		$Instructions/Shoot.visible = true
+		$Instructions/SHOOT.visible = true
+		$Instructions/CJ.visible = true
+		$Instructions/CROUCH.visible = false
+		
 	
 func scroll_title():
 	var tween = create_tween().set_parallel(true) # set parallel makes the 2 tweens happen at the same time which is cool and awesome
@@ -86,6 +118,11 @@ func scroll_title():
 	InputMap.load_from_project_settings()
 	if trigger_arcade_mode:
 		ArcadeMode.arcade_mode = true
-		$Instructions/Jump.frame = 1
-		$Instructions/Crouch.frame = 1
-		$Instructions/Bite.frame = 1
+		#$Instructions/Jump.frame = 1
+		#$Instructions/Crouch.frame = 1
+		#$Instructions/Bite.frame = 1
+		$Instructions/JUMP.text = "(Y)JUMP"
+		$Instructions/CROUCH.text = "(B)CROUCH"
+		$Instructions/SHOOT.text = "(X) SHOOT"
+		$Instructions/BITE.text = "(L2) BITE"
+		$Instructions/CJ.text = "(Y)+(B)\nCROUCH\nJUMP"

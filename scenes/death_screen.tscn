@@ -2,10 +2,76 @@
 
 [ext_resource type="Script" uid="uid://bana6f167dyeh" path="res://scenes/death_screen.gd" id="1_mqh5l"]
 [ext_resource type="Texture2D" uid="uid://cri8l0maml6p8" path="res://assets/sprites/environment/GameOver.png" id="1_uyutr"]
-[ext_resource type="FontFile" uid="uid://8douc1wvghmy" path="res://assets/fonts/VCR_OSD_MONO_1.001.ttf" id="2_dwo6e"]
+[ext_resource type="FontFile" uid="uid://cajcf2pymgxui" path="res://assets/fonts/2Credits.ttf" id="3_mqh5l"]
+
+[sub_resource type="Animation" id="Animation_mqh5l"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1024, 277)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../RichTextLabel:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(512, 441)]
+}
+
+[sub_resource type="Animation" id="Animation_7ns25"]
+resource_name = "bouncy"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.1, 0.13333334, 0.16666667, 0.2, 0.23333333, 0.26666668, 0.3, 0.33333334, 0.36666667, 0.4, 0.43333334, 0.46666667, 0.5, 0.53333336, 0.56666666, 0.6, 0.6333333, 0.6666667, 0.7, 0.73333335, 0.76666665, 0.8, 0.8333333, 0.8666667, 0.9, 0.93333334, 0.96666664, 1, 1.0333333, 1.0666667, 1.1, 1.1333333, 1.1666666, 1.2, 1.2333333, 1.2666667, 1.3, 1.3333334, 1.3666667, 1.4, 1.4333333, 1.4666667, 1.5, 1.5333333, 1.5666667, 1.6, 1.6333333, 1.6666666, 1.7, 1.7333333, 1.7666667, 1.8, 1.8333334, 1.8666667, 1.9, 1.9333333, 1.9666667, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1024, -150), Vector2(1024, -149.15973), Vector2(1024, -146.63889), Vector2(1024, -142.4375), Vector2(1024, -136.55556), Vector2(1024, -128.99306), Vector2(1024, -119.75), Vector2(1024, -108.826385), Vector2(1024, -96.22221), Vector2(1024, -81.93749), Vector2(1024, -65.97221), Vector2(1024, -48.326385), Vector2(1024, -29), Vector2(1024, -7.9930573), Vector2(1024, 14.694458), Vector2(1024, 39.0625), Vector2(1024, 65.11113), Vector2(1024, 92.84027), Vector2(1024, 122.25003), Vector2(1024, 153.34027), Vector2(1024, 186.11115), Vector2(1024, 220.56247), Vector2(1024, 246.69446), Vector2(1024, 229.50696), Vector2(1024, 214), Vector2(1024, 200.17365), Vector2(1024, 188.0278), Vector2(1024, 177.56253), Vector2(1024, 168.77777), Vector2(1024, 161.67361), Vector2(1024, 156.25), Vector2(1024, 152.50696), Vector2(1024, 150.44443), Vector2(1024, 150.0625), Vector2(1024, 151.36111), Vector2(1024, 154.34027), Vector2(1024, 159), Vector2(1024, 165.34027), Vector2(1024, 173.36111), Vector2(1024, 183.06247), Vector2(1024, 194.44443), Vector2(1024, 207.50696), Vector2(1024, 222.25), Vector2(1024, 238.67355), Vector2(1024, 246.77777), Vector2(1024, 239.0625), Vector2(1024, 233.0278), Vector2(1024, 228.67361), Vector2(1024, 226), Vector2(1024, 225.00693), Vector2(1024, 225.69443), Vector2(1024, 228.0625), Vector2(1024, 232.11111), Vector2(1024, 237.84027), Vector2(1024, 245.25), Vector2(1024, 248.09027), Vector2(1024, 245.11111), Vector2(1024, 243.8125), Vector2(1024, 244.19443), Vector2(1024, 246.25696), Vector2(1024, 250)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../RichTextLabel:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.53333336, 1.9),
+"transitions": PackedFloat32Array(0.29730177, 1),
+"update": 0,
+"values": [Vector2(512, 1500), Vector2(512, 441)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gwety"]
+_data = {
+&"RESET": SubResource("Animation_mqh5l"),
+&"bouncy": SubResource("Animation_7ns25")
+}
 
 [node name="Death" type="Node2D" unique_id=501467183]
 script = ExtResource("1_mqh5l")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=704046093]
+root_node = NodePath("../ColorRect/Sprite2D")
+libraries/ = SubResource("AnimationLibrary_gwety")
+autoplay = &"bouncy"
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1320582500]
 z_index = -5
@@ -24,9 +90,9 @@ anchor_right = 0.5
 offset_left = 512.0
 offset_top = 441.0
 offset_right = 1536.0
-offset_bottom = 946.0
+offset_bottom = 945.9998
 grow_horizontal = 2
-theme_override_fonts/normal_font = ExtResource("2_dwo6e")
+theme_override_fonts/normal_font = ExtResource("3_mqh5l")
 theme_override_font_sizes/normal_font_size = 64
 text = "Highest Stage:
 Blocks Broken:
@@ -34,15 +100,14 @@ Kills:
 Items Gathered:
 
 
-<Press Start>"
+~ Press Start ~"
 horizontal_alignment = 1
 
 [node name="ColorRect" type="ColorRect" parent="RichTextLabel" unique_id=1156796671]
-visible = false
 layout_mode = 0
 offset_left = 229.0
 offset_top = 334.0
 offset_right = 796.0
-offset_bottom = 444.0
+offset_bottom = 491.0
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
