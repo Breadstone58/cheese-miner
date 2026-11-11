@@ -1,6 +1,6 @@
 extends CanvasLayer
 # bro.
-var last_money_tier: int = 0
+var last_money_tier: = 0
 var moneylines = {
 	0: "Bring the\nbrie.",
 	1: "It's the\nChed' life.",
@@ -20,6 +20,7 @@ func _ready() -> void:
 	$Control/MoneyImage.frame = GlobVar.money_disp_frame
 	$Control/EnergyImage.frame = GlobVar.energy_disp_frame
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	$Control/Stage.text = str(GlobVar.stage)
@@ -31,10 +32,10 @@ func _process(_delta: float) -> void:
 	$"Control/Hp Bar Back/Hp Bar Color/HpDisp".text = str(int(GlobVar.playerHealth)) + "/" + str(GlobVar.healthMax)
 	$"Control/Hp Bar Back".visible = true
 	# money time...
-	var money_max: float = 100.0
-	var moneynotyetson: float = fmod(float(GlobVar.money), money_max)
-	var moneyson: float = 176* (moneynotyetson / money_max)
-	var current_tier: int = int(floor(float(GlobVar.money) / money_max))
+	var money_max: =100.0
+	var moneynotyetson: = fmod(float(GlobVar.money), money_max)
+	var moneyson: = 176* (moneynotyetson / money_max)
+	var current_tier: = int(floor(float(GlobVar.money) / money_max))
 	$"Control/Hp Bar Back/Cash Bar Back/Cash Bar Color".size.x = moneyson
 	$"Control/Hp Bar Back/Cash Bar Back/Cash Bar Color"/CashShading.size.x = moneyson
 	$"Control/Hp Bar Back/Cash Bar Back/Cash Bar Color"/CashShading2.size.x = moneyson
@@ -45,7 +46,7 @@ func _process(_delta: float) -> void:
 	GlobVar.money_disp_frame = $Control/MoneyImage.frame
 	if current_tier > last_money_tier:
 		last_money_tier = current_tier
-		var random_key: int = randi() % moneylines.size()
+		var random_key: = int(randi() % moneylines.size())
 		$cheddytext.text = moneylines[random_key]
 		GlobVar.playerHealth = clamp(GlobVar.playerHealth + 25, 0, GlobVar.healthMax)
 		$cheddytext/AnimationPlayer.play("text")

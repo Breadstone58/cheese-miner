@@ -296,8 +296,14 @@ func update_animation():
 	var side = Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right")
 	var aim_x = facing
 	var v = Vector2(facing, 0)
-	if cjb_active:
-		pass # will use to add anim
+	if cjb_active and not is_on_floor():
+		if sprite.animation != "cj":
+			sprite.animation = "cj"
+			sprite.play()
+			await sprite.animation_finished 
+		return
+	else:
+		pass
 	if iFrames != 0:
 		if sprite.animation != "hurt":
 			sprite.animation = "hurt"

@@ -54,7 +54,7 @@ var tunnel_color = {
 	1 : Color("#232741"),
 	2 : Color("#3c1100"),
 	3 : Color("#2C291A"),
-	5 : Color(0.417, 0.417, 0.417, 1.0)
+	5 : Color("#201E1E")
 }
 
 """
