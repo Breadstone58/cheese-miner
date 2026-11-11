@@ -103,7 +103,7 @@ func _leaving():
 	if item_purchased:
 		clear_voices()
 		$Voicelines/Leaving.play(0.34)
-	elif GlobVar.money < min($Item.cost,$Item.cost,$Item.cost,$Item.cost):
+	elif GlobVar.money < GlobVar.lowestCostItem:
 		clear_voices()
 		$Voicelines/LeavingPoor.play(0.46)
 	else:

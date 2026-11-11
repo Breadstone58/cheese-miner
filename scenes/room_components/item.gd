@@ -96,6 +96,8 @@ func _process(delta: float) -> void:
 	if state == 11 and GlobVar.leaving_shop:
 		queue_free()
 	pop_in_timer += delta
+	if GlobVar.lowestCostItem > cost and cost > 0:
+		GlobVar.lowestCostItem = cost 
 
 func get_rarity():
 	return sprite.animation

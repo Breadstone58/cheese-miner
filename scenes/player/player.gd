@@ -126,7 +126,7 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	if GlobVar.biome == 1 and is_on_floor():
-		FRICTION = 400.0 + 220 * GlobVar.environmentalRes
+		FRICTION = min(400.0 + 220 * GlobVar.environmentalRes,1500)
 	else:
 		FRICTION = 1500.0
 	
@@ -193,7 +193,7 @@ func _physics_process(delta: float) -> void:
 	if $StandingOnChecker.is_colliding() and $StandingOnChecker.get_collider() is TileMapLayer:
 		var c = $StandingOnChecker.get_collider()
 		if c.get_cell_source_id(c.local_to_map(c.to_local($StandingOnChecker.get_collision_point() - $StandingOnChecker.get_collision_normal()))) == 4:
-			damage(clampi(5-GlobVar.environmentalRes,0,INF), position + Vector2(1, 0))
+			damage(max(5-GlobVar.environmentalRes,0), position + Vector2(1, 0))
 
 func get_aim_vector() -> Vector2:
 	var v = Vector2(facing, 0)

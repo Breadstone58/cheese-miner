@@ -19,6 +19,7 @@ var rare = {
 	0 : "Medkit",
 	1 : "Spring_Boots",
 	2 : "Shock",
+	3 : "Clover",
 }
 
 var gadget = {

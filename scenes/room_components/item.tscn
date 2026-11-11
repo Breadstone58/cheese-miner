@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://d1021008icpcj" path="res://assets/sprites/items/Boots.png" id="16_b2ihd"]
 [ext_resource type="Texture2D" uid="uid://8hawgl1xjeva" path="res://assets/sprites/items/Bouncybullets.png" id="17_ps343"]
 [ext_resource type="Texture2D" uid="uid://dco7hrn8bmste" path="res://assets/sprites/items/shock.png" id="17_uq7nl"]
+[ext_resource type="Texture2D" uid="uid://cs05fiiytf22u" path="res://assets/sprites/items/Clover.png" id="18_toiyw"]
 [ext_resource type="AudioStream" uid="uid://c74e3clbjncvo" path="res://assets/sounds/sfx/player/CMPickUp.wav" id="19_p2y2a"]
 [ext_resource type="AudioStream" uid="uid://ftybg51xglm" path="res://assets/sounds/sfx/player/CMPurchase.wav" id="20_b2ihd"]
 [ext_resource type="Texture2D" uid="uid://c5p2wkub3efk6" path="res://assets/sprites/items/ShieldThing.png" id="20_toiyw"]
@@ -555,6 +556,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fv4kg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_toiyw")
 }],
 "loop": 1,
 "name": &"rare",
@@ -595,7 +599,7 @@ autoplay = &"initial"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals" unique_id=883992812]
 sprite_frames = SubResource("SpriteFrames_ogd8f")
-animation = &"uncommon"
+animation = &"rare"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1963493621]
 visible = false

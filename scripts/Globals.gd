@@ -18,6 +18,7 @@ var energy_disp_frame = 0
 var charFacing = 1
 var music_biome = -1
 var levels_remaining = []
+var lowestCostItem = INF
 
 #items
 var inventory = []
@@ -37,6 +38,7 @@ var degredationTime = 0
 var environmentalRes = 0
 var canBullletKill = true
 var exStunTime = 0
+var exLuck = 0
 
 #gadget stuff
 var gadget_change_key = -1
@@ -85,6 +87,7 @@ func _process(delta: float) -> void:
 	environmentalRes = count_items("Iron_Boots")
 	canBullletKill = not ("Shock" in inventory)
 	exStunTime = 2 * count_items("Shock")
+	exLuck = 0.005 * count_items("Clover")
 	
 	items = inventory.size()
 	if FracHealth > healthMax:
@@ -136,6 +139,8 @@ func reset_to_default() -> void:
 	environmentalRes = 0
 	canBullletKill = true
 	exStunTime = 0
+	exLuck = 0
+	
 	
 
 	# Gadget stuff

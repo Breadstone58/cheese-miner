@@ -11,6 +11,7 @@ var going_boss = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GlobVar.leaving_shop = false
+	GlobVar.lowestCostItem = INF
 	if GlobVar.stage == 0 or GlobVar.levels_remaining.size() == 0:
 		force_new_biome = true
 		GlobVar.levels_remaining = range(0,LEVEL_COUNT+1)

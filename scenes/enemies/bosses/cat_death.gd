@@ -34,5 +34,4 @@ func _on_kill(death_area: Vector2):
 	explosionBig.scale = Vector2(6.25,6.25)
 	get_tree().current_scene.add_child(explosionBig)
 	ItemSpawner.spawn_item(Vector2(global_position.x,clamp(global_position.y,768,1088)),2)
-	ItemSpawner.spawn_money(Vector2(global_position.x,clamp(global_position.y,768,1088)),clamp(randi_range(2 * GlobVar.stage,3 * GlobVar.stage),1,INF))
 	queue_free()

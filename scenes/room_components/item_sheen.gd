@@ -14,10 +14,10 @@ func _ready() -> void:
 	var used_cells = block_tiles.get_used_cells()
 	for coords in used_cells:
 		var tile_data = block_tiles.get_cell_tile_data(coords)
-		if tile_data.get_custom_data("breakable") and randf() < (0.04 if GlobVar.biome == 3 else 0.017):
+		if tile_data.get_custom_data("breakable") and randf() < (0.04 + 2 * GlobVar.exLuck if GlobVar.biome == 3 else 0.017 + GlobVar.exLuck):
 			set_cell(coords,0,Vector2i(0,0))
 			item_tiles.append(coords)
-		elif tile_data.get_custom_data("breakable") and randf() < 0.05:
+		elif tile_data.get_custom_data("breakable") and randf() < 0.05 + 0.5 * GlobVar.exLuck:
 			money_tiles.append(coords)
 			
 # Called every frame. 'delta' is the elapsed time since the previous frame.
