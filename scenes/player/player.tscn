@@ -834,7 +834,7 @@ size = Vector2(60, 120)
 size = Vector2(64, 127)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4xhwt"]
-size = Vector2(96, 120)
+size = Vector2(125, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_88c1f"]
 atlas = ExtResource("14_3j4b4")
@@ -988,7 +988,7 @@ collision_mask = 136
 script = ExtResource("4_lvxji")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bite Hitbox" unique_id=1503319142]
-position = Vector2(48, 0)
+position = Vector2(64, 0)
 shape = SubResource("RectangleShape2D_4xhwt")
 disabled = true
 

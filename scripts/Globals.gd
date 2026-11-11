@@ -57,6 +57,14 @@ var tunnel_color = {
 	5 : Color(0.417, 0.417, 0.417, 1.0)
 }
 
+"""
+var money_colors = {
+	0: Color("#FCB500")
+	1: Color("#EA641C")
+	2: Color("#FA8D07
+}
+""" # NVM IM NOT DOING THIS SHIT THE MONEY IS GREEN. IT'S ALL GREEN. FUH YOU
+
 func count_items(item: String):
 	var count = 0
 	for i in inventory:

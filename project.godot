@@ -33,6 +33,10 @@ window/size/viewport_height=1152
 window/size/mode=2
 window/stretch/mode="canvas_items"
 
+[gui]
+
+theme/custom_font="uid://cfm2oesvt0y7r"
+
 [input]
 
 jump={
