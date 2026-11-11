@@ -98,11 +98,14 @@ func _on_crystal_hit() -> void:
 		$TileMapLayer.set_cell(Vector2i(15,17),0,Vector2i(1,1))
 		$TileMapLayer.set_cell(Vector2i(16,17),0,Vector2i(1,1))
 		
-		$TileMapLayer.set_cell(Vector2i(20,16), 0, Vector2i(5,5))
-		$TileMapLayer.set_cell(Vector2i(21,16), 0, Vector2i(3,5))
-		$TileMapLayer.set_cell(Vector2i(22,16), 0, Vector2i(3,5))
-		$TileMapLayer.set_cell(Vector2i(23,16), 0, Vector2i(3,5))
-		$TileMapLayer.set_cell(Vector2i(24,16), 0, Vector2i(6,5))
+		for col in range(21,24):
+			for row in range(15,18):
+				$TileMapLayer.set_cell(Vector2i(col,row), 0, Vector2i(1,4))
+				$TileMapLayer.set_cell(Vector2i(20,row), 0, Vector2i(0,4))
+				$TileMapLayer.set_cell(Vector2i(24,row), 0, Vector2i(2,4))
+		$TileMapLayer.set_cell(Vector2i(20,17), 0, Vector2i(4,4))
+		$TileMapLayer.set_cell(Vector2i(24,17), 0, Vector2i(3,4))
+		
 		level_complete = true
 		$Instructions/SHOOT.visible = true
 		$Instructions/CJ.visible = true
