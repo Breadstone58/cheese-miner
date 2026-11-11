@@ -1648,7 +1648,7 @@ position = Vector2(1056, 1120)
 scale = Vector2(-1, 1)
 
 [node name="Blocker" parent="." unique_id=704875254 instance=ExtResource("15_5kgjf")]
-position = Vector2(1024, -32)
+position = Vector2(1024, -96)
 collision_layer = 16
 
 [node name="HUD" parent="." unique_id=180511637 instance=ExtResource("16_iv43f")]
