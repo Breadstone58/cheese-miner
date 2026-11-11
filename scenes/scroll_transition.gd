@@ -1,7 +1,7 @@
 extends Node2D
 
 var rand_level = 0
-const LEVEL_COUNT = 16
+const LEVEL_COUNT = 17
 var valid_biome = false
 var new_biome = 0
 var going_shop = false
