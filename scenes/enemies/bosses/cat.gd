@@ -36,7 +36,7 @@ var player_desperation = 3:
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	visible = false
-	GlobVar.stage = 1 if GlobVar.stage < 15 else GlobVar.stage
+	GlobVar.stage = 1 if GlobVar.stage < 10 else GlobVar.stage
 	play_animation()
 	$"Left Hand/Hitbox".damage = GlobVar.stage
 	$"Right Hand/Hitbox".damage = GlobVar.stage

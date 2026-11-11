@@ -39,7 +39,10 @@ const INPUT_BUFFER_WINDOW: float = 3.0/60.0
 
 
 func _ready() -> void:
-	position.x = GlobVar.PlayerX
+	if get_tree().current_scene.name == "Title":
+		position.x = 541
+	else:
+		position.x = GlobVar.PlayerX
 	velocity.y = 2000
 	SignalBus.bite_death.connect(_on_bite_kill)
 	

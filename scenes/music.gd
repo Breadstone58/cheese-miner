@@ -21,7 +21,7 @@ func _process(delta: float) -> void:
 			$RedBiome.volume_db = clamp($RedBiome.volume_db - delta * 80,-80,0)
 			$GreenBiome.volume_db = clamp($GreenBiome.volume_db - delta * 80,-80,0)
 			$Title.volume_db = clamp($Title.volume_db - delta * 80,-80,0)
-			$Shop.volume_db = clamp($Shop.volume_db + delta * 80,-80,0)
+			$Shop.volume_db = clamp($Shop.volume_db - delta * 80,-80,0)
 		else:
 			$YellowBiome.volume_db = clamp($YellowBiome.volume_db + delta * 80 * (1 if GlobVar.music_biome == 0 else -1),-80.0,0.0)
 			$BlueBiome.volume_db = clamp($BlueBiome.volume_db + delta * 80 * (1 if GlobVar.music_biome == 1 else -1),-80.0,0.0)

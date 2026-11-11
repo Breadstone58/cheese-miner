@@ -1,7 +1,7 @@
 extends Node2D
 
 var rand_level = 0
-const LEVEL_COUNT = 12
+const LEVEL_COUNT = 14
 var valid_biome = false
 var new_biome = 0
 var going_shop = false
@@ -34,7 +34,7 @@ func _ready() -> void:
 			var atlas_coords = $TileMapLayer2.get_cell_atlas_coords(coords)
 			var alternative_tile = $TileMapLayer2.get_cell_alternative_tile(coords)
 			$TileMapLayer2.set_cell(coords, GlobVar.biome, atlas_coords, alternative_tile)
-	elif GlobVar.stage and (GlobVar.stage + 1) % 15 == 0:
+	elif (GlobVar.stage + 1) % 10 == 0:
 		going_boss = true
 		new_biome = GlobVar.biome
 		var used_cells = $TileMapLayer.get_used_cells()

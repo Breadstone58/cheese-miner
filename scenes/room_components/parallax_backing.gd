@@ -14,9 +14,9 @@ func _ready() -> void:
 	visible = true
 	sprite1.play()
 	sprite5.play()
-	if get_tree().current_scene.name == "Title":
-		$Parallax2D2.scroll_scale.y = 1.0
-		$Parallax2D3.scroll_scale.y = 1.0
+	if GlobVar.biome == 2:
+		$Parallax2D5.scroll_scale.y = 0
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

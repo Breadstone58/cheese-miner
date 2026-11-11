@@ -12,4 +12,5 @@ func _process(_delta: float) -> void:
 	$CollisionShape2D.position.x = -1 * $AnimatedSprite2D.frame
 
 func _on_level_complete():
-	$AnimatedSprite2D.play()
+	if $AnimatedSprite2D.frame == 0:
+		$AnimatedSprite2D.play()

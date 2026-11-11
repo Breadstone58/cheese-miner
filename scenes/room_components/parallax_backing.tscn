@@ -420,6 +420,7 @@ animations = [{
 }]
 
 [node name="Parallax_Backing" type="Node2D" unique_id=730832840]
+visible = false
 z_index = -100
 script = ExtResource("1_lwx4h")
 
@@ -433,7 +434,7 @@ sprite_frames = SubResource("SpriteFrames_ogd8f")
 animation = &"5"
 
 [node name="Parallax2D2" type="Parallax2D" parent="." unique_id=888892707]
-scroll_scale = Vector2(0.2, 0)
+scroll_scale = Vector2(0.2, 1)
 repeat_size = Vector2(2048, 0)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Parallax2D2" unique_id=50394313]
@@ -442,34 +443,34 @@ sprite_frames = SubResource("SpriteFrames_q3bbs")
 animation = &"5"
 
 [node name="Parallax2D3" type="Parallax2D" parent="." unique_id=787573236]
-scroll_scale = Vector2(0.3, 0)
+scroll_scale = Vector2(0.3, 1)
 repeat_size = Vector2(2048, 0)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Parallax2D3" unique_id=1100051882]
 position = Vector2(1024, 576)
 sprite_frames = SubResource("SpriteFrames_4xhwt")
-animation = &"5"
+animation = &"2"
 
 [node name="Parallax2D4" type="Parallax2D" parent="." unique_id=640280680]
-scroll_scale = Vector2(0.4, 0)
+scroll_scale = Vector2(0.4, 1)
 repeat_size = Vector2(2048, 0)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Parallax2D4" unique_id=2113060297]
 position = Vector2(1024, 576)
 sprite_frames = SubResource("SpriteFrames_ykti1")
-animation = &"5"
+animation = &"2"
 
 [node name="Parallax2D5" type="Parallax2D" parent="." unique_id=636901301]
-scroll_scale = Vector2(0.5, 0)
+scroll_scale = Vector2(0.5, 1)
 repeat_size = Vector2(2048, 0)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Parallax2D5" unique_id=264460123]
 position = Vector2(1024, 576)
 sprite_frames = SubResource("SpriteFrames_i1u1y")
-animation = &"5"
+animation = &"2"
 
 [node name="Parallax2D6" type="Parallax2D" parent="." unique_id=1587419746]
-scroll_scale = Vector2(0.6, 0)
+scroll_scale = Vector2(0.6, 1)
 repeat_size = Vector2(2048, 0)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Parallax2D6" unique_id=1654381072]
