@@ -11,11 +11,14 @@ var common = {
 var uncommon = {
 	0 : "Jump_Tank",
 	1 : "Rubber_Bullet",
+	2 : "Shield",
+	3 : "Iron_Boots"
 }
 
 var rare = {
 	0 : "Medkit",
-	1 : "Spring_Boots"
+	1 : "Spring_Boots",
+	2 : "Shock",
 }
 
 var gadget = {

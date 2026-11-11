@@ -19,8 +19,11 @@
 [ext_resource type="Texture2D" uid="uid://dqntmy0bcajmw" path="res://assets/sprites/items/Jumpcan.png" id="15_uq7nl"]
 [ext_resource type="Texture2D" uid="uid://d1021008icpcj" path="res://assets/sprites/items/Boots.png" id="16_b2ihd"]
 [ext_resource type="Texture2D" uid="uid://8hawgl1xjeva" path="res://assets/sprites/items/Bouncybullets.png" id="17_ps343"]
+[ext_resource type="Texture2D" uid="uid://dco7hrn8bmste" path="res://assets/sprites/items/shock.png" id="17_uq7nl"]
 [ext_resource type="AudioStream" uid="uid://c74e3clbjncvo" path="res://assets/sounds/sfx/player/CMPickUp.wav" id="19_p2y2a"]
 [ext_resource type="AudioStream" uid="uid://ftybg51xglm" path="res://assets/sounds/sfx/player/CMPurchase.wav" id="20_b2ihd"]
+[ext_resource type="Texture2D" uid="uid://c5p2wkub3efk6" path="res://assets/sprites/items/ShieldThing.png" id="20_toiyw"]
+[ext_resource type="Texture2D" uid="uid://dmfhytu3djqm3" path="res://assets/sprites/items/ironbooties.png" id="21_ebh1l"]
 
 [sub_resource type="Animation" id="Animation_6muww"]
 length = 0.001
@@ -321,6 +324,14 @@ region = Rect2(0, 128, 64, 64)
 atlas = ExtResource("13_p2y2a")
 region = Rect2(64, 128, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_fv4kg"]
+atlas = ExtResource("17_uq7nl")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_03wct"]
+atlas = ExtResource("21_ebh1l")
+region = Rect2(0, 0, 64, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_ogd8f"]
 animations = [{
 "frames": [{
@@ -541,6 +552,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("16_b2ihd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fv4kg")
 }],
 "loop": 1,
 "name": &"rare",
@@ -552,6 +566,12 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("17_ps343")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_toiyw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_03wct")
 }],
 "loop": 1,
 "name": &"uncommon",
@@ -575,7 +595,7 @@ autoplay = &"initial"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals" unique_id=883992812]
 sprite_frames = SubResource("SpriteFrames_ogd8f")
-animation = &"rare"
+animation = &"uncommon"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1963493621]
 visible = false

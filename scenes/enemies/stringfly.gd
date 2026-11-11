@@ -68,7 +68,7 @@ func _process(delta: float) -> void:
 	else:
 		stun_counter = 0
 		unstun = 0
-	if unstun >= 5:
+	if unstun >= 3 + GlobVar.exStunTime:
 		health = 1
 		state = 1
 		modulate = Color(1,1,1,1)

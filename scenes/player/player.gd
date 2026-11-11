@@ -126,7 +126,7 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	if GlobVar.biome == 1 and is_on_floor():
-		FRICTION = 400.0
+		FRICTION = 400.0 + 220 * GlobVar.environmentalRes
 	else:
 		FRICTION = 1500.0
 	
@@ -193,7 +193,7 @@ func _physics_process(delta: float) -> void:
 	if $StandingOnChecker.is_colliding() and $StandingOnChecker.get_collider() is TileMapLayer:
 		var c = $StandingOnChecker.get_collider()
 		if c.get_cell_source_id(c.local_to_map(c.to_local($StandingOnChecker.get_collision_point() - $StandingOnChecker.get_collision_normal()))) == 4:
-			damage(5, position + Vector2(1, 0))
+			damage(clampi(5-GlobVar.environmentalRes,0,INF), position + Vector2(1, 0))
 
 func get_aim_vector() -> Vector2:
 	var v = Vector2(facing, 0)
@@ -217,9 +217,10 @@ func get_aim_vector() -> Vector2:
 	return Vector2(facing, 0)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("shoot") and not GlobVar.transitioning and shoot_cooldown <= 0:
+	if event.is_action_pressed("shoot") and not GlobVar.transitioning and shoot_cooldown <= 2.0/60.0:
+		await get_tree().create_timer(shoot_cooldown).timeout
 		shoot_cooldown = shoot_speed
-
+		
 		var bullet = bullet_scene.instantiate()
 		var aim_direction = get_aim_vector()
 		bullet.global_position = $BulletSpawnPoint.global_position
@@ -237,7 +238,7 @@ func handle_lock_input() -> void:
 
 func damage(amount: int, location: Vector2 = Vector2(-1,-1)):
 	if iFrames == 0 and GlobVar.playerHealth > 0:
-		GlobVar.playerHealth -= amount
+		GlobVar.FracHealth -= amount
 		iFrames = 60
 		if GlobVar.playerHealth > 0:
 			$Sounds/Hurt.play()
@@ -249,7 +250,7 @@ func damage(amount: int, location: Vector2 = Vector2(-1,-1)):
 			knockback_velocity = knockback_dir.normalized() * 600.0
 
 func heal(amount: int):
-	GlobVar.playerHealth = clamp(GlobVar.playerHealth + amount, 0, GlobVar.healthMax)
+	GlobVar.FracHealth = clamp(GlobVar.FracHealth + amount, 0, GlobVar.healthMax if not GlobVar.goOverMaxHp else INF)
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area is Hitbox:

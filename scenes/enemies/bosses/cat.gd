@@ -17,8 +17,8 @@ var track = "intro" :
 var hands_left = 2
 var left_hand_alive = true
 var right_hand_alive = true
-var left_hand_health = GlobVar.stage * 10
-var right_hand_health = GlobVar.stage * 10
+var left_hand_health = GlobVar.stage * 30
+var right_hand_health = GlobVar.stage * 30
 var body_frame = 0
 
 var attack_list = [
@@ -38,8 +38,8 @@ func _ready() -> void:
 	visible = false
 	GlobVar.stage = 1 if GlobVar.stage < 10 else GlobVar.stage
 	play_animation()
-	$"Left Hand/Hitbox".damage = GlobVar.stage
-	$"Right Hand/Hitbox".damage = GlobVar.stage
+	$"Left Hand/Hitbox".damage = floori(GlobVar.stage * 1.5)
+	$"Right Hand/Hitbox".damage = floori(GlobVar.stage * 1.5)
 	left_hand_health = GlobVar.stage * 10
 	right_hand_health = GlobVar.stage * 10
 

@@ -7,6 +7,7 @@ var PlayerY = 1028
 var transitioning = false
 var stage: int = 0
 var playerHealth = 100
+var FracHealth = 100
 var healthMax = 100
 var shopChance = 0
 var leaving_shop = false
@@ -31,6 +32,11 @@ var levelStartHeal = 0
 var crouch_boost = 0.0
 var exMaxHP = 0
 var exAttackSpeed = 0
+var goOverMaxHp = false
+var degredationTime = 0
+var environmentalRes = 0
+var canBullletKill = true
+var exStunTime = 0
 
 #gadget stuff
 var gadget_change_key = -1
@@ -74,7 +80,16 @@ func _process(delta: float) -> void:
 	crouch_boost = 200.0 + count_items("Spring_Boots") * 150.0
 	healthMax = 100 + count_items("Magic_Cheese") * 20
 	exAttackSpeed = count_items("Drill_Oil") / -30.0
+	goOverMaxHp = "Shield" in inventory
+	degredationTime = 2 * count_items("Shield")
+	environmentalRes = count_items("Iron_Boots")
+	canBullletKill = not ("Shock" in inventory)
+	exStunTime = 2 * count_items("Shock")
+	
 	items = inventory.size()
+	if FracHealth > healthMax:
+		FracHealth = clamp(FracHealth - delta * (playerHealth-healthMax)/degredationTime,healthMax,INF)
+	playerHealth = int(FracHealth)
 
 func _ready() -> void:
 	SignalBus.enemy_killed.connect(_on_kill)
@@ -91,9 +106,11 @@ func reset_to_default() -> void:
 	transitioning = false
 	stage = 0
 	playerHealth = 100
+	FracHealth = 100
 	healthMax = 100
 	shopChance = 0
 	leaving_shop = false
+	leaving_boss = false
 	money = 0
 	money_disp_frame = 0
 	energy_disp_frame = 0
@@ -114,6 +131,12 @@ func reset_to_default() -> void:
 	crouch_boost = 0.0
 	exMaxHP = 0
 	exAttackSpeed = 0
+	goOverMaxHp = false
+	degredationTime = 0
+	environmentalRes = 0
+	canBullletKill = true
+	exStunTime = 0
+	
 
 	# Gadget stuff
 	gadget_change_key = -1

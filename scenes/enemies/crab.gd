@@ -68,7 +68,7 @@ func _process(delta: float) -> void:
 		unstun = 0
 		if $AnimatedSprite2D.animation != "idle":
 			$AnimatedSprite2D.play("idle")
-	if unstun >= 5:
+	if unstun >= 3 + GlobVar.exStunTime:
 		health = 1
 		modulate = Color(1,1,1,1)
 
