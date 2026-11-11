@@ -4,6 +4,8 @@ const PARTICLE_SCENE = preload("res://scenes/room_components/break_particles.tsc
 var scroll_down = 0
 var top_locked = false
 var level_complete = false
+var break_goal = 0
+var tiles_left = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -20,7 +22,13 @@ func _ready() -> void:
 			randomize()
 			if randf() < 0.15 and $TileMapLayer.get_cell_tile_data(coords).get_custom_data("breakable"):
 				$TileMapLayer.set_cell(coords, 4, atlas_coords, alternative_tile)
-	
+	used_cells = $TileMapLayer.get_used_cells()
+	var broken_count = 0
+	for coords in used_cells:
+		var tile_data = $TileMapLayer.get_cell_tile_data(coords)
+		if tile_data and tile_data.get_custom_data("breakable"):
+			broken_count += 1
+	break_goal = floori(broken_count * clamp(0.5 + 0.1 * floori(GlobVar.stage/5.0),0,1))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -30,7 +38,7 @@ func _process(delta: float) -> void:
 	cam.limit_right = 2048
 	if $CharacterBody2D.position.y >= 0:
 		GlobVar.transitioning = false
-		SignalBus.level_goal.emit("Break all the Cheese!")
+		SignalBus.level_goal.emit("Break ("+str(tiles_left)+") More Cheese!")
 	if top_locked == false:
 		cam.limit_top = max($CharacterBody2D.position.y - 576,cam.limit_top)
 	else:
@@ -55,8 +63,9 @@ func _process(delta: float) -> void:
 		var tile_data = $TileMapLayer.get_cell_tile_data(coords)
 		if tile_data and tile_data.get_custom_data("breakable"):
 			broken_count += 1
-			break
-	if broken_count == 0 and not level_complete:
+	tiles_left = clamp(broken_count - break_goal,0,broken_count)
+	
+	if tiles_left == 0 and not level_complete:
 		SignalBus.level_complete.emit()
 		level_complete = true
 

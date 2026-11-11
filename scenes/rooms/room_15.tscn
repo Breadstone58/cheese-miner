@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://ju0t34ts0f31"]
 
-[ext_resource type="Script" uid="uid://biilk0buylkb4" path="res://scenes/rooms/room_scripts/room_0.gd" id="1_xwc6m"]
+[ext_resource type="Script" uid="uid://dtv3mav5kxd6a" path="res://scenes/rooms/room_scripts/room_15.gd" id="1_xwc6m"]
 [ext_resource type="Texture2D" uid="uid://b48lcel35385o" path="res://assets/sprites/environment/broken_cheese.png" id="2_t33vq"]
 [ext_resource type="Texture2D" uid="uid://c1mxck17cspk8" path="res://assets/sprites/environment/Cheesewalls.png" id="3_caosc"]
 [ext_resource type="Texture2D" uid="uid://b0uq8i6fd2ifc" path="res://assets/sprites/environment/broken_bluecheese.png" id="4_wo2qe"]
