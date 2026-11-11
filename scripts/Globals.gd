@@ -49,6 +49,10 @@ var blocks_broken = 0
 var enemies_killed = 0
 var items = 0
 
+# save
+var save_path = "user://CHEESEMINERSCORE.save"
+var high_score = [0,0,0,0] # deepest layer, blocks broken, enemies killed, items
+
 var tunnel_color = {
 	0 : Color("#250239"),
 	1 : Color("#232741"),
@@ -160,3 +164,13 @@ func reset_to_default() -> void:
 	enemies_killed = 0
 	
 	ArcadeMode.arcade_mode = false
+	
+func save():
+	var file = FileAccess.open(save_path, FileAccess.WRITE)
+	file.store_var(high_score)
+func load_data():
+	if FileAccess.file_exists(save_path):
+		var file = FileAccess.open(save_path, FileAccess.READ)
+		high_score = file.get_var()
+	else:
+		high_score = [0,0,0,0]
