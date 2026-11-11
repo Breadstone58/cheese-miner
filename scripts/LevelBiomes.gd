@@ -4,4 +4,4 @@ var lvl = {
 	5 : 3
 }
 
-var hard = [7,8,12,14]
+var hard = [17,8,12,14]

@@ -8,7 +8,6 @@ var level_complete = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalBus.spawn_particle.connect(_on_particle_spawn)
-	SignalBus.level_complete.connect(_on_lever_flipped)
 	var used_cells = $TileMapLayer.get_used_cells()
 	for coords in used_cells:
 		var atlas_coords = $TileMapLayer.get_cell_atlas_coords(coords)
@@ -65,6 +64,3 @@ func _on_particle_spawn(new_texture: Texture2D, spawn_position: Vector2i):
 func _on_crystal_crystal_hit() -> void:
 	for i in range(1,3):
 		$TileMapLayer.set_cell(Vector2i(4,i),GlobVar.biome,Vector2i(0,1))
-
-func _on_lever_flipped():
-	$Stringfly2.position = Vector2(1012.0,636.0)
