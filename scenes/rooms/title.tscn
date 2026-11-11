@@ -1692,7 +1692,7 @@ position = Vector2(48, 838)
 script = ExtResource("18_7qv5q")
 
 [node name="ControlCrystal" parent="." unique_id=946611175 instance=ExtResource("15_x1m5c")]
-position = Vector2(1440, 644)
+position = Vector2(1376, 644)
 script = ExtResource("18_1v7at")
 
 [node name="Crystal" parent="." unique_id=245173892 instance=ExtResource("15_x1m5c")]
@@ -1849,9 +1849,9 @@ anchor_left = -0.5182342
 anchor_top = -5.5204916
 anchor_right = 0.556766
 anchor_bottom = -2.9204922
-offset_left = 1183.0
+offset_left = 1114.0
 offset_top = 461.0
-offset_right = 1704.0
+offset_right = 1635.0
 offset_bottom = 705.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
