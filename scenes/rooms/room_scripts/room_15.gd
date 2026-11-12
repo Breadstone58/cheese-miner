@@ -4,8 +4,6 @@ const PARTICLE_SCENE = preload("res://scenes/room_components/break_particles.tsc
 var scroll_down = 0
 var top_locked = false
 var level_complete = false
-var break_goal = 0
-var tiles_left = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -28,7 +26,6 @@ func _ready() -> void:
 		var tile_data = $TileMapLayer.get_cell_tile_data(coords)
 		if tile_data and tile_data.get_custom_data("breakable"):
 			broken_count += 1
-	break_goal = 16
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -38,7 +35,7 @@ func _process(delta: float) -> void:
 	cam.limit_right = 2048
 	if $CharacterBody2D.position.y >= 0:
 		GlobVar.transitioning = false
-		SignalBus.level_goal.emit("Break ("+str(tiles_left)+") More Cheese!")
+		SignalBus.level_goal.emit("Break All the Cheese!")
 	if top_locked == false:
 		cam.limit_top = max($CharacterBody2D.position.y - 576,cam.limit_top)
 	else:
@@ -63,9 +60,9 @@ func _process(delta: float) -> void:
 		var tile_data = $TileMapLayer.get_cell_tile_data(coords)
 		if tile_data and tile_data.get_custom_data("breakable"):
 			broken_count += 1
-	tiles_left = clamp(broken_count - break_goal,0,broken_count)
+			break
 	
-	if tiles_left == 0 and not level_complete:
+	if broken_count == 0 and not level_complete:
 		SignalBus.level_complete.emit()
 		level_complete = true
 

@@ -115,8 +115,6 @@ func _process(delta: float) -> void:
 				$BulletSpawnPoint.position.y = -22 
 		crouching = false
 		
-	if Input.is_action_just_pressed("open_door_debug"):
-		SignalBus.level_complete.emit()
 		
 	if Input.is_action_just_pressed("gadget"):
 		if GlobVar.gadget != "":

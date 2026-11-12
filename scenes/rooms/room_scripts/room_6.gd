@@ -33,7 +33,7 @@ func _process(delta: float) -> void:
 	cam.limit_right = 6144
 	if $CharacterBody2D.position.y >= 0:
 		GlobVar.transitioning = false
-		SignalBus.level_goal.emit("Reach the end!")
+		SignalBus.level_goal.emit("Flip the lever!")
 	if top_locked == false:
 		cam.limit_top = max($CharacterBody2D.position.y - 576,cam.limit_top)
 	else:
