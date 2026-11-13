@@ -7,16 +7,16 @@
 [ext_resource type="Texture2D" uid="uid://bhyu1twbihs73" path="res://assets/sprites/player/uifacenew.png" id="3_mgfyp"]
 [ext_resource type="Texture2D" uid="uid://87ohwm0rcan3" path="res://assets/sprites/items/Old/coffee_cup.png" id="3_mphia"]
 [ext_resource type="Texture2D" uid="uid://cybd5cuc0otiw" path="res://assets/sprites/items/money/energy.png" id="4_apjy4"]
-[ext_resource type="Texture2D" uid="uid://b1giwfxw6vs0i" path="res://assets/sprites/items/Bloodlust.png" id="4_mgfyp"]
-[ext_resource type="Texture2D" uid="uid://bl61yjid7cxsw" path="res://assets/sprites/items/Diamond.png" id="5_ptr5m"]
+[ext_resource type="Texture2D" uid="uid://b1giwfxw6vs0i" path="res://assets/sprites/items/bloodlust.png" id="4_mgfyp"]
+[ext_resource type="Texture2D" uid="uid://bl61yjid7cxsw" path="res://assets/sprites/items/diamond.png" id="5_ptr5m"]
 [ext_resource type="Texture2D" uid="uid://dk485qies0bws" path="res://assets/sprites/items/Skelekey.png" id="6_5n1hp"]
 [ext_resource type="Texture2D" uid="uid://cn1c3e50nxfo0" path="res://assets/sprites/items/money/money_blue.png" id="6_apjy4"]
 [ext_resource type="Texture2D" uid="uid://nptp5374ax5j" path="res://assets/sprites/items/MagicCheese.png" id="6_of3ib"]
 [ext_resource type="Texture2D" uid="uid://xhxt8662caqy" path="res://assets/sprites/items/money/money_red.png" id="7_5n1hp"]
-[ext_resource type="Texture2D" uid="uid://c2e1mfxd4lb4n" path="res://assets/sprites/items/Oil.png" id="7_7600b"]
+[ext_resource type="Texture2D" uid="uid://c2e1mfxd4lb4n" path="res://assets/sprites/items/oil.png" id="7_7600b"]
 [ext_resource type="Texture2D" uid="uid://du67mb34m8p06" path="res://assets/sprites/items/money/money_green.png" id="8_eld54"]
 [ext_resource type="Texture2D" uid="uid://cl1ej1k8ftmx" path="res://assets/sprites/items/Old/medkit.png" id="9_3swnk"]
-[ext_resource type="Texture2D" uid="uid://dj7rs1pvg6877" path="res://assets/sprites/items/Dash.png" id="9_e558t"]
+[ext_resource type="Texture2D" uid="uid://dj7rs1pvg6877" path="res://assets/sprites/items/dash.png" id="9_e558t"]
 [ext_resource type="Texture2D" uid="uid://bp0i07p26vef0" path="res://assets/sprites/items/Old/jump_tank.png" id="10_qkknv"]
 [ext_resource type="Texture2D" uid="uid://88wbb55imwuq" path="res://assets/sprites/player/gadget_frame.png" id="11_0m4u7"]
 [ext_resource type="Texture2D" uid="uid://d3hqq5farpqmt" path="res://assets/sprites/items/money/Cheese.png" id="11_frrke"]
@@ -1127,6 +1127,7 @@ _data = {
 }
 
 [node name="HUD" type="CanvasLayer" unique_id=180511637]
+process_mode = 3
 script = ExtResource("1_oo0fn")
 
 [node name="Control" type="Control" parent="." unique_id=409783636]
@@ -1380,3 +1381,53 @@ text = "Cheddar is always better."
 [node name="AnimationPlayer" type="AnimationPlayer" parent="cheddytext" unique_id=994231646]
 libraries/ = SubResource("AnimationLibrary_of3ib")
 autoplay = &"RESET"
+
+[node name="PauseMenu" type="Control" parent="." unique_id=1076682866]
+visible = false
+z_index = 100
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BackgroundDim" type="ColorRect" parent="PauseMenu" unique_id=123978255]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 2008.0
+offset_bottom = 1112.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.60784316)
+
+[node name="ColorRect2" type="ColorRect" parent="PauseMenu" unique_id=1737329736]
+layout_mode = 1
+offset_left = 762.0
+offset_top = 296.0
+offset_right = 1262.0
+offset_bottom = 856.0
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/ColorRect2" unique_id=1146653050]
+layout_mode = 0
+offset_right = 500.0
+offset_bottom = 560.0
+theme_override_font_sizes/normal_font_size = 96
+text = "Resume
+
+Title
+
+Exit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReferenceRect" type="ReferenceRect" parent="PauseMenu/ColorRect2" unique_id=2064665386]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 36.0
+offset_right = 450.0
+offset_bottom = 136.0
+border_color = Color(1, 1, 1, 1)
+border_width = 4.0
+editor_only = false

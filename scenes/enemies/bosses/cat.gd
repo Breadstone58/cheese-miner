@@ -17,8 +17,8 @@ var track = "intro" :
 var hands_left = 2
 var left_hand_alive = true
 var right_hand_alive = true
-var left_hand_health = GlobVar.stage * 30
-var right_hand_health = GlobVar.stage * 30
+var left_hand_health = GlobVar.stage * 60
+var right_hand_health = GlobVar.stage * 60
 var body_frame = 0
 
 var attack_list = [

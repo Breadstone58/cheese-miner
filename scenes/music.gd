@@ -29,7 +29,7 @@ func _process(delta: float) -> void:
 			$GreenBiome.volume_db = clamp($GreenBiome.volume_db + delta * 80 * (1 if GlobVar.music_biome == 3 else -1),-80.0,0)
 			$Title.volume_db = clamp($Title.volume_db + delta * 80 * (1 if GlobVar.music_biome == 5 else -1),-80.0,0)
 			$Shop.volume_db = clamp($Shop.volume_db + delta * -80,-80,0)
-			$Boss.volume_db = clamp($Boss.volume_db + delta * -80,-80,0)
+			$Boss.stop()
 
 func _on_boss_music(state: bool):
 	if state:

@@ -34,6 +34,7 @@ autoplay = true
 parameters/looping = true
 
 [node name="Shop" type="AudioStreamPlayer" parent="." unique_id=1596554383]
+process_mode = 3
 stream = ExtResource("6_d6bcn")
 volume_db = -80.0
 autoplay = true
